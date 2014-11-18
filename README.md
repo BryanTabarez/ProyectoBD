@@ -4,9 +4,9 @@ Base de datos para una clínica
 Autores.
 -------
 
-- Bryan Stiven Tabarez Mestra.			Código: 1130054
-- Aurelio Antonio Vivaz Mesa.			Código: 
-- George de la Selva Romero Ramirez.	Código: 
+- Bryan Stiven Tabarez Mestra.		Código: 1130054
+- Aurelio Antonio Vivaz Mesa.		Código: 1110348
+- George Romero Ramirez.	        Código: 1130924
 
 
 Proyecto Base de Datos Clínica.
