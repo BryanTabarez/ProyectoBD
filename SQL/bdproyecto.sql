@@ -96,13 +96,27 @@ CREATE TABLE ENFERMERA
 
 CREATE TABLE ENFERMERA_HABILIDADES
 (
-	identificacion INTEGER NOT NULL PRIMARY KEY,
-	habilidad VARCHAR(50),
+	identificacion INTEGER NOT NULL,
+	habilidad INTEGER NOT NULL,
+	
+	CONSTRAINT enfermera_habilidades_pk PRIMARY KEY (identificacion),
 
 	CONSTRAINT enfermera_fk FOREIGN KEY (identificacion)
 	REFERENCES ENFERMERA (identificacion)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
+	
+	CONSTRAINT habilidad_fk FOREIGN KEY (habilidad)
+	REFERENCES HABILIDAD (codigo)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
+
+
+CREATE TABLE HABILIDAD
+(
+	codigo INTEGER NOT NULL PRIMARY KEY,
+	descripcion VARCHAR (50) NOT NULL
+)
+	
 
 CREATE TABLE AREA
 (
@@ -170,13 +184,9 @@ CREATE TABLE REGISTRO_HISTORIA
 CREATE TABLE CAUSA
 (
 	codigo VARCHAR (10) NOT NULL PRIMARY KEY,
-	id_registro INTEGER NOT NULL,
 	nombre VARCHAR (20) NOT NULL,
 	descripcion VARCHAR (200) NOT NULL,
 
-	CONSTRAINT registro_historia_fk FOREIGN KEY (id_registro)
-	REFERENCES REGISTRO_HISTORIA (id_registro)
-	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
@@ -188,17 +198,6 @@ CREATE TABLE MEDICAMENTO
 	descripcion VARCHAR (200)
 );
 
-
-CREATE TABLE REGISTRO_HISTORIA_MEDICAMENTO
-(
-	id_registro INTEGER NOT NULL,
-	codigo VARCHAR (10) NOT NULL,
-
-	CONSTRAINT registro_historia_medicamentos_pk PRIMARY KEY (id_registro, codigo),
-
-	CONSTRAINT registro_historia_fk FOREIGN KEY (id_registro)
-	REFERENCES REGISTRO_HISTORIA (id_registro)
-);
 
 
 CREATE TABLE CAMPANA
@@ -234,8 +233,8 @@ CREATE TABLE CAMPANA_PACIENTE
 
 CREATE TABLE HORARIO
 (
-	id_medico INTEGER NOT NULL,
 	id_horario INTEGER NOT NULL,
+	id_medico INTEGER NOT NULL,
 	fecha DATE NOT NULL,
 	hora TIME NOT NULL, 
 	num_horario INTEGER NOT NULL,
@@ -251,22 +250,19 @@ CREATE TABLE HORARIO
 
 CREATE TABLE CITA
 (
-	id_paciente INTEGER NOT NULL,
 	id_horario INTEGER NOT NULL,
-	id_registro INTEGER NOT NULL,
+	numero_historia INTEGER NOT NULL,
+	estado VARCHAR (20)
 
-	CONSTRAINT citas_pk PRIMARY KEY (id_paciente, id_horario, id_registro),
 
-	CONSTRAINT paciente_fk FOREIGN KEY (id_paciente)
-	REFERENCES PACIENTE (identificacion)
-	ON UPDATE CASCADE ON DELETE NO ACTION,
+	CONSTRAINT citas_pk PRIMARY KEY (id_horario, numero_historia),
 
 	CONSTRAINT horario_fk FOREIGN KEY (id_horario)
 	REFERENCES HORARIO (id_horario)
 	ON UPDATE CASCADE ON DELETE NO ACTION,
 
-	CONSTRAINT registro_historia_fk FOREIGN KEY (id_registro)
-	REFERENCES REGISTRO_HISTORIA (id_registro)
+	CONSTRAINT horario_fk FOREIGN KEY (numero_historia)
+	REFERENCES HORARIO (id_horario)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
