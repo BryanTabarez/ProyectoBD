@@ -169,25 +169,24 @@ CREATE TABLE Historia_clinica
 );
 
 
-CREATE TABLE REGISTRO_HISTORIA
+CREATE TABLE REGISTRO_MEDICO
 (
 	id_registro INTEGER NOT NULL PRIMARY KEY,
+	id_horario INTEGER NOT NULL 
 	num_historia INTEGER NOT NULL,
-	precio MONEY NOT NULL,
+	costo MONEY NOT NULL,
+
+	CONSTRAINT cama_paciente_pk PRIMARY KEY (id_registro, id_horario, num_historia),
+
+	CONSTRAINT horario_fk FOREIGN KEY (id_horario)
+	REFERENCES HORARIO (id_horario)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
 
 	CONSTRAINT historia_fk FOREIGN KEY (num_historia)
 	REFERENCES Historia_clinica (num_historia)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-
-CREATE TABLE CAUSA
-(
-	codigo VARCHAR (10) NOT NULL PRIMARY KEY,
-	nombre VARCHAR (20) NOT NULL,
-	descripcion VARCHAR (200) NOT NULL,
-
-);
 
 
 CREATE TABLE MEDICAMENTO
@@ -198,6 +197,23 @@ CREATE TABLE MEDICAMENTO
 	descripcion VARCHAR (200)
 );
 
+
+CREATE TABLE FORMULA_MEDICA
+(
+	id_registro INTEGER NOT NULL,
+	cod_medicamento INTEGER NOT NULL,
+	cantidad INTEGER NOT NULL,
+
+	CONSTRAINT formula_medica_pk PRIMARY KEY (id_registro, cod_medicamento),
+
+	CONSTRAINT registro_medico_fk FOREIGN KEY(id_registro)
+	REFERENCES REGISTRO_MEDICO (id_registro)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
+
+	CONSTRAINT medicamento_fk FOREIGN KEY(cod_medicamento)
+	REFERENCES MEDICAMENTO (codigo)
+	ON UPDATE CASCADE ON DELETE NO ACTION
+);
 
 
 CREATE TABLE CAMPANA
@@ -235,9 +251,7 @@ CREATE TABLE HORARIO
 (
 	id_horario INTEGER NOT NULL,
 	id_medico INTEGER NOT NULL,
-	fecha DATE NOT NULL,
-	hora TIME NOT NULL, 
-	num_horario INTEGER NOT NULL,
+	fecha_hora TIMESTAMP NOT NULL,
 	estado VARCHAR (20),
 
 	CONSTRAINT horario_pk PRIMARY KEY (id_horario),
@@ -263,6 +277,31 @@ CREATE TABLE CITA
 
 	CONSTRAINT horario_fk FOREIGN KEY (numero_historia)
 	REFERENCES HORARIO (id_horario)
+	ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+
+CREATE TABLE CAUSA
+(
+	codigo VARCHAR (10) NOT NULL PRIMARY KEY,
+	nombre VARCHAR (20) NOT NULL,
+	descripcion VARCHAR (200) NOT NULL,
+
+);
+
+CREATE TABLE CAUSA-CITA
+(
+	id_registro INTEGER NOT NULL,
+	id_causa INTEGER NOT NULL,
+
+	CONSTRAINT causa_cita_pk PRIMARY KEY (id_registro, id_causa),
+
+	CONSTRAINT registro_medico_fk FOREIGN KEY(id_registro)
+	REFERENCES REGISTRO_MEDICO (id_registro)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
+
+	CONSTRAINT causa_fk FOREIGN KEY(id_causa)
+	REFERENCES CAUSA (codigo)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
