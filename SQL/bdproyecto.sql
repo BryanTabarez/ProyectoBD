@@ -283,6 +283,9 @@ CREATE TABLE Campana_Paciente
 );
 
 
+CREATE UNIQUE INDEX horario_restriccion ON Horario_Consulta (id_medico, fecha_hora);
+
+
 
 
 
