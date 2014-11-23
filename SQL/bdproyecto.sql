@@ -1,34 +1,36 @@
--- PROYECTO DB
--- Archivo SQL con la implementación del esquema
--- George Romero
--- Bryan Tabarez
--- Aurelio Vivaz
+--=======================================================================================
+--
+-- INTEGRANTES:
+-- Bryan Stiven Tabarez Mestra	- 1131782
+-- Aurelio Antonio Vivas Meza	- 1110348
+-- George Romero Ramirez		- 1130924
+--
+--=======================================================================================
 
---=================>  CREANDO LAS TABLAS <=================
+--=================>  CREAR LAS TABLAS <=================
 
---DROP TABLE IF EXISTS PERSONA CASCADE;
---DROP TABLE IF EXISTS PACIENTE CASCADE;
---DROP TABLE IF EXISTS EMPLEADO CASCADE;
---DROP TABLE IF EXISTS MEDICO CASCADE;
---DROP TABLE IF EXISTS ENFERMERA CASCADE;
---DROP TABLE IF EXISTS ENFERMERA_HABILIDADES CASCADE;
---DROP TABLE IF EXISTS AREA CASCADE;
---DROP TABLE IF EXISTS CAMA CASCADE;
---DROP TABLE IF EXISTS CAMA_PACIENTE CASCADE;
+CREATE TABLE Area
+(
+	codigo INTEGER NOT NULL PRIMARY KEY,
+	nombre VARCHAR (100) NOT NULL,
+	descripcion TEXT NOT NULL
+);
 
---DROP TABLE IF EXISTS Historia_clinica CASCADE;
 
---DROP TABLE IF EXISTS CAUSA CASCADE;
---DROP TABLE IF EXISTS MEDICAMENTO CASCADE;
---DROP TABLE IF EXISTS CAMPANA CASCADE;
---DROP TABLE IF EXISTS CAMPANA_PACIENTE CASCADE;
+CREATE TABLE Cama
+(
+	num_cama INTEGER NOT NULL PRIMARY KEY,
+	estado VARCHAR (20) NOT NULL,
+	descripcion TEXT NOT NULL,
+	codigo_area INTEGER NOT NULL,
 
---DROP TABLE IF EXISTS REGISTRO_HISTORIA CASCADE;
---DROP TABLE IF EXISTS REGISTRO_HISTORIA_MEDICAMENTO CASCADE;
---DROP TABLE IF EXISTS HORARIO CASCADE;
---DROP TABLE IF EXISTS CITA CASCADE;
+	CONSTRAINT area_fk FOREIGN KEY (codigo_area)
+	REFERENCES Area (codigo)
+	ON UPDATE CASCADE ON DELETE NO ACTION
+);
 
-CREATE TABLE PERSONA
+
+CREATE TABLE Persona
 (
 	identificacion INTEGER NOT NULL PRIMARY KEY,
 	nombre VARCHAR(50) NOT NULL,
@@ -37,7 +39,7 @@ CREATE TABLE PERSONA
 );
 
 
-CREATE TABLE PACIENTE
+CREATE TABLE Paciente
 (
 	identificacion INTEGER NOT NULL PRIMARY KEY,
 	fecha_nacimiento DATE NOT NULL,
@@ -45,31 +47,30 @@ CREATE TABLE PACIENTE
 	num_seguridad_social INTEGER NOT NULL,
 
 	CONSTRAINT persona_fk FOREIGN KEY (identificacion)
-	REFERENCES PERSONA (identificacion)
+	REFERENCES Persona (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION 
 );
 
 
-CREATE TABLE EMPLEADO
+CREATE TABLE Empleado
 (
 	identificacion INTEGER NOT NULL PRIMARY KEY,
-	codigo_area VARCHAR (10) NOT NULL,
+	codigo_area INTEGER NOT NULL,
 	email VARCHAR(50) NOT NULL,
 	salario MONEY NOT NULL,
 	id_jefe INTEGER NOT NULL,
 
 	CONSTRAINT empleado_fk FOREIGN KEY (id_jefe)
-	REFERENCES EMPLEADO (identificacion)
+	REFERENCES Empleado (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION, 
 
 	CONSTRAINT persona_fk FOREIGN KEY (identificacion)
-	REFERENCES PERSONA (identificacion)
+	REFERENCES Persona (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION 
-
 );
 
 
-CREATE TABLE MEDICO
+CREATE TABLE Medico
 (
 	identificacion INTEGER NOT NULL PRIMARY KEY,
 	especialidad VARCHAR (100) NOT NULL,
@@ -77,233 +78,210 @@ CREATE TABLE MEDICO
 	num_licencia INTEGER NOT NULL,
 
 	CONSTRAINT empleado_fk FOREIGN KEY (identificacion)
-	REFERENCES EMPLEADO (identificacion)
+	REFERENCES Empleado (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE ENFERMERA
+CREATE TABLE Enfermera
 (
 	identificacion INTEGER NOT NULL PRIMARY KEY,
 	anos_experiencia INTEGER NOT NULL,
 
-
 	CONSTRAINT empleado_fk FOREIGN KEY (identificacion)
-	REFERENCES EMPLEADO (identificacion)
+	REFERENCES Empleado (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE ENFERMERA_HABILIDADES
+CREATE TABLE Habilidad
 (
-	identificacion INTEGER NOT NULL,
+	codigo INTEGER NOT NULL PRIMARY KEY,
+	descripcion TEXT NOT NULL
+);
+
+
+CREATE TABLE Enfermera_Habilidad
+(
+	id_enfermera INTEGER NOT NULL,
 	habilidad INTEGER NOT NULL,
 	
-	CONSTRAINT enfermera_habilidades_pk PRIMARY KEY (identificacion),
+	CONSTRAINT id_enfermera_pk PRIMARY KEY (id_enfermera),
 
-	CONSTRAINT enfermera_fk FOREIGN KEY (identificacion)
-	REFERENCES ENFERMERA (identificacion)
+	CONSTRAINT id_enfermera_fk FOREIGN KEY (id_enfermera)
+	REFERENCES Enfermera (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION,
 	
 	CONSTRAINT habilidad_fk FOREIGN KEY (habilidad)
-	REFERENCES HABILIDAD (codigo)
+	REFERENCES Habilidad (codigo)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE HABILIDAD
-(
-	codigo INTEGER NOT NULL PRIMARY KEY,
-	descripcion VARCHAR (50) NOT NULL
-)
-	
-
-CREATE TABLE AREA
-(
-	cod_area VARCHAR (10) NOT NULL PRIMARY KEY,
-	nombre VARCHAR (100) NOT NULL,
-	descripcion VARCHAR (200) NOT NULL
-);
-
-
-CREATE TABLE CAMA
-(
-	num_cama INTEGER NOT NULL PRIMARY KEY,
-	estado VARCHAR (20) NOT NULL,
-	descripcion VARCHAR (200) NOT NULL,
-	cod_area VARCHAR (10) NOT NULL,
-
-	CONSTRAINT area_fk FOREIGN KEY (cod_area)
-	REFERENCES AREA (cod_area)
-	ON UPDATE CASCADE ON DELETE NO ACTION
-);
-
-
-CREATE TABLE CAMA_PACIENTE
+CREATE TABLE Cama_Paciente
 (
 	num_cama INTEGER NOT NULL,
 	id_paciente INTEGER NOT NULL,
-	fecha_asignacion DATE NOT NULL,
+	fecha_asignacion TIMESTAMP NOT NULL,
 
-	CONSTRAINT cama_paciente_pk PRIMARY KEY (num_cama, id_paciente),
+	CONSTRAINT cama_paciente_pk PRIMARY KEY (num_cama, id_paciente, fecha_asignacion),
 
 	CONSTRAINT cama_fk FOREIGN KEY (num_cama)
-	REFERENCES CAMA (num_cama)
+	REFERENCES Cama (num_cama)
 	ON UPDATE CASCADE ON DELETE NO ACTION,
 
 	CONSTRAINT paciente_fk FOREIGN KEY (id_paciente)
-	REFERENCES PACIENTE (identificacion)
+	REFERENCES Paciente (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE Historia_clinica
+CREATE TABLE Historia_Clinica
 (
 	numero_historia INTEGER NOT NULL PRIMARY KEY,
 	id_paciente INTEGER NOT NULL,
 	fecha_apertura DATE NOT NULL,
 
 	CONSTRAINT paciente_fk FOREIGN KEY (id_paciente)
-	REFERENCES PACIENTE (identificacion)
+	REFERENCES Paciente (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE REGISTRO_MEDICO
-(
-	id_registro INTEGER NOT NULL PRIMARY KEY,
-	id_horario INTEGER NOT NULL 
-	num_historia INTEGER NOT NULL,
-	costo MONEY NOT NULL,
-
-	CONSTRAINT cama_paciente_pk PRIMARY KEY (id_registro, id_horario, num_historia),
-
-	CONSTRAINT horario_fk FOREIGN KEY (id_horario)
-	REFERENCES HORARIO (id_horario)
-	ON UPDATE CASCADE ON DELETE NO ACTION,
-
-	CONSTRAINT historia_fk FOREIGN KEY (num_historia)
-	REFERENCES Historia_clinica (num_historia)
-	ON UPDATE CASCADE ON DELETE NO ACTION
-);
-
-
-
-CREATE TABLE MEDICAMENTO
-(
-	codigo VARCHAR (10) NOT NULL PRIMARY KEY,
-	costo MONEY NOT NULL,
-	nombre VARCHAR (50) NOT NULL,
-	descripcion VARCHAR (200)
-);
-
-
-CREATE TABLE FORMULA_MEDICA
-(
-	id_registro INTEGER NOT NULL,
-	cod_medicamento INTEGER NOT NULL,
-	cantidad INTEGER NOT NULL,
-
-	CONSTRAINT formula_medica_pk PRIMARY KEY (id_registro, cod_medicamento),
-
-	CONSTRAINT registro_medico_fk FOREIGN KEY(id_registro)
-	REFERENCES REGISTRO_MEDICO (id_registro)
-	ON UPDATE CASCADE ON DELETE NO ACTION,
-
-	CONSTRAINT medicamento_fk FOREIGN KEY(cod_medicamento)
-	REFERENCES MEDICAMENTO (codigo)
-	ON UPDATE CASCADE ON DELETE NO ACTION
-);
-
-
-CREATE TABLE CAMPANA
-(
-	codigo VARCHAR (10) NOT NULL PRIMARY KEY,
-	id_medico INTEGER NOT NULL,
-	nombre VARCHAR (100) NOT NULL,
-	fecha_realizacion DATE NOT NULL,
-	objetivo VARCHAR (200) NOT NULL,
-
-	CONSTRAINT medico_fk FOREIGN KEY (id_medico)
-	REFERENCES MEDICO (identificacion)
-	ON UPDATE CASCADE ON DELETE NO ACTION
-);
-
-
-CREATE TABLE CAMPANA_PACIENTE
-(
-	id_paciente INTEGER NOT NULL,
-	codigo VARCHAR (10),
-
-	CONSTRAINT campana_paciente_pk PRIMARY KEY (id_paciente, codigo),
-
-	CONSTRAINT paciente_fk FOREIGN KEY (id_paciente)
-	REFERENCES PACIENTE (identificacion)
-	ON UPDATE CASCADE ON DELETE NO ACTION,
-
-	CONSTRAINT campana_fk FOREIGN KEY (codigo)
-	REFERENCES CAMPANA (codigo)
-	ON UPDATE CASCADE ON DELETE NO ACTION
-);
-
-
-CREATE TABLE HORARIO
+CREATE TABLE Horario_Consulta
 (
 	id_horario INTEGER NOT NULL,
 	id_medico INTEGER NOT NULL,
 	fecha_hora TIMESTAMP NOT NULL,
-	estado VARCHAR (20),
+	vacante BOOLEAN DEFAULT TRUE,
 
 	CONSTRAINT horario_pk PRIMARY KEY (id_horario),
 
 	CONSTRAINT medico_fk FOREIGN KEY (id_medico)
-	REFERENCES MEDICO (identificacion)
+	REFERENCES Medico (identificacion)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE CITA
+CREATE TABLE Cita
 (
 	id_horario INTEGER NOT NULL,
 	numero_historia INTEGER NOT NULL,
-	estado VARCHAR (20)
+	asistencia BOOLEAN DEFAULT FALSE,
+	tipo_solicitud VARCHAR(20) NOT NULL,
 
-
-	CONSTRAINT citas_pk PRIMARY KEY (id_horario, numero_historia),
+	CONSTRAINT cita_pk PRIMARY KEY (id_horario, numero_historia),
 
 	CONSTRAINT horario_fk FOREIGN KEY (id_horario)
-	REFERENCES HORARIO (id_horario)
+	REFERENCES Horario_Consulta (id_horario)
 	ON UPDATE CASCADE ON DELETE NO ACTION,
 
-	CONSTRAINT horario_fk FOREIGN KEY (numero_historia)
-	REFERENCES HORARIO (id_horario)
+	CONSTRAINT historia_fk FOREIGN KEY (numero_historia)
+	REFERENCES Historia_Clinica (numero_historia)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
-CREATE TABLE CAUSA
+CREATE TABLE Registro_Medico
 (
-	codigo VARCHAR (10) NOT NULL PRIMARY KEY,
-	nombre VARCHAR (20) NOT NULL,
-	descripcion VARCHAR (200) NOT NULL,
+	numero_registro INTEGER NOT NULL PRIMARY KEY,
+	id_horario INTEGER NOT NULL,
+	numero_historia INTEGER NOT NULL,
+	costo MONEY NOT NULL,
 
+
+	CONSTRAINT horario_fk FOREIGN KEY (id_horario)
+	REFERENCES Horario_Consulta (id_horario)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
+
+	CONSTRAINT historia_fk FOREIGN KEY (numero_historia)
+	REFERENCES Historia_Clinica (numero_historia)
+	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-CREATE TABLE CAUSA-CITA
+
+CREATE TABLE Medicamento
 (
-	id_registro INTEGER NOT NULL,
+	codigo INTEGER NOT NULL PRIMARY KEY,
+	costo MONEY NOT NULL,
+	nombre VARCHAR (50) NOT NULL,
+	descripcion TEXT
+);
+
+
+CREATE TABLE Formula_Medica
+(
+	numero_registro INTEGER NOT NULL,
+	codigo_medicamento INTEGER NOT NULL,
+	cantidad INTEGER NOT NULL,
+
+	CONSTRAINT formula_medica_pk PRIMARY KEY (numero_registro, codigo_medicamento),
+
+	CONSTRAINT registro_medico_fk FOREIGN KEY(numero_registro)
+	REFERENCES Registro_Medico (numero_registro)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
+
+	CONSTRAINT medicamento_fk FOREIGN KEY(codigo_medicamento)
+	REFERENCES Medicamento (codigo)
+	ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+
+CREATE TABLE Causa
+(
+	codigo INTEGER NOT NULL PRIMARY KEY,
+	nombre VARCHAR (50) NOT NULL,
+	descripcion TEXT NOT NULL
+);
+
+
+CREATE TABLE Causa_Cita
+(
+	numero_registro INTEGER NOT NULL,
 	id_causa INTEGER NOT NULL,
 
-	CONSTRAINT causa_cita_pk PRIMARY KEY (id_registro, id_causa),
+	CONSTRAINT causa_cita_pk PRIMARY KEY (numero_registro, id_causa),
 
-	CONSTRAINT registro_medico_fk FOREIGN KEY(id_registro)
-	REFERENCES REGISTRO_MEDICO (id_registro)
+	CONSTRAINT registro_medico_fk FOREIGN KEY(numero_registro)
+	REFERENCES Registro_Medico (numero_registro)
 	ON UPDATE CASCADE ON DELETE NO ACTION,
 
 	CONSTRAINT causa_fk FOREIGN KEY(id_causa)
-	REFERENCES CAUSA (codigo)
+	REFERENCES Causa (codigo)
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
+
+
+CREATE TABLE Campana_Prevencion
+(
+	codigo VARCHAR (20) NOT NULL PRIMARY KEY,
+	id_medico INTEGER NOT NULL,
+	nombre VARCHAR (100) NOT NULL,
+	fecha_realizacion DATE NOT NULL,
+	objetivo TEXT,
+
+	CONSTRAINT medico_fk FOREIGN KEY (id_medico)
+	REFERENCES Medico (identificacion)
+	ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+
+CREATE TABLE Campana_Paciente
+(
+	id_paciente INTEGER NOT NULL,
+	codigo_campana VARCHAR (20),
+
+	CONSTRAINT campana_paciente_pk PRIMARY KEY (id_paciente, codigo_campana),
+
+	CONSTRAINT paciente_fk FOREIGN KEY (id_paciente)
+	REFERENCES Paciente (identificacion)
+	ON UPDATE CASCADE ON DELETE NO ACTION,
+
+	CONSTRAINT campana_fk FOREIGN KEY (codigo_campana)
+	REFERENCES Campana_Prevencion (codigo)
+	ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
 
 
 
