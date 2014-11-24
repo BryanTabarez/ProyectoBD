@@ -1,4 +1,5 @@
-import Persona
+from logica.Persona import Persona
+
 
 class Paciente(Persona):
     """Clase Paciente que hereda de Persona"""
@@ -17,7 +18,7 @@ class Paciente(Persona):
         return self.__actividad_economica
 
     def get_num_seg_social(self):
-        return self._num_seg_social
+        return self.__num_seg_social
 
     def set_actividad_economica(self, actividad_economica):
         self.__actividad_economica = actividad_economica
