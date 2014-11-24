@@ -2,29 +2,20 @@ import psycopg2
 
 # FALTA IMPLEMENTAR CONTROL DE ERRORES y EXCEPCIONES
 
-conn = None
-cur = None
 
+class FachadaDB():
 
-#  Conectarse a la base de datos
-def conectar():
-    global conn
-    global cur
-    conn = psycopg2.connect("dbname=clinica user=bryanstm")
-    print("CONEXION ESTABLECIDA")
+    def obtenerConexion(self):
+        #  Conectarse a la base de datos
+        self.conn = psycopg2.connect("dbname=clinica user=bryanstm")
+        print("CONEXION ESTABLECIDA")
+        return self.conn
 
-    # Abrir un cursor para realizar las operaciones con la base de datos
-    cur = conn.cursor()
-    return cur
+    # Cerrar la comunicacion con la base de datos
+    def cerrarConexion(self):
+        self.conn.close()
+        print("CONEXION CERRADA")
 
-
-# Hacer que los cambios en la base de datos sean permanentes
-def guardar_cambios():
-    conn.commit()
-
-
-# Cerrar la comunicacion con la base de datos
-def cerrar_conexion():
-    cur.close()
-    conn.close()
-    print("CONEXION CERRADA")
+    # Hacer que los cambios en la base de datos sean permanentes
+    def guardar_cambios(self):
+        self.conn.commit()
