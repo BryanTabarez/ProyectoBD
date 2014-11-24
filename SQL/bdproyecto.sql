@@ -35,7 +35,7 @@ CREATE TABLE Persona
 	identificacion INTEGER NOT NULL PRIMARY KEY,
 	nombre VARCHAR(50) NOT NULL,
 	direccion VARCHAR (100) NOT NULL,
-	telefono INTEGER NOT NULL
+	telefono VARCHAR(15) NOT NULL
 );
 
 
