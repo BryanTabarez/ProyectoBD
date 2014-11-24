@@ -1,4 +1,6 @@
-class Persona:
+
+
+class Persona(object):
     """Clase base Persona"""
     def __init__(self, identificacion, nombre, direccion, telefono):
         self.__identificacion = identificacion
