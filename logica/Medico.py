@@ -1,4 +1,5 @@
-import Empleado
+from . import Empleado
+
 
 class Medico(Empleado):
     """Clase Medico que hereda de Empleado"""
