@@ -5,8 +5,8 @@ import psycopg2
 
 class FachadaDB():
 
+    #  Conectarse a la base de datos
     def obtenerConexion(self):
-        #  Conectarse a la base de datos
         self.conn = psycopg2.connect("dbname=clinica user=bryanstm")
         print("CONEXION ESTABLECIDA")
         return self.conn
@@ -15,7 +15,3 @@ class FachadaDB():
     def cerrarConexion(self):
         self.conn.close()
         print("CONEXION CERRADA")
-
-    # Hacer que los cambios en la base de datos sean permanentes
-    def guardar_cambios(self):
-        self.conn.commit()
