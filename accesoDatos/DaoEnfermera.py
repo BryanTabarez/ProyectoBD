@@ -1,4 +1,4 @@
-from logica.Paciente import Paciente
+from logica.Enfermera import Enfermera
 
 
 class DaoEnfermera():
@@ -10,13 +10,9 @@ class DaoEnfermera():
         try:
 
             cur = self.conn.cursor()
-
-
-
-
+            #INSERTAR PERSONA, EMPLEADO Y ENFERMERA
             cur.close()
 
-            # Hacer que los cambios en la base de datos sean permanentes
             self.conn.commit()
         except:
             print("Error!")
@@ -24,7 +20,7 @@ class DaoEnfermera():
 
     def borrarEnfermera(self, id):
         cur = self.conn.cursor()
-        cur.execute("DELETE FROM Paciente WHERE identificacion = %s", (id,))
+        # ELIMINAR EMPLEADO (Y ENFERMERA)
         cur.close()
         self.conn.commit()
 
