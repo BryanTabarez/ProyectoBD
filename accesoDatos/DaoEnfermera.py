@@ -8,15 +8,23 @@ class DaoEnfermera():
 
     def guardarEnfermera(self, e):
         try:
-
             cur = self.conn.cursor()
-
-
-
-
+            #guardar persona
+            cur.execute("INSERT INTO Persona VALUES (%s, %s, %s, %s)",
+                (e.get_identificacion(), e.get_nombre(), e.get_direccion(),
+                    e.get_telefono()))
+                    
+            #guardar empleado
+            cur.execute("INSERT INTO Empleado VALUES (%s, %s, %s, %s, %s)", (e.get_identificacion(),  e.get_codigo_area(),  e.get_email(),  e.get_salario(),  e.get_id_jefe()))
+            
+            #guardat enfermera
+            cur.execute("INSERT INTO Enfermera VALUES ($s, $s)",  (e.get_identificacion,  e.get_anhos_experiencia()))
+            
+            #guardar habilidades enfermera
+            habilidades = e.get_habilidades()
+            for i in habilidades():
+                cur.execute("INSERT INTO Enfermera_Habilidad VALUES ($s, $s)",  (e.get_identificacion,  habilidades(i)))
             cur.close()
-
-            # Hacer que los cambios en la base de datos sean permanentes
             self.conn.commit()
         except:
             print("Error!")
@@ -31,7 +39,7 @@ class DaoEnfermera():
     def consultarEnfermera(self, id):
         try:
             cur = self.conn.cursor()
-            sqlConsulta = """SELECT * FROM Paciente NATURAL JOIN Persona WHERE
+            sqlConsulta = """SELECT * FROM PERSONA JOIN EMPLEADO NATURAL JOIN ENFERMERA WHERE
             identificacion = %s"""
             cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
@@ -40,8 +48,7 @@ class DaoEnfermera():
                 cur.close()
                 return 0
             else:
-                paciente = Paciente(consulta[0], consulta[1], consulta[2],
-                    consulta[3], consulta[4], consulta[5], consulta[6])
+                Enfermera = Enfermera(  )
                 cur.close()
                 return paciente
         except:
