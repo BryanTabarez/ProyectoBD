@@ -24,6 +24,9 @@ def main():
 
     ##PRUEBA MODIFICAR PACIENTE
 
+    ##PRUEBA INSERTAR ENFERMERA
+	angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1, "angelly@correo.com", 2000000, 127, 2, [1,2])
+
     fachada.cerrarConexion()
 
 main()

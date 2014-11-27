@@ -7,16 +7,36 @@ class DaoEnfermera():
         self.conn = conexion
 
     def guardarEnfermera(self, e):
-        try:
+        #try:
+        cur = self.conn.cursor()
+        #guardar persona
+        cur.execute("INSERT INTO Persona VALUES (%s, %s, %s, %s)",
+            (e.get_identificacion(), e.get_nombre(), e.get_direccion(),
+                e.get_telefono()))
 
-            cur = self.conn.cursor()
-            #INSERTAR PERSONA, EMPLEADO Y ENFERMERA
-            cur.close()
+        print(e.get_codigo_area())
+        print(e.get_email())
 
-            self.conn.commit()
-        except:
-            print("Error!")
-            print("No se pudo guardar el registro en la base de datos")
+        #guardar empleado
+        cur.execute("INSERT INTO Empleado VALUES (%s, %s, %s, %s, %s)",
+            (e.get_identificacion(), e.get_codigo_area(), e.get_email(),
+                e.get_salario(), e.get_id_jefe()))
+
+        #guardat enfermera
+        cur.execute("INSERT INTO Enfermera VALUES (%s, %s)",
+            (e.get_identificacion(), e.get_anhos_experiencia()))
+
+        #guardar habilidades enfermera
+        habilidades = e.get_habilidades()
+        for i in habilidades():
+            cur.execute("INSERT INTO Enfermera_Habilidad VALUES (%s, %s)",
+                (e.get_identificacion(), habilidades(i)))
+
+        cur.close()
+        self.conn.commit()
+        #except:
+            #print("Error!")
+            #print("No se pudo guardar el registro en la base de datos")
 
     def borrarEnfermera(self, id):
         cur = self.conn.cursor()
@@ -27,8 +47,9 @@ class DaoEnfermera():
     def consultarEnfermera(self, id):
         try:
             cur = self.conn.cursor()
-            sqlConsulta = """SELECT * FROM Paciente NATURAL JOIN Persona WHERE
-            identificacion = %s"""
+            sqlConsulta = """SELECT * FROM Persona NATURAL JOIN EMPLEADO
+            NATURAL JOIN ENFERMERA WHERE identificacion = %s"""
+
             cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
             if consulta is None:
@@ -36,10 +57,14 @@ class DaoEnfermera():
                 cur.close()
                 return 0
             else:
-                paciente = Paciente(consulta[0], consulta[1], consulta[2],
-                    consulta[3], consulta[4], consulta[5], consulta[6])
+                cur.execute("""SELECT habilidad FROM Habilidades_Enfermera WHERE
+                id_enfermera = %s""", (id,))
+                habilidades = cur.fetchall()
+                enfermera = Enfermera(consulta[0], consulta[1], consulta[2],
+                    consulta[3], consulta[4], consulta[5], consulta[6],
+                    consulta[7], consulta[8], habilidades)
                 cur.close()
-                return paciente
+                return enfermera
         except:
             print("ERROR en la consulta!")
 
