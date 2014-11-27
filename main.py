@@ -1,17 +1,19 @@
-from accesoDatos.DaoPaciente import DaoPaciente
+#from accesoDatos.DaoPaciente import DaoPaciente
+from accesoDatos.DaoEnfermera import DaoEnfermera
+from logica.Enfermera import Enfermera
 from accesoDatos.FachadaDB import FachadaDB
-from logica.Paciente import Paciente
+#from logica.Paciente import Paciente
 
 
 def main():
     fachada = FachadaDB()
     conexion = fachada.obtenerConexion()
-    daoPac = DaoPaciente(conexion)
+    #daoPac = DaoPaciente(conexion)
 
     ##PRUEBA INSERTAR PACIENTE
-    paciente = Paciente(110, 'Esteban Quito', 'Calle 5', '018800777',
-       '2014-01-01', 'corredor de bolsa', 900)
-    daoPac.guardarPaciente(paciente)
+    #paciente = Paciente(110, 'Esteban Quito', 'Calle 5', '018800777',
+       #'2014-01-01', 'corredor de bolsa', 900)
+    #daoPac.guardarPaciente(paciente)
 
     ##PRUEBA BORRAR PACIENTE
     #daoPac.borrarPaciente(110)
@@ -25,7 +27,10 @@ def main():
     ##PRUEBA MODIFICAR PACIENTE
 
     ##PRUEBA INSERTAR ENFERMERA
-	angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1, "angelly@correo.com", 2000000, 127, 2, [1,2])
+    daoEnfe = DaoEnfermera(conexion)
+    angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1,
+        "angelly@correo.com", 2000000, 110, 2, [1, 2])
+    daoEnfe.guardarEnfermera(angely)
 
     fachada.cerrarConexion()
 
