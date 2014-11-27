@@ -1,11 +1,16 @@
-import Persona
+#from logica.Persona import Persona
 
-class Empleado(Persona):
+
+class Empleado(object):
     """Clase Empleado que hereda de Persona"""
     def __init__(self, identificacion, nombre, direccion, telefono,
         codigo_area, email, salario, id_jefe):
-        super(Empleado, self).__init__(identificacion, nombre, direccion,
-            telefono)
+        #super(Empleado, self).__init__(identificacion, nombre, direccion,
+            #telefono)
+        self.__identificacion = identificacion
+        self.__nombre = nombre
+        self.__direccion = direccion
+        self.__telefono = telefono
         self.__codigo_area = codigo_area
         self.__email = email
         self.__salario = salario
@@ -34,4 +39,18 @@ class Empleado(Persona):
 
         def set_id_jefe(self, id_jefe):
             self.__id_jefe = id_jefe
+
+        def get_nombre(self):
+            return self.__nombre
+
+        # METODOS DE PERSONA // BORRAR PRUEBA
+
+        def get_identificacion(self):
+            return self.__identificacion
+
+        def get_telefono(self):
+            return self.__telefono
+
+        def get_direccion(self):
+            return self.__direccion
 
