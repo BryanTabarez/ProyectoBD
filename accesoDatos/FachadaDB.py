@@ -7,8 +7,10 @@ class FachadaDB():
 
     #  Conectarse a la base de datos
     def obtenerConexion(self):
+        #self.conn = psycopg2.connect(""" host='localhost' dbname='clinica'
+        #user='proyectouser' password='123456'""")
         self.conn = psycopg2.connect(""" host='localhost' dbname='clinica'
-        user='proyectouser' password='123456'""")
+        user='bryanstm' password='bryanstm'""")
         print("CONEXION ESTABLECIDA")
         return self.conn
 
