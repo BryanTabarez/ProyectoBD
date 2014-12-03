@@ -7,36 +7,33 @@ class DaoEnfermera():
         self.conn = conexion
 
     def guardarEnfermera(self, e):
-        #try:
-        cur = self.conn.cursor()
-        #guardar persona
-        cur.execute("INSERT INTO Persona VALUES (%s, %s, %s, %s)",
-            (e.get_identificacion(), e.get_nombre(), e.get_direccion(),
-                e.get_telefono()))
+        try:
+            cur = self.conn.cursor()
+            #guardar persona
+            cur.execute("INSERT INTO Persona VALUES (%s, %s, %s, %s)",
+                (e.get_identificacion(), e.get_nombre(), e.get_direccion(),
+                    e.get_telefono()))
 
-        print(e.get_codigo_area())
-        print(e.get_email())
+            #guardar empleado
+            cur.execute("INSERT INTO Empleado VALUES (%s, %s, %s, %s, %s)",
+                (e.get_identificacion(), e.get_codigo_area(), e.get_email(),
+                    e.get_salario(), e.get_id_jefe()))
 
-        #guardar empleado
-        cur.execute("INSERT INTO Empleado VALUES (%s, %s, %s, %s, %s)",
-            (e.get_identificacion(), e.get_codigo_area(), e.get_email(),
-                e.get_salario(), e.get_id_jefe()))
+            #guardat enfermera
+            cur.execute("INSERT INTO Enfermera VALUES (%s, %s)",
+                (e.get_identificacion(), e.get_anhos_experiencia()))
 
-        #guardat enfermera
-        cur.execute("INSERT INTO Enfermera VALUES (%s, %s)",
-            (e.get_identificacion(), e.get_anhos_experiencia()))
+            #guardar habilidades enfermera
+            habilidades = e.get_habilidades()
+            for i in habilidades:
+                cur.execute("INSERT INTO Enfermera_Habilidad VALUES (%s, %s)",
+                    (e.get_identificacion(), i))
 
-        #guardar habilidades enfermera
-        habilidades = e.get_habilidades()
-        for i in habilidades():
-            cur.execute("INSERT INTO Enfermera_Habilidad VALUES (%s, %s)",
-                (e.get_identificacion(), habilidades(i)))
-
-        cur.close()
-        self.conn.commit()
-        #except:
-            #print("Error!")
-            #print("No se pudo guardar el registro en la base de datos")
+            cur.close()
+            self.conn.commit()
+        except:
+            print("Error!")
+            print("No se pudo guardar el registro en la base de datos")
 
     def borrarEnfermera(self, id):
         cur = self.conn.cursor()
