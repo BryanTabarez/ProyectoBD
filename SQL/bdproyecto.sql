@@ -20,7 +20,7 @@ CREATE TABLE Area
 CREATE TABLE Cama
 (
 	num_cama INTEGER NOT NULL PRIMARY KEY,
-	estado VARCHAR (20) NOT NULL,
+	estado BOOLEAN,
 	descripcion TEXT NOT NULL,
 	codigo_area INTEGER NOT NULL,
 
@@ -106,7 +106,7 @@ CREATE TABLE Enfermera_Habilidad
 	id_enfermera INTEGER NOT NULL,
 	habilidad INTEGER NOT NULL,
 	
-	CONSTRAINT id_enfermera_pk PRIMARY KEY (id_enfermera),
+	CONSTRAINT id_enfermera_pk PRIMARY KEY (id_enfermera, habilidad),
 
 	CONSTRAINT id_enfermera_fk FOREIGN KEY (id_enfermera)
 	REFERENCES Enfermera (identificacion)
