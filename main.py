@@ -29,7 +29,7 @@ def main():
     ##PRUEBA INSERTAR ENFERMERA
     daoEnfe = DaoEnfermera(conexion)
     angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1,
-        "angelly@correo.com", 2000000, 110, 2, [1, 2])
+        "angelly@correo.com", 2000000, 1111, 3, [1, 2])
     daoEnfe.guardarEnfermera(angely)
 
     fachada.cerrarConexion()
