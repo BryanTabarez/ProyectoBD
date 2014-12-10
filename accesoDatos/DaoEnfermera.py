@@ -37,7 +37,7 @@ class DaoEnfermera():
 
     def borrarEnfermera(self, id):
         cur = self.conn.cursor()
-        # ELIMINAR EMPLEADO (Y ENFERMERA)
+        # ELIMINAR REGISTROS EN EMPLEADO Y ENFERMERA, DEJAR PERSONA
         cur.close()
         self.conn.commit()
 
