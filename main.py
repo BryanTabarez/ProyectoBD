@@ -8,6 +8,8 @@ from accesoDatos.FachadaDB import FachadaDB
 def main():
     fachada = FachadaDB()
     conexion = fachada.obtenerConexion()
+
+#==============================================================================
     #daoPac = DaoPaciente(conexion)
 
     ##PRUEBA INSERTAR PACIENTE
@@ -25,16 +27,19 @@ def main():
 
     ##PRUEBA BORRAR PACIENTE
     #daoPac.borrarPaciente(110)
+#==============================================================================
 
+#==============================================================================
     ##PRUEBA INSERTAR ENFERMERA
     daoEnfe = DaoEnfermera(conexion)
-    angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1,
-        "angelly@correo.com", 2000000, 110, 3, [1, 2])
+    angely = Enfermera(11145613, "Angelly", "calle 45", "3108304383", 1,
+        "angelly@correo.com", 2000000, 110, 3, [1, 4])
     daoEnfe.guardarEnfermera(angely)
 
     #PRUEBA CONSULTAR ENFERMERA --> FALTA
 
     #PRUEBA BORRAR ENFERMERA --> FALTA
+#==============================================================================
 
     fachada.cerrarConexion()
 
