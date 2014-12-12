@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>widgetListarHabilidades</class>
+ <widget class="QWidget" name="widgetListarHabilidades">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>571</width>
+    <height>481</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Listar Habilidades</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>551</width>
+     <height>461</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Codigo</string>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu Condensed</family>
+     </font>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Descripcion</string>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu Condensed</family>
+     </font>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
