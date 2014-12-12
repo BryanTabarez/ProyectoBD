@@ -4,25 +4,6 @@ from PyQt4 import uic
 
 
 
-#_________________________________ Empleados por areas__________________________________________ 
-
-
-WidgetEmpleadosPorAreaInterfaz_class , WidgetEmpleadosPorAreaInterfazBase_class = uic.loadUiType('administrador/uis/WidgetEmpleadosPorArea.ui')
-
-class WidgetEmpleadosPorArea( QWidget , WidgetEmpleadosPorAreaInterfaz_class ):
-
-	def __init__( self, parent=None ):
-
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
-		QWidget.__init__( self, parent )
-		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
-		self.setupUi( self )
-	
-		
-
-
 #_________________________________ Listar areas __________________________________________
 
 WidgetListarAreasInterfaz_class , WidgetListarAreasInterfazBase_class = uic.loadUiType('administrador/uis/WidgetListarAreas.ui')
@@ -129,5 +110,89 @@ class WidgetTipoEmpleadoMedico( QWidget, WidgetTipoEmpleadoMedicoInterfaz_class 
 	
 
 
-	
-	
+
+#______________________________________ INFORMES ____________________________________________________
+
+
+
+
+
+
+
+#_________________________________ Empleados por areas __________________________________________ 
+
+
+WidgetEmpleadosPorAreaInterfaz_class , WidgetEmpleadosPorAreaInterfazBase_class = uic.loadUiType('administrador/uis/WidgetEmpleadosPorArea.ui')
+
+class WidgetEmpleadosPorArea( QWidget , WidgetEmpleadosPorAreaInterfaz_class ):
+
+	def __init__( self, parent=None ):
+
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
+		"""
+		QWidget.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )
+
+
+#_________________________________ Agenda Medico Mes __________________________________________ 
+
+WidgetAgendaMedicoMesInterfaz_class , WidgetAgendaMedicoMesInterfaBase_class = uic.loadUiType("administrador/uis/WidgetAgendaMedico.ui");
+
+class WidgetAgendaMedicoMes( QWidget, WidgetAgendaMedicoMesInterfaz_class ):
+
+	def __init__( self, parent=None ):
+
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
+		"""
+		QWidget.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )
+
+
+#_________________________________ Historia Clinica Paciente __________________________________________ 
+
+WidgetHistoriaClinicaPacienteInterfaz_class , WidgetHistoriaClinicaPacienteInterfaBase_class = uic.loadUiType("administrador/uis/WidgetHistoriaClinica.ui");
+
+class WidgetHistoriaClinicaPaciente( QWidget, WidgetHistoriaClinicaPacienteInterfaz_class ):
+
+	def __init__( self, parent=None ):
+
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
+		"""
+		QWidget.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )
+
+#_________________________________ Citas Atendidas Medico Por Mes __________________________________________ 
+
+WidgetNumeroCitasMedicoInterfaz_class , WidgetNumeroCitasMedicoInterfaBase_class = uic.loadUiType("administrador/uis/WidgetNumeroCitasMedico.ui");
+
+class WidgetNumeroCitasMedico( QWidget, WidgetNumeroCitasMedicoInterfaz_class ):
+
+	def __init__( self, parent=None ):
+
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
+		"""
+		QWidget.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )
+
+#_________________________________ Costo Paciente Mes Anio  __________________________________________ 
+
+WidgetCostoPromedioPacienteInterfaz_class , WidgetCostoPromedioPacienteInterfaBase_class = uic.loadUiType("administrador/uis/WidgetCostoPromedioPaciente.ui");
+
+class WidgetCostoPromedioPaciente( QWidget, WidgetCostoPromedioPacienteInterfaz_class ):
+
+	def __init__( self, parent=None ):
+
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
+		"""
+		QWidget.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )

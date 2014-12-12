@@ -96,7 +96,7 @@
      <x>10</x>
      <y>10</y>
      <width>541</width>
-     <height>89</height>
+     <height>95</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
@@ -132,6 +132,9 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="2" column="0">
@@ -148,6 +151,9 @@
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -194,21 +200,6 @@
      <bold>false</bold>
     </font>
    </property>
-   <item>
-    <property name="text">
-     <string>identificacion registro, medico,fecha , hora  ,precio consulta,</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>New Item</string>
-    </property>
-   </item>
   </widget>
   <widget class="QLabel" name="labelCausas">
    <property name="geometry">

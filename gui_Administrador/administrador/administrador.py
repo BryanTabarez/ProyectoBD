@@ -22,6 +22,16 @@ from dialogs import DialogNuevaHabilidad
 from dialogs import DialogModificarHabilidad
 from widgets import WidgetListarHabilidades
 
+from widgets import WidgetAgendaMedicoMes
+from widgets import WidgetHistoriaClinicaPaciente
+from widgets import WidgetNumeroCitasMedico
+from widgets import WidgetCostoPromedioPaciente
+
+
+
+
+
+
 InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('administrador/uis/MainWindowAdministrador.ui')
 
 
@@ -47,9 +57,6 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 
 
 		#Se cargan los widgets o panales que usa el administrador
-		self.widgetEmpleadosPorArea  = WidgetEmpleadosPorArea( self.widgetCuerpo )
-		self.widgetEmpleadosPorArea.hide()
-
 		self.widgetListarAreas = WidgetListarAreas( self.widgetCuerpo )
 		self.widgetListarAreas.hide()
 
@@ -62,6 +69,24 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarHabilidades = WidgetListarHabilidades( self.widgetCuerpo )
 		self.widgetListarHabilidades.hide()
 		
+		#_____________________________________________________________________________
+		self.widgetEmpleadosPorArea  = WidgetEmpleadosPorArea( self.widgetCuerpo )
+		self.widgetEmpleadosPorArea.hide()
+
+		self.widgetAgendaMedicoMes = WidgetAgendaMedicoMes( self.widgetCuerpo );
+		self.widgetAgendaMedicoMes.hide()
+
+		self.widgetHistoriaClinicaPaciente = WidgetHistoriaClinicaPaciente( self.widgetCuerpo )
+		self.widgetHistoriaClinicaPaciente.hide()
+
+		self.widgetNumeroCitasMedico = WidgetNumeroCitasMedico( self.widgetCuerpo )
+		self.widgetNumeroCitasMedico.hide()
+
+		self.widgetCostoPromedioPaciente = WidgetCostoPromedioPaciente( self.widgetCuerpo )
+		self.widgetCostoPromedioPaciente.hide()
+
+		
+
 		"""
 			SENIALES Y SLOTS			
 		"""
@@ -86,6 +111,12 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.connect( self.commandLinkButtonModificarHabilidad, SIGNAL("clicked()"), self.modificarHabilidad )
 		self.connect( self.commandLinkButtonListarHabilidades, SIGNAL("clicked()"), self.listarHabilidades )
 
+		#_______________________________________________________________________________________________________
+
+		self.connect( self.commandLinkButtonAgendaMedicoMes, SIGNAL("clicked()"), self.mostrarAgendaMedico )
+		self.connect( self.commandLinkButtonHistoriaClinicaPaciente, SIGNAL("clicked()"), self.mostrarHistoriaClinicaPaciente )
+		self.connect( self.commandLinkButtonCitasAtendidasMedicoMes, SIGNAL("clicked()"), self.mostrarCitasAtendidasMedicoMes )
+		self.connect( self.commandLinkButtonCostoPaciente, SIGNAL("clicked()"), self.mostrarCostoPaciente )
 
 		"""
 			METODOS			
@@ -109,12 +140,19 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Metodo: listarEmpleados
 	#Funcion: permite mostrar el listado de empleados de la clinica por area
 	def listarEmpleados( self ):
-
-		self.widgetEmpleadosPorArea.show()
+		
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
+
+		#___________________________________
+
+		self.widgetEmpleadosPorArea.show()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
 		
 		
 
@@ -136,12 +174,19 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Metdo: listarAreas
 	#Funcion: permite mostrar las areas de la clinica
 	def listarAreas( self ):
-
-		self.widgetEmpleadosPorArea.hide()
+		
 		self.widgetListarAreas.show()
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
+
+		#______________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
 
 	#Metodo: listarAreas
 	#Funcion: Despliega la interfaz que permite crear un nueva cama 
@@ -160,12 +205,19 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Metodo: listarCamas
 	#Funcion: permite mostrar un listado de camas del hospital
 	def listarCamas( self ):
-
-		self.widgetEmpleadosPorArea.hide()
+		
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.show()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
+
+		#________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
 
 	#Metodo: nuevoMedicamento
 	#Funcion: Despliega la interfaz que permite insertar medicamentos
@@ -185,11 +237,19 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Funcion: permite mostrar el listado de medicamentos disponibles en la clinica
 	def listarMedicamentos( self ):
 
-		self.widgetEmpleadosPorArea.hide()
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.show()
 		self.widgetListarHabilidades.hide()
+
+		#_________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
+
 
 	#Metodo: nuevaHabilidad
 	#Funcion: Despliega el dialog que permite ingresar habilidades a la base de datos
@@ -205,10 +265,89 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		dialogModificarHabilidad = DialogModificarHabilidad( self )
 		dialogModificarHabilidad.exec_()
 
+	#Metodo: listarHabilidades
+	#Funcion: Permite listar las habilidades de una enfermera registradas en la base de datos
 	def listarHabilidades( self ):
 
-		self.widgetEmpleadosPorArea.hide()
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.show()
+
+		#__________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
+
+	#Metodo: mostrarAgendaMedico
+	#Funcion: Permite visualizar la agenda programada del medico en un mes determinado
+	def mostrarAgendaMedico( self ):
+
+		self.widgetListarAreas.hide()
+		self.widgetListarCamas.hide()
+		self.widgetListarMedicamentos.hide()
+		self.widgetListarHabilidades.hide()
+
+		#__________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.show()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
+
+	#Metodo: mostrarHistoriaClinicaPaciente
+	#Funcion: Permite visualizar la historia clinica de un paciente
+	def mostrarHistoriaClinicaPaciente( self ):
+
+		self.widgetListarAreas.hide()
+		self.widgetListarCamas.hide()
+		self.widgetListarMedicamentos.hide()
+		self.widgetListarHabilidades.hide()
+
+		#__________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.show()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
+
+	#Metodo: mostrarCitasAtendidasMedicoMes
+	#Funcion: Permite visualizar las citas que ha atendido un medico en determinado mes
+	def mostrarCitasAtendidasMedicoMes( self ):
+
+		self.widgetListarAreas.hide()
+		self.widgetListarCamas.hide()
+		self.widgetListarMedicamentos.hide()
+		self.widgetListarHabilidades.hide()
+
+		#__________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.show()
+		self.widgetCostoPromedioPaciente.hide()
+	
+	#Metodo: mostrarCostoPaciente
+	#Funcion: Permite visualizar el costo de un paciente
+	def mostrarCostoPaciente( self ):
+
+		self.widgetListarAreas.hide()
+		self.widgetListarCamas.hide()
+		self.widgetListarMedicamentos.hide()
+		self.widgetListarHabilidades.hide()
+
+		#__________________________________________
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.show()
+		
+		
