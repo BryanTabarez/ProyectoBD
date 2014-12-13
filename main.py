@@ -1,6 +1,8 @@
 #from accesoDatos.DaoPaciente import DaoPaciente
-from accesoDatos.DaoEnfermera import DaoEnfermera
-from logica.Enfermera import Enfermera
+#from accesoDatos.DaoEnfermera import DaoEnfermera
+#from logica.Enfermera import Enfermera
+from logica.Cama import Cama
+from accesoDatos.DaoCama import DaoCama
 from accesoDatos.FachadaDB import FachadaDB
 #from logica.Paciente import Paciente
 
@@ -31,16 +33,35 @@ def main():
 
 #==============================================================================
     ##PRUEBA INSERTAR ENFERMERA
-    daoEnfe = DaoEnfermera(conexion)
-    angely = Enfermera(11145613, "Angelly", "calle 45", "3108304383", 1,
-        "angelly@correo.com", 2000000, 110, 3, [1, 4])
-    daoEnfe.guardarEnfermera(angely)
+    #daoEnfe = DaoEnfermera(conexion)
+    #angely = Enfermera(11145613, "Angelly", "calle 45", "3108304383", 1,
+        #"angelly@correo.com", 2000000, 110, 3, [1, 4])
+    #daoEnfe.guardarEnfermera(angely)
 
     #PRUEBA CONSULTAR ENFERMERA --> FALTA
 
     #PRUEBA BORRAR ENFERMERA --> FALTA
 #==============================================================================
 
+#==============================================================================
+
+    daoCama = DaoCama(conexion)
+    ##Prueba insertar cama
+
+    #cama = Cama("", "t", "Cama reclinable", 1)
+    #daoCama.guardarCama(cama)
+
+    ##Prueba consultar cama
+    #cama = daoCama.consultarCama(2)
+    #print("Codigo paciente = ")
+    #print(cama.get_num_cama())
+
+    ##Prueba borrar cama
+    daoCama.borrarCama(2)
+
+#==============================================================================
+
     fachada.cerrarConexion()
+
 
 main()
