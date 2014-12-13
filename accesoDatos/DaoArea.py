@@ -1,4 +1,3 @@
-from logica.Area import Area
 
 
 class DaoArea():
@@ -7,16 +6,13 @@ class DaoArea():
         self.conn = conexion
 
     def guardarArea(self, a):
-        try:
-            cur = self.conn.cursor()
+        cur = self.conn.cursor()
 
-            cur.execute("INSERT INTO Area(nombre, descripcion) VALUES (%s, %s)",
-                (a.get_nombre_area(), a.get_descripcion()))
+        cur.execute("INSERT INTO Area(nombre, descripcion) VALUES (%s, %s)",
+            (a.get_nombre_area(), a.get_descripcion()))
 
-            cur.close()
-            self.conn.commit()
-        except:
-
+        cur.close()
+        self.conn.commit()
 
     def borrarArea(self, codigo):
         cur = self.conn.cursor()
@@ -26,11 +22,8 @@ class DaoArea():
         cur.close()
         self.conn.commit()
 
-
-
     def consultarArea(self, codigo):
         cur = self.conn.cursor()
 
         cur.close()
         self.conn.commit()
-
