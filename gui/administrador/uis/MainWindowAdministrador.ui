@@ -267,7 +267,7 @@ font: 12pt &quot;Ubuntu Condensed&quot;;</string>
        <x>20</x>
        <y>0</y>
        <width>162</width>
-       <height>71</height>
+       <height>61</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -320,8 +320,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>320</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -393,8 +393,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>320</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -566,8 +566,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>320</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -639,8 +639,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>320</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -708,6 +708,14 @@ color: rgb(255, 255, 255);</string>
      </widget>
     </widget>
     <widget class="QWidget" name="page_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>200</width>
+       <height>315</height>
+      </rect>
+     </property>
      <attribute name="label">
       <string>Informes</string>
      </attribute>
