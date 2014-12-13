@@ -32,7 +32,7 @@ from widgets import WidgetCostoPromedioPaciente
 
 
 
-InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('administrador/uis/MainWindowAdministrador.ui')
+InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/administrador/uis/MainWindowAdministrador.ui')
 
 
 class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):

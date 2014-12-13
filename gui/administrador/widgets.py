@@ -6,7 +6,7 @@ from PyQt4 import uic
 
 #_________________________________ Listar areas __________________________________________
 
-WidgetListarAreasInterfaz_class , WidgetListarAreasInterfazBase_class = uic.loadUiType('administrador/uis/WidgetListarAreas.ui')
+WidgetListarAreasInterfaz_class , WidgetListarAreasInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetListarAreas.ui')
 
 
 class WidgetListarAreas( QWidget, WidgetListarAreasInterfaz_class ):
@@ -25,7 +25,7 @@ class WidgetListarAreas( QWidget, WidgetListarAreasInterfaz_class ):
 
 #_________________________________ Listar camas __________________________________________ 
 
-WidgetListarCamasInterfaz_class , WidgetListarCamasInterfazBase_class = uic.loadUiType('administrador/uis/WidgetListarCamas.ui')
+WidgetListarCamasInterfaz_class , WidgetListarCamasInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetListarCamas.ui')
 
 
 class WidgetListarCamas( QWidget, WidgetListarCamasInterfaz_class ):
@@ -45,7 +45,7 @@ class WidgetListarCamas( QWidget, WidgetListarCamasInterfaz_class ):
 
 #_________________________________ Listar medicamentos __________________________________________ 
 
-WidgetListarMedicamentosInterfaz_class , WidgetListarMedicamentosInterfazBase_class = uic.loadUiType('administrador/uis/WidgetListarMedicamentos.ui')
+WidgetListarMedicamentosInterfaz_class , WidgetListarMedicamentosInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetListarMedicamentos.ui')
 
 
 class WidgetListarMedicamentos( QWidget, WidgetListarMedicamentosInterfaz_class ):
@@ -63,7 +63,7 @@ class WidgetListarMedicamentos( QWidget, WidgetListarMedicamentosInterfaz_class 
 	
 #_________________________________ Listar Habilidades __________________________________________ 
 
-WidgetListarHabilidadesInterfaz_class , WidgetListarHabilidadesInterfazBase_class = uic.loadUiType('administrador/uis/WidgetListarHabilidades.ui')
+WidgetListarHabilidadesInterfaz_class , WidgetListarHabilidadesInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetListarHabilidades.ui')
 
 
 class WidgetListarHabilidades( QWidget, WidgetListarHabilidadesInterfaz_class ):
@@ -78,7 +78,7 @@ class WidgetListarHabilidades( QWidget, WidgetListarHabilidadesInterfaz_class ):
 
 #_________________________________ Tipo empleado enfermera  __________________________________________ 
 
-WidgetTipoEmpleadoEnfermeraInterfaz_class , WidgetTipoEmpleadoEnfermeraInterfazBase_class = uic.loadUiType('administrador/uis/WidgetTipoEmpleadoEnfermera.ui')
+WidgetTipoEmpleadoEnfermeraInterfaz_class , WidgetTipoEmpleadoEnfermeraInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetTipoEmpleadoEnfermera.ui')
 
 class WidgetTipoEmpleadoEnfermera( QWidget, WidgetTipoEmpleadoEnfermeraInterfaz_class ):
 
@@ -96,7 +96,7 @@ class WidgetTipoEmpleadoEnfermera( QWidget, WidgetTipoEmpleadoEnfermeraInterfaz_
 
 #_________________________________ Tipo empleado medico  __________________________________________ 
 
-WidgetTipoEmpleadoMedicoInterfaz_class , WidgetTipoEmpleadoMedicoInterfazBase_class = uic.loadUiType('administrador/uis/WidgetTipoEmpleadoMedico.ui')
+WidgetTipoEmpleadoMedicoInterfaz_class , WidgetTipoEmpleadoMedicoInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetTipoEmpleadoMedico.ui')
 
 
 class WidgetTipoEmpleadoMedico( QWidget, WidgetTipoEmpleadoMedicoInterfaz_class ):
@@ -122,7 +122,7 @@ class WidgetTipoEmpleadoMedico( QWidget, WidgetTipoEmpleadoMedicoInterfaz_class 
 #_________________________________ Empleados por areas __________________________________________ 
 
 
-WidgetEmpleadosPorAreaInterfaz_class , WidgetEmpleadosPorAreaInterfazBase_class = uic.loadUiType('administrador/uis/WidgetEmpleadosPorArea.ui')
+WidgetEmpleadosPorAreaInterfaz_class , WidgetEmpleadosPorAreaInterfazBase_class = uic.loadUiType('gui/administrador/uis/WidgetEmpleadosPorArea.ui')
 
 class WidgetEmpleadosPorArea( QWidget , WidgetEmpleadosPorAreaInterfaz_class ):
 
@@ -138,7 +138,7 @@ class WidgetEmpleadosPorArea( QWidget , WidgetEmpleadosPorAreaInterfaz_class ):
 
 #_________________________________ Agenda Medico Mes __________________________________________ 
 
-WidgetAgendaMedicoMesInterfaz_class , WidgetAgendaMedicoMesInterfaBase_class = uic.loadUiType("administrador/uis/WidgetAgendaMedico.ui");
+WidgetAgendaMedicoMesInterfaz_class , WidgetAgendaMedicoMesInterfaBase_class = uic.loadUiType("gui/administrador/uis/WidgetAgendaMedico.ui");
 
 class WidgetAgendaMedicoMes( QWidget, WidgetAgendaMedicoMesInterfaz_class ):
 
@@ -154,7 +154,7 @@ class WidgetAgendaMedicoMes( QWidget, WidgetAgendaMedicoMesInterfaz_class ):
 
 #_________________________________ Historia Clinica Paciente __________________________________________ 
 
-WidgetHistoriaClinicaPacienteInterfaz_class , WidgetHistoriaClinicaPacienteInterfaBase_class = uic.loadUiType("administrador/uis/WidgetHistoriaClinica.ui");
+WidgetHistoriaClinicaPacienteInterfaz_class , WidgetHistoriaClinicaPacienteInterfaBase_class = uic.loadUiType("gui/administrador/uis/WidgetHistoriaClinica.ui");
 
 class WidgetHistoriaClinicaPaciente( QWidget, WidgetHistoriaClinicaPacienteInterfaz_class ):
 
@@ -169,7 +169,7 @@ class WidgetHistoriaClinicaPaciente( QWidget, WidgetHistoriaClinicaPacienteInter
 
 #_________________________________ Citas Atendidas Medico Por Mes __________________________________________ 
 
-WidgetNumeroCitasMedicoInterfaz_class , WidgetNumeroCitasMedicoInterfaBase_class = uic.loadUiType("administrador/uis/WidgetNumeroCitasMedico.ui");
+WidgetNumeroCitasMedicoInterfaz_class , WidgetNumeroCitasMedicoInterfaBase_class = uic.loadUiType("gui/administrador/uis/WidgetNumeroCitasMedico.ui");
 
 class WidgetNumeroCitasMedico( QWidget, WidgetNumeroCitasMedicoInterfaz_class ):
 
@@ -184,7 +184,7 @@ class WidgetNumeroCitasMedico( QWidget, WidgetNumeroCitasMedicoInterfaz_class ):
 
 #_________________________________ Costo Paciente Mes Anio  __________________________________________ 
 
-WidgetCostoPromedioPacienteInterfaz_class , WidgetCostoPromedioPacienteInterfaBase_class = uic.loadUiType("administrador/uis/WidgetCostoPromedioPaciente.ui");
+WidgetCostoPromedioPacienteInterfaz_class , WidgetCostoPromedioPacienteInterfaBase_class = uic.loadUiType("gui/administrador/uis/WidgetCostoPromedioPaciente.ui");
 
 class WidgetCostoPromedioPaciente( QWidget, WidgetCostoPromedioPacienteInterfaz_class ):
 
