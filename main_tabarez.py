@@ -7,7 +7,7 @@ def mostrarReturn(resultado):
     excepciones a nivel de la base de datos (psycopg2).
     Lo que hace es simplemente mostrar el mensaje de la excepcion capturada"""
     if resultado is not None:
-        print("\nExcepcion controlada :) -->")
+        print("\nExcepcion capturada -->")
         print((resultado.pgerror))
 
 
@@ -51,6 +51,7 @@ def main():
 # PRUEBAS DAO ENFERMERA
     daoEnfe = DaoEnfermera(conexion)
 #==============================================================================
+
     ## INSERTAR ENFERMERA
     angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1,
         "angelly@correo.com", 2000000, 110, 3, [1, 4])
@@ -67,8 +68,9 @@ def main():
 #==============================================================================
 
 # PRUEBAS DAO AREA
-    #daoArea = DaoArea(conexion)
+    daoArea = DaoArea(conexion)
 #==============================================================================
+
     ## INSERTAR AREA
     """Como la llave primaria es codigo y este es un serial, se puede ingresar
     varias veces la misma area y va cambiando solo el codigo de area"""
@@ -77,6 +79,15 @@ def main():
     #insertArea = daoArea.guardarArea(area)
     #if isinstance(insertArea, Exception):
         #mostrarReturn(insertArea)
+
+    # CONSULTAR AREA
+    area = daoArea.consultarArea(1)
+    if isinstance(area, Exception):
+        mostrarReturn(area)
+    if area == 0:
+        print("LA CONSULTA NO ARROJO RESULTADOS :(")
+    else:
+        print(area.get_nombre_area())
 #==============================================================================
 
 # PRUEBAS DAO CAMA

@@ -1,4 +1,4 @@
-from logica.Persona import Persona
+from .Persona import Persona
 
 
 class Empleado(Persona):
@@ -42,4 +42,3 @@ class Empleado(Persona):
 
     def get_nombre(self):
         return self.__nombre
-
