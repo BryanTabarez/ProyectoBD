@@ -100,7 +100,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Medicos</string>
+    <string>Pacientes</string>
    </property>
   </widget>
   <widget class="Line" name="lineTotales">
@@ -183,11 +183,6 @@
      <bold>false</bold>
     </font>
    </property>
-   <item>
-    <property name="text">
-     <string>Identificacion, Nombre , especialidad </string>
-    </property>
-   </item>
   </widget>
   <widget class="Line" name="lineMedicos">
    <property name="geometry">

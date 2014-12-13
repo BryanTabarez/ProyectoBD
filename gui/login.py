@@ -26,7 +26,7 @@ class InterfazIniciarSesion( QMainWindow, IniciarSesionInterfaz_class ):
 		pos_vertical = ( pantalla.height() - interfaz.height() ) / 2
 		self.move( pos_horizontal, pos_vertical )
 
-
+		
 		"""
 			SENIALES Y SLOTS
 		"""
@@ -48,6 +48,7 @@ class InterfazIniciarSesion( QMainWindow, IniciarSesionInterfaz_class ):
 			self.close()
 			interfazAdministrador = InterfazAdministrador( self )
 			interfazAdministrador.show()
+
 		
 		elif self.lineEditUsuario.text() == "2":
 		
