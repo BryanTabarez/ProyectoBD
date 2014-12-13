@@ -8,7 +8,6 @@ class DaoPaciente():
 
     def guardarPaciente(self, p):
         try:
-            # Abrir un cursor para realizar operaciones con la base de datos
             cur = self.conn.cursor()
 
             cur.execute("INSERT INTO Persona VALUES (%s, %s, %s, %s)",
@@ -19,7 +18,6 @@ class DaoPaciente():
                 (p.get_identificacion(), p.get_fecha_nacimiento(),
                     p.get_actividad_economica(), p.get_num_seg_social()))
 
-            # Hacer que los cambios en la base de datos sean permanentes
             cur.close()
             self.conn.commit()
         except Exception as e:  # mas precisamente deberia usar psycopg2.Error
@@ -51,25 +49,31 @@ class DaoPaciente():
                 cur.close()
                 return paciente
         except Exception as e:
+            cur.close()
+            self.conn.reset()
             return e
 
-    def modificarPaciente(self, id):
-        cur = self.conn.cursor()
+    def modificarPaciente(self, p):
+        try:
+            cur = self.conn.cursor()
 
-        p = self.consultarPaciente(id)
+            sqlUpdate1 = """UPDATE Persona SET nombre = %s, direccion = %s,
+            telefono = %s WHERE identificacion = %s"""
 
-        sqlUpdate1 = """UPDATE Persona SET nombre = %s, direccion = %s,
-        telefono = %s WHERE identificacion = %s"""
+            sqlUpdate2 = """UPDATE Paciente SET fecha_nacimiento = %s,
+            actividad_economica = %s, num_seguridad_social = %s WHERE
+            identificacion = %s"""
 
-        sqlUpdate2 = """UPDATE Paciente SET fecha_nacimiento = %s,
-        actividad_economica = %s, num_seguridad_social = %s WHERE
-        identificacion = %s"""
+            cur.execute(sqlUpdate1, (p.get_nombre(), p.get_direccion(),
+            p.get_telefono(), p.get_identificacion(), ))
 
-        cur.execute(sqlUpdate1, (p.get_nombre(), p.get_direccion(),
-        p.get_telefono(), id, ))
+            cur.execute(sqlUpdate2, (p.get_fecha_nacimiento(),
+            p.get_actividad_economica(), p.get_num_seg_social(),
+            p.get_identificacion(), ))
 
-        cur.execute(sqlUpdate2, (p.get_fecha_nacimiento(),
-        p.get_actividad_economica(), p.get_num_seg_social(), id, ))
-
-        self.conn.commit()
-        cur.close()
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
