@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="iconos">
+    <file>Doctor_Female.png</file>
+    <file>Admin.png</file>
+  </qresource>
+</RCC>

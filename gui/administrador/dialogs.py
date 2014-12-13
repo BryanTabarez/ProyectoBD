@@ -2,8 +2,8 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from gui.administrador.adminidtrador.widgets import WidgetTipoEmpleadoEnfermera
-from gui.administrador.adminidtrador.widgets import WidgetTipoEmpleadoMedico
+from widgets import WidgetTipoEmpleadoEnfermera
+from widgets import WidgetTipoEmpleadoMedico
 
 
 #_______________________________ Modificar Area __________________________________________

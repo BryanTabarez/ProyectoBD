@@ -1,35 +1,32 @@
+import os
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from gui.administrador.adminidtrador.dialogs import DialogNuevoEmpleado
-from gui.administrador.adminidtrador.dialogs import DialogModificarEmpleado
-from gui.administrador.adminidtrador.widgets import WidgetEmpleadosPorArea
+from dialogs import DialogNuevoEmpleado
+from dialogs import DialogModificarEmpleado
+from widgets import WidgetEmpleadosPorArea
 
-from gui.administrador.adminidtrador.dialogs import DialogNuevaArea
-from gui.administrador.adminidtrador.dialogs import DialogModificarArea
-from gui.administrador.adminidtrador.widgets import WidgetListarAreas
+from dialogs import DialogNuevaArea
+from dialogs import DialogModificarArea
+from widgets import WidgetListarAreas
 
-from gui.administrador.adminidtrador.dialogs import DialogNuevaCama
-from gui.administrador.adminidtrador.dialogs import DialogModificarCama
-from gui.administrador.adminidtrador.widgets import WidgetListarCamas
+from dialogs import DialogNuevaCama
+from dialogs import DialogModificarCama
+from widgets import WidgetListarCamas
 
-from gui.administrador.adminidtrador.dialogs import DialogNuevoMedicamento
-from gui.administrador.adminidtrador.dialogs import DialogModificarMedicamento
-from gui.administrador.adminidtrador.widgets import WidgetListarMedicamentos
+from dialogs import DialogNuevoMedicamento
+from dialogs import DialogModificarMedicamento
+from widgets import WidgetListarMedicamentos
 
-from gui.administrador.adminidtrador.dialogs import DialogNuevaHabilidad
-from gui.administrador.adminidtrador.dialogs import DialogModificarHabilidad
-from gui.administrador.adminidtrador.widgets import WidgetListarHabilidades
+from dialogs import DialogNuevaHabilidad
+from dialogs import DialogModificarHabilidad
+from widgets import WidgetListarHabilidades
 
-from gui.administrador.adminidtrador.widgets import WidgetAgendaMedicoMes
-from gui.administrador.adminidtrador.widgets import WidgetHistoriaClinicaPaciente
-from gui.administrador.adminidtrador.widgets import WidgetNumeroCitasMedico
-from gui.administrador.adminidtrador.widgets import WidgetCostoPromedioPaciente
-
-
-
-
+from widgets import WidgetAgendaMedicoMes
+from widgets import WidgetHistoriaClinicaPaciente
+from widgets import WidgetNumeroCitasMedico
+from widgets import WidgetCostoPromedioPaciente
 
 
 InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/administrador/uis/MainWindowAdministrador.ui')
