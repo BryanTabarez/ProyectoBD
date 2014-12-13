@@ -80,7 +80,7 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <widget class="QTableWidget" name="tableWidgetListarCamas">
+  <widget class="QTableWidget" name="tableWidgetCamas">
    <property name="geometry">
     <rect>
      <x>10</x>

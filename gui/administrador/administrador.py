@@ -3,30 +3,34 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from dialogs import DialogNuevoEmpleado
-from dialogs import DialogModificarEmpleado
-from widgets import WidgetEmpleadosPorArea
+from componentes import DialogInformacion
 
-from dialogs import DialogNuevaArea
-from dialogs import DialogModificarArea
-from widgets import WidgetListarAreas
+from componentes import DialogNuevoEmpleado
+from componentes import DialogModificarEmpleado
+from componentes import WidgetEmpleadosPorArea
 
-from dialogs import DialogNuevaCama
-from dialogs import DialogModificarCama
-from widgets import WidgetListarCamas
+from componentes import DialogNuevaArea
+from componentes import DialogModificarArea
+from componentes import WidgetListarAreas
 
-from dialogs import DialogNuevoMedicamento
-from dialogs import DialogModificarMedicamento
-from widgets import WidgetListarMedicamentos
+from componentes import DialogNuevaCama
+from componentes import DialogModificarCama
+from componentes import WidgetListarCamas
 
-from dialogs import DialogNuevaHabilidad
-from dialogs import DialogModificarHabilidad
-from widgets import WidgetListarHabilidades
+from componentes import DialogNuevoMedicamento
+from componentes import DialogModificarMedicamento
+from componentes import WidgetListarMedicamentos
 
-from widgets import WidgetAgendaMedicoMes
-from widgets import WidgetHistoriaClinicaPaciente
-from widgets import WidgetNumeroCitasMedico
-from widgets import WidgetCostoPromedioPaciente
+from componentes import DialogNuevaHabilidad
+from componentes import DialogModificarHabilidad
+from componentes import WidgetListarHabilidades
+
+
+
+from componentes import WidgetAgendaMedicoMes
+from componentes import WidgetHistoriaClinicaPaciente
+from componentes import WidgetNumeroCitasMedico
+from componentes import WidgetCostoPromedioPaciente
 
 
 InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/administrador/uis/MainWindowAdministrador.ui')
@@ -51,9 +55,11 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		pos_horizontal = ( pantalla.width() - interfaz.width() ) / 2
 		pos_vertical = ( pantalla.height() - interfaz.height() ) / 2
 		self.move( pos_horizontal, pos_vertical )
-
+		
 
 		#Se cargan los widgets o panales que usa el administrador
+		self.dialogInformacion = DialogInformacion( self )
+
 		self.widgetListarAreas = WidgetListarAreas( self.widgetCuerpo )
 		self.widgetListarAreas.hide()
 
@@ -66,7 +72,6 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarHabilidades = WidgetListarHabilidades( self.widgetCuerpo )
 		self.widgetListarHabilidades.hide()
 		
-		#_____________________________________________________________________________
 		self.widgetEmpleadosPorArea  = WidgetEmpleadosPorArea( self.widgetCuerpo )
 		self.widgetEmpleadosPorArea.hide()
 
@@ -88,38 +93,41 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 			SENIALES Y SLOTS			
 		"""
 
-		self.connect( self.commandLinkButtonNuevoEmpleado, SIGNAL("clicked()"), self.nuevoEmpleado )
-		self.connect( self.commandLinkButtonModificarEmpleado, SIGNAL("clicked()"), self.modificarEmpleado )
+		#PERSONAL
+		self.connect( self.commandLinkButtonNuevoEmpleado, SIGNAL( "clicked()" ), self.nuevoEmpleado )
+		self.connect( self.commandLinkButtonModificarEmpleado, SIGNAL( "clicked()" ), self.modificarEmpleado )
+		self.connect( self.commandLinkButtonEliminarEmpleado, SIGNAL( "clicked()" ), self.eliminarEmpleado )
 		self.connect( self.commandLinkButtonListarEmpleados, SIGNAL("clicked()"), self.listarEmpleados )
-
-		self.connect( self.commandLinkButtonNuevaArea, SIGNAL("clicked()"),  self.nuevaArea )
-		self.connect( self.commandLinkButtonModificarArea, SIGNAL("clicked()"), self.modificarArea )
+		#AREAS
+		self.connect( self.commandLinkButtonNuevaArea, SIGNAL( "clicked()" ),  self.nuevaArea )
+		self.connect( self.commandLinkButtonModificarArea, SIGNAL( "clicked()" ), self.modificarArea )
+		self.connect( self.commandLinkButtonEliminarArea, SIGNAL( "clicked()" ), self.eliminarArea )
 		self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
-
+		#CAMAS
 		self.connect( self.commandLinkButtonNuevaCama, SIGNAL("clicked()"), self.nuevaCama )
 		self.connect( self.commandLinkButtonModificarCama, SIGNAL("clicked()"), self.modificarCama )
+		self.connect( self.commandLinkButtonEliminarCama, SIGNAL( "clicked()" ), self.eliminarCama )
 		self.connect( self.commandLinkButtonListarCamas, SIGNAL("clicked()"), self.listarCamas )
-
+		#MEDICAMENTOS
 		self.connect( self.commandLinkButtonNuevoMedicamento, SIGNAL("clicked()"), self.nuevoMedicamento )
 		self.connect( self.commandLinkButtonModificarMedicamento, SIGNAL("clicked()"), self.modificarMedicamento )
+		self.connect( self.commandLinkButtonEliminarMedicamento, SIGNAL( "clicked()" ), self.eliminarMedicamento )
 		self.connect( self.commandLinkButtonListarMedicamentos, SIGNAL("clicked()"), self.listarMedicamentos )
-
+		#HABILIDADES
 		self.connect( self.commandLinkButtonNuevaHabilidad, SIGNAL("clicked()"),  self.nuevaHabilidad )
 		self.connect( self.commandLinkButtonModificarHabilidad, SIGNAL("clicked()"), self.modificarHabilidad )
 		self.connect( self.commandLinkButtonListarHabilidades, SIGNAL("clicked()"), self.listarHabilidades )
-
-		#_______________________________________________________________________________________________________
-
+		#INFROMES
 		self.connect( self.commandLinkButtonAgendaMedicoMes, SIGNAL("clicked()"), self.mostrarAgendaMedico )
 		self.connect( self.commandLinkButtonHistoriaClinicaPaciente, SIGNAL("clicked()"), self.mostrarHistoriaClinicaPaciente )
 		self.connect( self.commandLinkButtonCitasAtendidasMedicoMes, SIGNAL("clicked()"), self.mostrarCitasAtendidasMedicoMes )
 		self.connect( self.commandLinkButtonCostoPaciente, SIGNAL("clicked()"), self.mostrarCostoPaciente )
 
-		"""
-			METODOS			
-		"""
+	"""
+		METODOS			
+	"""
 
-
+	#PERSONAL
 	#Metodo: nuevoEmpleado
 	#Funcion: Desplieqga el dialogo con la interfaz para ingresar un nuevo empleado
 	def nuevoEmpleado( self ):
@@ -131,8 +139,33 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Funcion: Despliega el dialogo con la interfaz que permite modificar y eliminar un empleado
 	def modificarEmpleado( self ):
 
-		dialogModificarEmpleado = DialogModificarEmpleado( self )
-		dialogModificarEmpleado.exec_()
+
+		fila_seleccinada_tabla = self.widgetEmpleadosPorArea.tableWidgetEmpleados.currentRow()	
+		if self.widgetEmpleadosPorArea.isHidden() or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Modificar Empleado", 
+				"Por favor liste los empleados, seleccione de la tabla el que desea modificar, luego presione 'Modificar Empleado'" )
+			
+		else:
+
+			fila_seleccinada_tabla = self.widgetEmpleadosPorArea.tableWidgetEmpleados.currentRow()
+			dialogModificarEmpleado = DialogModificarEmpleado( "123456", "controlador" , self )
+			dialogModificarEmpleado.exec_()
+
+	#Metodo: eliminarEmpleado
+	#Funcion: permite eliminar un empleado de la base de datos
+	def eliminarEmpleado( self ):
+
+		
+		fila_seleccinada_tabla = self.widgetEmpleadosPorArea.tableWidgetEmpleados.currentRow()	
+		if self.widgetEmpleadosPorArea.isHidden() or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Eliminar Empleado", 
+				"Por favor liste los empleados, seleccione de la tabla el que desea eliminar, luego presione 'Eliminar Empleado'" )
+			
+		else:
+			print("EMPEADO ELIMINADO")
+
 
 	#Metodo: listarEmpleados
 	#Funcion: permite mostrar el listado de empleados de la clinica por area
@@ -143,8 +176,6 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
 
-		#___________________________________
-
 		self.widgetEmpleadosPorArea.show()
 		self.widgetAgendaMedicoMes.hide()
 		self.widgetHistoriaClinicaPaciente.hide()
@@ -153,6 +184,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		
 		
 
+	#AREA
 	#Metodo: nuevaArea
 	#Funcion: Despliega la interfaz para la creacion de areas en el hospital
 	def nuevaArea( self ):
@@ -165,10 +197,31 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Funcion: Despliega la interfaz que permite la modificacion de un area
 	def modificarArea( self ):
 
-		dialogModificarArea = DialogModificarArea( self )
-		dialogModificarArea.exec_()
+		fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
+		if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Eliminar Area", 
+				"Por favor liste las areas, seleccione de la tabla la que desea modificar, luego presione 'Modificar Area' " )
+			
+		else:
+			dialogModificarArea = DialogModificarArea( "codigo_area", "controlador", self )
+			dialogModificarArea.exec_()
 
-	#Metdo: listarAreas
+	#Metodo: eliminarArea
+	#Funcion: permite eliminar areas de la clinica de la base de datos
+	def eliminarArea( self ):
+
+		fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
+		if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Eliminar Area", 
+				"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
+			
+		else:
+			print("AREA ELIMINADA")
+
+
+	#Metodo: listarAreas
 	#Funcion: permite mostrar las areas de la clinica
 	def listarAreas( self ):
 		
@@ -177,15 +230,14 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
 
-		#______________________________________
-
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
 		self.widgetHistoriaClinicaPaciente.hide()
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.hide()
 
-	#Metodo: listarAreas
+	#CAMA
+	#Metodo: nuevaCama
 	#Funcion: Despliega la interfaz que permite crear un nueva cama 
 	def nuevaCama( self ):
 
@@ -196,8 +248,31 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Funcion: Despliega la interfaz que permite modificar una cama 
 	def modificarCama( self ):
 
-		dialogModificarCama = DialogModificarCama( self )
-		dialogModificarCama.exec_()
+		fila_seleccinada_tabla = self.widgetListarCamas.tableWidgetCamas.currentRow()
+		if self.widgetListarCamas.isHidden() or fila_seleccinada_tabla == -1:
+
+			self.dialogInformacion.showMensaje( "Modificar Cama", 
+				"Por favor liste las camas, seleccione de la tabla la que desea modificar, luego presione 'Modificar Cama' " )
+
+		else:
+
+			dialogModificarCama = DialogModificarCama( "codigo_cama", "controlador", self )
+			dialogModificarCama.exec_()
+
+	#Metodo: elimarCama
+	#Funcion: permite elimnar camas de la base de datos
+	def eliminarCama( self ):
+
+		fila_seleccinada_tabla = self.widgetListarCamas.tableWidgetCamas.currentRow()
+		if self.widgetListarCamas.isHidden() or fila_seleccinada_tabla == -1:
+
+			self.dialogInformacion.showMensaje( "Eliminar Cama", 
+				"Por favor liste las camas, seleccione de la tabla la que desea eliminar, luego presione 'eliminar Cama' " )
+
+		else:
+
+			print("CAMA ELIMINADA")
+
 
 	#Metodo: listarCamas
 	#Funcion: permite mostrar un listado de camas del hospital
@@ -208,14 +283,13 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
 
-		#________________________________________
-
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
 		self.widgetHistoriaClinicaPaciente.hide()
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.hide()
 
+	#MEDICAMENTO
 	#Metodo: nuevoMedicamento
 	#Funcion: Despliega la interfaz que permite insertar medicamentos
 	def nuevoMedicamento( self ):
@@ -227,8 +301,34 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Funcion: Despliega la interfaz que permite modificar medicamentos medicamento
 	def modificarMedicamento( self ):
 
-		dialogModificarMedicamento = DialogModificarMedicamento( self )
-		dialogModificarMedicamento.exec_()
+		fila_seleccinada_tabla = self.widgetListarMedicamentos.tableWidgetMedicamentos.currentRow()
+		if self.widgetListarMedicamentos.isHidden or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Modificar Medicamento", 
+				"Por favor liste los medicamento, seleccione de la tabla la que desea modificar, luego presione 'Modificar Medicamento' " )
+			
+		else:
+
+			dialogModificarMedicamento = DialogModificarMedicamento( "codigo_medicamento", "controlador",  self )
+			dialogModificarMedicamento.exec_()
+
+
+
+	#Metodo: eliminarMedicamento
+	#Funcion: permite eliminar el medicamento seleccinado de la base de datos 
+	def eliminarMedicamento( self ):
+
+		fila_seleccinada_tabla = self.widgetListarMedicamentos.tableWidgetMedicamentos.currentRow()
+		if self.widgetListarMedicamentos.isHidden or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Eliminar Medicamento", 
+				"Por favor liste los medicamento, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Medicamento' " )
+			
+		else:
+
+			print( "MEDICAMENTO ELIMINADO" )
+
+
 
 	#Metodo: listarMedicamentos
 	#Funcion: permite mostrar el listado de medicamentos disponibles en la clinica
