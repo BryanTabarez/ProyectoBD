@@ -1,23 +1,19 @@
-#from accesoDatos.DaoPaciente import DaoPaciente
-#from accesoDatos.DaoEnfermera import DaoEnfermera
-#from logica.Enfermera import Enfermera
-from logica.Cama import Cama
-from accesoDatos.DaoCama import DaoCama
-from accesoDatos.FachadaDB import FachadaDB
-#from logica.Paciente import Paciente
+from logica import *
+from accesoDatos import *
 
 
 def main():
     fachada = FachadaDB()
     conexion = fachada.obtenerConexion()
 
+# PRUEBAS DAO PACIENTE
+    daoPac = DaoPaciente(conexion)
 #==============================================================================
-    #daoPac = DaoPaciente(conexion)
 
     ##PRUEBA INSERTAR PACIENTE
-    #paciente = Paciente(110, 'Esteban Quito', 'Calle 5', '018800777',
-       #'2014-01-01', 'corredor de bolsa', 900)
-    #daoPac.guardarPaciente(paciente)
+    paciente = Paciente(110, 'Esteban Quito', 'Calle 5', '018800777',
+       '2014-01-01', 'corredor de bolsa', 900)
+    daoPac.guardarPaciente(paciente)
 
     ##PRUEBA CONSULTAR PACIENTE
     #paciente = daoPac.consultarPaciente(110)
@@ -45,7 +41,7 @@ def main():
 
 #==============================================================================
 
-    daoCama = DaoCama(conexion)
+    #daoCama = DaoCama(conexion)
     ##Prueba insertar cama
 
     #cama = Cama("", "t", "Cama reclinable", 1)
@@ -57,11 +53,10 @@ def main():
     #print(cama.get_num_cama())
 
     ##Prueba borrar cama
-    daoCama.borrarCama(2)
+    #daoCama.borrarCama(2)
 
 #==============================================================================
 
     fachada.cerrarConexion()
-
 
 main()
