@@ -1,2 +1,3 @@
-from login import InterfazIniciarSesion 
-from iconos.iconos_rc import *
+from administrador import *
+from enfermera import *
+from iconos import *

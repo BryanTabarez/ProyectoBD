@@ -3,9 +3,9 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from administrador.administrador import InterfazAdministrador 
+from gui.administrador.administrador import InterfazAdministrador
 
-IniciarSesionInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('uis/Login.ui')
+IniciarSesionInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/uis/Login.ui')
 
 class InterfazIniciarSesion( QMainWindow, IniciarSesionInterfaz_class ):
 

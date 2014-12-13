@@ -1,3 +1,4 @@
+import os
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
@@ -27,7 +28,6 @@ from widgets import WidgetHistoriaClinicaPaciente
 from widgets import WidgetNumeroCitasMedico
 from widgets import WidgetCostoPromedioPaciente
 
-from gui.iconos.iconos_rc import * 
 
 InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/administrador/uis/MainWindowAdministrador.ui')
 

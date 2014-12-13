@@ -73,7 +73,7 @@ class WidgetListarHabilidades( QWidget, WidgetListarHabilidadesInterfaz_class ):
 		QWidget.__init__( self, parent )
 		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
 		self.setupUi( self )
-		self.ui = uic.loadUi('administrador/uis/WidgetListarHabilidades.ui')
+		
 	
 
 #_________________________________ Tipo empleado enfermera  __________________________________________ 
