@@ -1,4 +1,4 @@
-from logica.Paciente import Paciente
+from logica import Paciente
 
 
 class DaoPaciente():
@@ -19,25 +19,25 @@ class DaoPaciente():
                 (p.get_identificacion(), p.get_fecha_nacimiento(),
                     p.get_actividad_economica(), p.get_num_seg_social()))
 
-            # Cerrar el cursor
-            cur.close()
-
             # Hacer que los cambios en la base de datos sean permanentes
+            cur.close()
             self.conn.commit()
-        except:
-            print("Error!")
-            print("No se pudo guardar el registro en la base de datos")
+        except Exception as e:  # mas precisamente deberia usar psycopg2.Error
+            cur.close()
+            self.conn.reset()
+            return e
 
     def borrarPaciente(self, id):
         cur = self.conn.cursor()
         cur.execute("DELETE FROM Paciente WHERE identificacion = %s", (id,))
+        cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
         cur.close()
         self.conn.commit()
 
     def consultarPaciente(self, id):
         try:
             cur = self.conn.cursor()
-            sqlConsulta = """SELECT * FROM Paciente NATURAL JOIN Persona WHERE
+            sqlConsulta = """SELECT * FROM Persona NATURAL JOIN Paciente  WHERE
             identificacion = %s"""
             cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
@@ -50,11 +50,13 @@ class DaoPaciente():
                     consulta[3], consulta[4], consulta[5], consulta[6])
                 cur.close()
                 return paciente
-        except:
-            print("ERROR en la consulta!")
+        except Exception as e:
+            return e
 
-    def modificarPaciente(self, id, p):
+    def modificarPaciente(self, id):
         cur = self.conn.cursor()
+
+        p = self.consultarPaciente(id)
 
         sqlUpdate1 = """UPDATE Persona SET nombre = %s, direccion = %s,
         telefono = %s WHERE identificacion = %s"""
