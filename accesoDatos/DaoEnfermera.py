@@ -2,11 +2,11 @@ from logica.Enfermera import Enfermera
 
 
 class DaoEnfermera():
-
+    """Clase Dao Enfermera"""
     def __init__(self, conexion):
         self.conn = conexion
 
-    #--------------------------------------------------------------------------
+    #============================== CREATE ====================================
     def guardarEnfermera(self, e):
         try:
             cur = self.conn.cursor()
@@ -36,28 +36,9 @@ class DaoEnfermera():
             cur.close()
             self.conn.reset()
             return e
-    #--------------------------------------------------------------------------
+    #==========================================================================
 
-    #--------------------------------------------------------------------------
-    def borrarEnfermera(self, id):
-        """Para borrar una enfermera -> Eliminar registros Enfermera y Empleado
-        Dejar Persona si es necesario"""
-        try:
-            cur = self.conn.cursor()
-            cur.execute("""DELETE FROM Enfermera_habilidad WHERE
-            id_enfermera = %s""", (id,))
-            cur.execute("DELETE FROM Enfermera WHERE identificacion=%s", (id,))
-            cur.execute("DELETE FROM Empleado WHERE identificacion = %s", (id,))
-            cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
-            cur.close()
-            self.conn.commit()
-        except Exception as e:
-            cur.close()
-            self.conn.reset()
-            return e
-    #--------------------------------------------------------------------------
-
-    #--------------------------------------------------------------------------
+    #============================== READ ======================================
     def consultarEnfermera(self, id):
         try:
             cur = self.conn.cursor()
@@ -83,9 +64,10 @@ class DaoEnfermera():
             cur.close()
             self.conn.reset()
             return e
-    #--------------------------------------------------------------------------
+    #==========================================================================
 
-    # -----------------------FALTA  PROBAR/CORREGIR ESTO ----------------------
+    #============================== UPDATE ====================================
+    # FALTA  PROBAR/CORREGIR ESTO
     def modificarEnfermera(self, id, p):
         cur = self.conn.cursor()
 
@@ -104,4 +86,24 @@ class DaoEnfermera():
 
         self.conn.commit()
         cur.close()
-    #--------------------------------------------------------------------------
+    #==========================================================================
+
+    #============================== DELETE ====================================
+    # OJO PENDIENTE REVISION
+    def borrarEnfermera(self, id):
+        """Para borrar una enfermera -> Eliminar registros Enfermera y Empleado
+        Dejar Persona si es necesario"""
+        try:
+            cur = self.conn.cursor()
+            cur.execute("""DELETE FROM Enfermera_habilidad WHERE
+            id_enfermera = %s""", (id,))
+            cur.execute("DELETE FROM Enfermera WHERE identificacion=%s", (id,))
+            cur.execute("DELETE FROM Empleado WHERE identificacion = %s", (id,))
+            cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================

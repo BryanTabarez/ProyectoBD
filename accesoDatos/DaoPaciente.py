@@ -2,10 +2,11 @@ from logica import Paciente
 
 
 class DaoPaciente():
-
+    """Clase DaoPaciente"""
     def __init__(self, conexion):
         self.conn = conexion
 
+    #============================== CREATE ====================================
     def guardarPaciente(self, p):
         try:
             cur = self.conn.cursor()
@@ -20,18 +21,13 @@ class DaoPaciente():
 
             cur.close()
             self.conn.commit()
-        except Exception as e:  # mas precisamente deberia usar psycopg2.Error
+        except Exception as e:
             cur.close()
             self.conn.reset()
             return e
+    #==========================================================================
 
-    def borrarPaciente(self, id):
-        cur = self.conn.cursor()
-        cur.execute("DELETE FROM Paciente WHERE identificacion = %s", (id,))
-        cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
-        cur.close()
-        self.conn.commit()
-
+    #============================== READ ======================================
     def consultarPaciente(self, id):
         try:
             cur = self.conn.cursor()
@@ -40,7 +36,6 @@ class DaoPaciente():
             cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
             if consulta is None:
-                print("La consulta no arrojo resultados")
                 cur.close()
                 return 0
             else:
@@ -52,7 +47,9 @@ class DaoPaciente():
             cur.close()
             self.conn.reset()
             return e
+    #==========================================================================
 
+    #============================== UPDATE ====================================
     def modificarPaciente(self, p):
         try:
             cur = self.conn.cursor()
@@ -77,3 +74,19 @@ class DaoPaciente():
             cur.close()
             self.conn.reset()
             return e
+    #==========================================================================
+
+    #============================== DELETE ====================================
+    # OJO: TENER EN CUENTA EL REGISTRO EN LA HISTORIA CLINICA /  TRIGGER ?
+    def borrarPaciente(self, id):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("DELETE FROM Paciente WHERE identificacion = %s", (id,))
+            cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================

@@ -1,11 +1,13 @@
-#from logica import Area
+from logica import Area
 
 
 class DaoArea():
+    """Clase DaoArea"""
 
     def __init__(self, conexion):
         self.conn = conexion
 
+    #============================== CREATE ====================================
     def guardarArea(self, a):
         try:
             cur = self.conn.cursor()
@@ -19,17 +21,52 @@ class DaoArea():
             cur.close()
             self.conn.reset()
             return e
+    #==========================================================================
 
-    def borrarArea(self, codigo):
-        cur = self.conn.cursor()
-
-        cur.execute("DELETE FROM Area WHERE codigo = %s", (codigo,))
-
-        cur.close()
-        self.conn.commit()
-
+    #============================== READ ======================================
+    # CONSULTA UN AREA PARTICULAR
     def consultarArea(self, codigo):
-        cur = self.conn.cursor()
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT * FROM Area WHERE codigo = %s",
+                (codigo,))
 
-        cur.close()
-        self.conn.commit()
+            consulta = cur.fetchone()
+            if consulta is None:
+                cur.close()
+                return 0
+            else:
+                areaConsultada = Area(consulta[0], consulta[1], consulta[2])
+                cur.close()
+                return areaConsultada
+
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
+
+    #============================== UPDATE ====================================
+    def modificarArea(self, area):
+        #cur = self.conn.cursor()
+        pass
+        #cur.close()
+        #self.conn.commit()
+    #==========================================================================
+
+    #============================== DELETE ====================================
+    def borrarArea(self, codigoArea):
+        try:
+            cur = self.conn.cursor()
+
+            cur.execute("DELETE FROM Area WHERE codigo = %s", (codigoArea,))
+
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
