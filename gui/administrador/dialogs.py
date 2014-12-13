@@ -2,13 +2,13 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from widgets import WidgetTipoEmpleadoEnfermera
-from widgets import WidgetTipoEmpleadoMedico
+from gui.administrador.adminidtrador.widgets import WidgetTipoEmpleadoEnfermera
+from gui.administrador.adminidtrador.widgets import WidgetTipoEmpleadoMedico
 
 
 #_______________________________ Modificar Area __________________________________________
 
-DialogModificarAreaInterfaz_class , DialogModificarAreaInterfazBase_class = uic.loadUiType('administrador/uis/DialogModificarArea.ui')
+DialogModificarAreaInterfaz_class , DialogModificarAreaInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogModificarArea.ui')
 
 class DialogModificarArea( QDialog, DialogModificarAreaInterfaz_class ):
 
@@ -28,7 +28,7 @@ class DialogModificarArea( QDialog, DialogModificarAreaInterfaz_class ):
 
 #_______________________________ Modificar Cama __________________________________________
 
-DialogModificarCamaInterfaz_class , DialogModificarCamaInterfazBase_class = uic.loadUiType('administrador/uis/DialogModificarCama.ui')
+DialogModificarCamaInterfaz_class , DialogModificarCamaInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogModificarCama.ui')
 
 class DialogModificarCama( QDialog, DialogModificarCamaInterfaz_class ):
 
@@ -48,7 +48,7 @@ class DialogModificarCama( QDialog, DialogModificarCamaInterfaz_class ):
 
 #_______________________________ Modificar Empleados __________________________________________
 
-DialogModificarEmpleadoInterfaz_class , DialogModificarEmpleadoInterfazBase_class = uic.loadUiType('administrador/uis/DialogModificarEmpleado.ui')
+DialogModificarEmpleadoInterfaz_class , DialogModificarEmpleadoInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogModificarEmpleado.ui')
 
 class DialogModificarEmpleado( QDialog, DialogModificarEmpleadoInterfaz_class ):
 
@@ -69,7 +69,7 @@ class DialogModificarEmpleado( QDialog, DialogModificarEmpleadoInterfaz_class ):
 
 #_______________________________ Modificar Medicamentos __________________________________________
 
-DialogModificarMedicamnetoInterfaz_class , DialogModificarMedicamentoInterfazBase_class = uic.loadUiType('administrador/uis/DialogModificarMedicamento.ui')
+DialogModificarMedicamnetoInterfaz_class , DialogModificarMedicamentoInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogModificarMedicamento.ui')
 
 class DialogModificarMedicamento( QDialog, DialogModificarMedicamnetoInterfaz_class ):
 
@@ -89,7 +89,7 @@ class DialogModificarMedicamento( QDialog, DialogModificarMedicamnetoInterfaz_cl
 
 #_______________________________ Modificar Medicamentos __________________________________________
 
-DialogModificarHabilidadInterfaz_class , DialogModificarHabilidadInterfazBase_class = uic.loadUiType('administrador/uis/DialogModificarHabilidad.ui')
+DialogModificarHabilidadInterfaz_class , DialogModificarHabilidadInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogModificarHabilidad.ui')
 
 class DialogModificarHabilidad( QDialog, DialogModificarHabilidadInterfaz_class  ):
 
@@ -108,7 +108,7 @@ class DialogModificarHabilidad( QDialog, DialogModificarHabilidadInterfaz_class 
 
 #_______________________________ Nueva Area __________________________________________
 
-DialogNuevaAreaInterfaz_class , DialogNuevaAreaInterfazBase_class = uic.loadUiType('administrador/uis/DialogNuevaArea.ui')
+DialogNuevaAreaInterfaz_class , DialogNuevaAreaInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogNuevaArea.ui')
 
 class DialogNuevaArea( QDialog, DialogNuevaAreaInterfaz_class ):
 
@@ -126,7 +126,7 @@ class DialogNuevaArea( QDialog, DialogNuevaAreaInterfaz_class ):
 
 #_______________________________ Nueva Cama __________________________________________
 
-DialogNuevaCamaInterfaz_class , DialogNuevaCamaInterfazBase_class = uic.loadUiType('administrador/uis/DialogNuevaCama.ui')
+DialogNuevaCamaInterfaz_class , DialogNuevaCamaInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogNuevaCama.ui')
 
 class DialogNuevaCama( QDialog, DialogNuevaCamaInterfaz_class ):
 
@@ -145,7 +145,7 @@ class DialogNuevaCama( QDialog, DialogNuevaCamaInterfaz_class ):
 
 #_______________________________ Nuevo Empleado __________________________________________
 
-DialogNuevoEmpleadoInterfaz_class , DialogNuevoEmepladoInterfazBase_class = uic.loadUiType('administrador/uis/DialogNuevoEmpleado.ui')
+DialogNuevoEmpleadoInterfaz_class , DialogNuevoEmepladoInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogNuevoEmpleado.ui')
 
 class DialogNuevoEmpleado( QDialog, DialogNuevoEmpleadoInterfaz_class ):
 
@@ -191,7 +191,7 @@ class DialogNuevoEmpleado( QDialog, DialogNuevoEmpleadoInterfaz_class ):
 
 #_______________________________ Nuevo Empleado __________________________________________
 
-DialogNuevoMedicamentoInterfaz_class , DialogNuevoMedicamentoInterfazBase_class = uic.loadUiType('administrador/uis/DialogNuevoMedicamento.ui')
+DialogNuevoMedicamentoInterfaz_class , DialogNuevoMedicamentoInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogNuevoMedicamento.ui')
 
 class DialogNuevoMedicamento( QDialog, DialogNuevoMedicamentoInterfaz_class ):
 
@@ -211,7 +211,7 @@ class DialogNuevoMedicamento( QDialog, DialogNuevoMedicamentoInterfaz_class ):
 
 #_______________________________ Nueva Habilidad __________________________________________
 
-DialogNuevaHabilidadInterfaz_class , DialogNuevaHabilidadInterfazBase_class = uic.loadUiType('administrador/uis/DialogNuevaHabilidad.ui')
+DialogNuevaHabilidadInterfaz_class , DialogNuevaHabilidadInterfazBase_class = uic.loadUiType('gui/administrador/uis/DialogNuevaHabilidad.ui')
 
 
 class DialogNuevaHabilidad( QDialog, DialogNuevaHabilidadInterfaz_class ):
