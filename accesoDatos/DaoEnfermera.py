@@ -6,6 +6,7 @@ class DaoEnfermera():
     def __init__(self, conexion):
         self.conn = conexion
 
+    #--------------------------------------------------------------------------
     def guardarEnfermera(self, e):
         try:
             cur = self.conn.cursor()
@@ -19,7 +20,7 @@ class DaoEnfermera():
                 (e.get_identificacion(), e.get_codigo_area(), e.get_email(),
                     e.get_salario(), e.get_id_jefe()))
 
-            #guardat enfermera
+            #guardar enfermera
             cur.execute("INSERT INTO Enfermera VALUES (%s, %s)",
                 (e.get_identificacion(), e.get_anhos_experiencia()))
 
@@ -31,16 +32,32 @@ class DaoEnfermera():
 
             cur.close()
             self.conn.commit()
-        except:
-            print("Error!")
-            print("No se pudo guardar el registro en la base de datos")
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #--------------------------------------------------------------------------
 
+    #--------------------------------------------------------------------------
     def borrarEnfermera(self, id):
-        cur = self.conn.cursor()
-        # ELIMINAR REGISTROS EN EMPLEADO Y ENFERMERA, DEJAR PERSONA
-        cur.close()
-        self.conn.commit()
+        """Para borrar una enfermera -> Eliminar registros Enfermera y Empleado
+        Dejar Persona si es necesario"""
+        try:
+            cur = self.conn.cursor()
+            cur.execute("""DELETE FROM Enfermera_habilidad WHERE
+            id_enfermera = %s""", (id,))
+            cur.execute("DELETE FROM Enfermera WHERE identificacion=%s", (id,))
+            cur.execute("DELETE FROM Empleado WHERE identificacion = %s", (id,))
+            cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #--------------------------------------------------------------------------
 
+    #--------------------------------------------------------------------------
     def consultarEnfermera(self, id):
         try:
             cur = self.conn.cursor()
@@ -62,9 +79,13 @@ class DaoEnfermera():
                     consulta[7], consulta[8], habilidades)
                 cur.close()
                 return enfermera
-        except:
-            print("ERROR en la consulta!")
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #--------------------------------------------------------------------------
 
+    # -----------------------FALTA  PROBAR/CORREGIR ESTO ----------------------
     def modificarEnfermera(self, id, p):
         cur = self.conn.cursor()
 
@@ -83,3 +104,4 @@ class DaoEnfermera():
 
         self.conn.commit()
         cur.close()
+    #--------------------------------------------------------------------------
