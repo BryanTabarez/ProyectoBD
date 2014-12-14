@@ -57,10 +57,20 @@ W_ListarPacientes_class , W_LsitarPacientesBase_class = uic.loadUiType( 'gui/enf
 
 class WidgetListarPacientes( QWidget, W_ListarPacientes_class ):
 
-	def __init__( self, parent=None ):
+	def __init__( self, controlador, parent=None ):
 
 		QWidget.__init__( self, parent )
 		self.setupUi( self )
+
+		self.controladorPaciente = controlador
+
+	def actualizar( self ):
+
+		#Insertar nueva fila
+		#self.tableWidget.insertRow( 0 )
+		#Insertar sdato fila, columna
+		#self.tableWidget.setItem( 0, 0, QTableWidgetItem( 'rellenar string ' ) ) )
+		pass
 
 
 #====================================================> CAMAS <==========================================================
@@ -72,9 +82,12 @@ class DialogAsignarCama( QDialog, D_AsignarCama_class ):
 	def __init__( self, id_paciente, nombre_paciente, controlador, parent=None):
 
 		QDialog.__init__( self, parent )
-		setupUi( self )
+		self.setupUi( self )
 
 		self.dialogInformacion  = DialogInformacion( self )
+
+		self.lineEditIdentificacion.setText( id_paciente )
+		self.lineEditNombre.setText( nombre_paciente )
 
 		self.connect( self.pushButtonAsignar, SIGNAL( "clicked()" ), self.asignarCama )
 
@@ -90,3 +103,33 @@ class DialogAsignarCama( QDialog, D_AsignarCama_class ):
 
 			print( "CAMA ASIGNADA" )
 
+#====================================================> CITAS <==========================================================
+
+D_CitaInterfaz_class , D_CitaInterfazBase_class = uic.loadUiType( 'gui/enfermera_uis/DialogCita.ui' )
+
+class DialogCita( QDialog, D_CitaInterfaz_class ):
+
+	def __init__( self, id_paciente, nombre_paciente , parent ):
+
+		QDialog.__init__( self, parent )
+		self.setupUi( self )
+
+
+		self.dialogInformacion = DialogInformacion( self )
+
+		self.lineEditIdentificacion.setText( id_paciente )
+		self.lineEditNombre.setText( nombre_paciente )
+
+		self.connect( self.pushButtonAsignarCita, SIGNAL( "clicked()" ), self.asignarCitaPaciente )
+
+	def asignarCitaPaciente( self ):
+
+		fila_seleccionada = self.tableWidgetHorarios.currentRow()
+		if fila_seleccionada == -1:
+
+			self.dialogInformacion.showMensaje( "Asignar Cita", 
+				"Por favor selcciones el horario en el cual desea que se realice la cita" )
+
+		else:
+
+			print("CITA ASIGNADA")
