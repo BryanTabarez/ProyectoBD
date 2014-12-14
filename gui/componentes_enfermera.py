@@ -1,7 +1,7 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
-
+from componentes_administrador import DialogInformacion
 
 #=======================================================================================================================
 # INTEGRANTES:
@@ -13,30 +13,33 @@ from PyQt4 import uic
 
 #=======================================================================================================================
 
-#====================================================> Paciente <=======================================================
+#====================================================> PACIENTE <=======================================================
 
-DialogPacienteInterfaz_clas , DialogPacienteInterfazBase_clas = uic.loadUiType('gui/enfermera_uis/DialogPaciente.ui')
+#=======================================> Nuevo paciente , Actualizar pacinete
+D_Paciente_class , D_PacienteBase_clas = uic.loadUiType('gui/enfermera_uis/DialogPaciente.ui')
 
-class DialogPaciente( QDialog, DialogPacienteInterfaz_clas ):
+class DialogPaciente( QDialog, D_Paciente_class ):
 	
-	#Permite el inserso y actualizacion de pacientes
-	def __init__( self, codigo_paciente=None, controlador=None, parent=None ):
+	
+	def __init__( self, id_paciente=None, controlador=None, parent=None ):
 
 		QDialog.__init__( self, parent )
 		self.setupUi( self )
-
 		self.actualizar = False
 
-		if codigo_paciente and controlador:
+		
+
+		if id_paciente and controlador:
 			
+			self.lineEditIdentificacion.setText(id_paciente)
 			self.pushButtonInsertar.setText( "Actualizar" )
 			self.actualizar = True
 
-		else:
+		elif controlador:
 
 			self.pushButtonInsertar.setText( "Insertar" )
 
-	#Permite actualizar e insertar aspirantes a la base de datos
+
 	def insertarActualizarPaciente( self ):
 
 		if self.actualizar:
@@ -48,13 +51,42 @@ class DialogPaciente( QDialog, DialogPacienteInterfaz_clas ):
 			print("PACIENTE MODIFICADO")
 		
 		
-#===================================================> Listar Pacientes <================================================
+#===================================================> Listar Pacientes 
 
-WidgetListarPacientesInterfaz_class , WidgetLsitarPacientesInterfazBase_class = uic.loadUiType( 'gui/enfermera_uis/WidgetListarPacientes.ui' )
+W_ListarPacientes_class , W_LsitarPacientesBase_class = uic.loadUiType( 'gui/enfermera_uis/WidgetListarPacientes.ui' )
 
-class WidgetListarPacientes( QWidget, WidgetListarPacientesInterfaz_class ):
+class WidgetListarPacientes( QWidget, W_ListarPacientes_class ):
 
 	def __init__( self, parent=None ):
 
 		QWidget.__init__( self, parent )
 		self.setupUi( self )
+
+
+#====================================================> CAMAS <==========================================================
+
+D_AsignarCama_class , D_AsignarCamaBase_class = uic.loadUiType( 'gui/enfermera_uis/DialogAsignarCama.ui' )
+
+class DialogAsignarCama( QDialog, D_AsignarCama_class ):
+
+	def __init__( self, id_paciente, nombre_paciente, controlador, parent=None):
+
+		QDialog.__init__( self, parent )
+		setupUi( self )
+
+		self.dialogInformacion  = DialogInformacion( self )
+
+		self.connect( self.pushButtonAsignar, SIGNAL( "clicked()" ), self.asignarCama )
+
+	def asignarCama( self ):
+
+		fila_seleccionada = self.tableWidgetCamas.currentRow()
+		if fila_seleccionada == -1:
+
+			self.dialogInformacion.showMensaje( "Asignar Cama",
+			 "Por favor seleccione la cama que desea asignar al paciente seleccionado" )
+
+		else:
+
+			print( "CAMA ASIGNADA" )
+

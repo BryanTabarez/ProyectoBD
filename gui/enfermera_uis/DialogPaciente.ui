@@ -308,7 +308,7 @@
      <string>Historia Clinica</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -530,5 +530,22 @@ color: rgb(255, 255, 255);</string>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButtonCancelar</sender>
+   <signal>clicked()</signal>
+   <receiver>DialogNuevoPaciente</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>616</x>
+     <y>511</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>397</x>
+     <y>537</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
