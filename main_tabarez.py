@@ -1,7 +1,7 @@
 from logica import *
 from accesoDatos import *
 
-#import sys
+import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
@@ -152,26 +152,32 @@ def pruebasDaoMedicamento(conexion):
 
 #==============================================================================
 def main():
-    #app = QApplication(sys.argv)
+    app = QApplication(sys.argv)
 
     fachada = FachadaDB()
     conexion = fachada.obtenerConexion()
 
-    #mostrarVentana = VentanaMedicamento(None, conexion)
-    #mostrarVentana.show()
-    #r = app.exec_()
-    pruebasDaoMedicamento(conexion)
+    mostrarVentana = VentanaMedicamento(None, conexion)
+    mostrarVentana.show()
+    r = app.exec_()
+    #pruebasDaoMedicamento(conexion)
 
     fachada.cerrarConexion()
 
-    #print(("Fin " + str(r)))
-    #sys.exit(r)
+    print(("Fin " + str(r)))
+    sys.exit(r)
 #==============================================================================
+
+#  CAMA
+#  CAUSA
+#  CAMPANIA_PREVENCION
+#  FORMULA_MEDICA
 
 VmClass, InterfazAdministradorInterfazBase_class = uic.loadUiType('untitled.ui')
 
 
 class VentanaMedicamento(QMainWindow, VmClass):
+
 
     def __init__(self, parent, conexion):
         QMainWindow.__init__(self, parent)
