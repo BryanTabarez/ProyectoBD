@@ -6,7 +6,26 @@
 -- George Romero Ramirez		- 1130924
 --
 --=======================================================================================
-
+-- Area
+-- Cama
+-- Persona
+-- Paciente
+-- Empleado
+-- Medico
+-- Enfermera
+-- Habilidad
+-- Enfermera_Habilidad
+-- Cama_Paciente
+-- Historia_clinica
+-- Horario_Consulta
+-- Cita
+-- Registro_Medico
+-- Medicamento
+-- Formula_Medica
+-- Causa
+-- Causa_Cita
+-- Campana_Prevencion
+-- Campana_Paciente
 --==================================>  CREAR LAS TABLAS <================================
 
 CREATE TABLE Area
@@ -66,7 +85,7 @@ CREATE TABLE Empleado
 
 	CONSTRAINT persona_fk FOREIGN KEY (identificacion)
 	REFERENCES Persona (identificacion)
-	ON UPDATE CASCADE ON DELETE NO ACTION 
+	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
@@ -202,7 +221,7 @@ CREATE TABLE Registro_Medico
 
 CREATE TABLE Medicamento
 (
-	codigo INTEGER NOT NULL PRIMARY KEY,
+	codigo VARCHAR (25) NOT NULL PRIMARY KEY,
 	costo MONEY NOT NULL,
 	nombre VARCHAR (50) NOT NULL,
 	descripcion TEXT
@@ -212,7 +231,7 @@ CREATE TABLE Medicamento
 CREATE TABLE Formula_Medica
 (
 	numero_registro INTEGER NOT NULL,
-	codigo_medicamento INTEGER NOT NULL,
+	codigo_medicamento VARCHAR (25) NOT NULL,
 	cantidad INTEGER NOT NULL,
 
 	CONSTRAINT formula_medica_pk PRIMARY KEY (numero_registro, codigo_medicamento),
@@ -289,8 +308,8 @@ ADD CONSTRAINT uniq_medico_fecha
 UNIQUE (id_medico, fecha_hora);
 
 -- CREACION DE SECUENCIAS (SEQUENCE):
-CREATE SEQUENCE seq_cod_area START 1;
-CREATE SEQUENCE seq_num_cama START 1;
+--CREATE SEQUENCE seq_cod_area START 1;
+--CREATE SEQUENCE seq_num_cama START 1;
 CREATE SEQUENCE seq_cod_habilidad START 1;
 CREATE SEQUENCE seq_num_historia START 1;
 CREATE SEQUENCE seq_id_horario START 1;
@@ -298,11 +317,11 @@ CREATE SEQUENCE seq_num_registro START 1;
 CREATE SEQUENCE seq_cod_causa START 1;
 
 -- ASIGNACION DE SECUENCIAS (SEQUENCE):
-ALTER TABLE Area ALTER COLUMN codigo
-SET DEFAULT nextval('seq_cod_area');
+--ALTER TABLE Area ALTER COLUMN codigo
+--SET DEFAULT nextval('seq_cod_area');
 
-ALTER TABLE Cama ALTER COLUMN num_cama
-SET DEFAULT nextval('seq_num_cama');
+--ALTER TABLE Cama ALTER COLUMN num_cama
+--SET DEFAULT nextval('seq_num_cama');
 
 ALTER TABLE Habilidad ALTER COLUMN codigo
 SET DEFAULT nextval('seq_cod_habilidad');
@@ -318,6 +337,11 @@ SET DEFAULT nextval('seq_num_registro');
 
 ALTER TABLE Causa ALTER COLUMN codigo
 SET DEFAULT nextval('seq_cod_causa');
+
+ALTER TABLE Empleado
+  ADD CONSTRAINT empleado_codigo_area_fk
+  FOREIGN KEY (codigo_area)
+  references Area (codigo);
 
 
 
