@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>300</height>
+    <height>235</height>
    </rect>
   </property>
   <property name="palette">
@@ -226,7 +226,7 @@ color: rgb(255, 255, 255);</string>
      <x>10</x>
      <y>80</y>
      <width>771</width>
-     <height>141</height>
+     <height>101</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -289,8 +289,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QWidget" name="layoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>610</x>
-     <y>260</y>
+     <x>600</x>
+     <y>190</y>
      <width>178</width>
      <height>29</height>
     </rect>
@@ -304,9 +304,9 @@ color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="pushButtonActualizar">
+     <widget class="QPushButton" name="pushButtonInsertar">
       <property name="text">
-       <string>Aceptar</string>
+       <string>Insertar</string>
       </property>
      </widget>
     </item>

@@ -1,4 +1,3 @@
-import os
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
@@ -25,6 +24,9 @@ from componentes import DialogNuevaHabilidad
 from componentes import DialogModificarHabilidad
 from componentes import WidgetListarHabilidades
 
+from componentes import DialogNuevaCausa
+from componentes import DialogModificarCausa
+from componentes import WidgetListarCausas
 
 
 from componentes import WidgetAgendaMedicoMes
@@ -71,6 +73,9 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 
 		self.widgetListarHabilidades = WidgetListarHabilidades( self.widgetCuerpo )
 		self.widgetListarHabilidades.hide()
+
+		self.widgetListarCausas = WidgetListarCausas( self.widgetCuerpo )
+		self.widgetListarCausas.hide()
 		
 		self.widgetEmpleadosPorArea  = WidgetEmpleadosPorArea( self.widgetCuerpo )
 		self.widgetEmpleadosPorArea.hide()
@@ -116,7 +121,13 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		#HABILIDADES
 		self.connect( self.commandLinkButtonNuevaHabilidad, SIGNAL("clicked()"),  self.nuevaHabilidad )
 		self.connect( self.commandLinkButtonModificarHabilidad, SIGNAL("clicked()"), self.modificarHabilidad )
+		self.connect( self.commandLinkButtonEliminarHabilidad, SIGNAL( "clicked()" ), self.eliminarHabilidad )
 		self.connect( self.commandLinkButtonListarHabilidades, SIGNAL("clicked()"), self.listarHabilidades )
+		#CAUSAS
+		self.connect( self.commandLinkButtonNuevaCausa, SIGNAL( "clicked()" ), self.nuevaCausa )
+		self.connect( self.commandLinkButtonModificarCausa, SIGNAL( "clicked()" ), self.modificarCausa )
+		self.connect( self.commandLinkButtonEliminarCausa, SIGNAL( "clicked()" ), self.eliminarCausa )
+		self.connect( self.commandLinkButtonListarCausas, SIGNAL( "clicked()" ), self.listarCausas )
 		#INFROMES
 		self.connect( self.commandLinkButtonAgendaMedicoMes, SIGNAL("clicked()"), self.mostrarAgendaMedico )
 		self.connect( self.commandLinkButtonHistoriaClinicaPaciente, SIGNAL("clicked()"), self.mostrarHistoriaClinicaPaciente )
@@ -175,6 +186,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.show()
 		self.widgetAgendaMedicoMes.hide()
@@ -229,6 +241,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
@@ -282,6 +295,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.show()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
@@ -338,8 +352,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.show()
 		self.widgetListarHabilidades.hide()
-
-		#_________________________________________
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
@@ -348,6 +361,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetCostoPromedioPaciente.hide()
 
 
+	#HABILIDADES
 	#Metodo: nuevaHabilidad
 	#Funcion: Despliega el dialog que permite ingresar habilidades a la base de datos
 	def nuevaHabilidad( self ):
@@ -359,8 +373,36 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 	#Funcion: Despliega el dialog que permite modificar las habilidades
 	def modificarHabilidad( self ):
 
-		dialogModificarHabilidad = DialogModificarHabilidad( self )
-		dialogModificarHabilidad.exec_()
+		fila_seleccinada_tabla = self.widgetListarHabilidades.tableWidgetHabilidades.currentRow()
+		if self.widgetListarHabilidades.isHidden() or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Modificar Habilidad", 
+				"Por favor liste las habilidades, seleccione de la tabla la que desea modificar, luego presione 'Modificar Habilidad' " )
+
+		else:
+
+			dialogModificarHabilidad = DialogModificarHabilidad( "codigo_habilidad", "controlador", self )
+			dialogModificarHabilidad.exec_()
+
+
+
+	#Metodo: eliminarHabilidad
+	#Funcion: Permite eliminar la habilidad seleccionada de la base de datos
+	def eliminarHabilidad( self ):
+
+		fila_seleccinada_tabla = self.widgetListarHabilidades.tableWidgetHabilidades.currentRow()
+		if self.widgetListarHabilidades.isHidden() or fila_seleccinada_tabla == -1:
+			
+			self.dialogInformacion.showMensaje( "Eliminar Habilidad", 
+				"Por favor liste las habilidades, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar habilidad' " )
+
+		else:
+
+			print( "HABILIDAD ELIMINADA" )
+
+
+
+
 
 	#Metodo: listarHabilidades
 	#Funcion: Permite listar las habilidades de una enfermera registradas en la base de datos
@@ -370,8 +412,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.show()
-
-		#__________________________________________
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
@@ -379,6 +420,59 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.hide()
 
+	#CAUSAS
+	#Metodo: nuevaCausa
+	#Funcion: Permite mostrar la interfaz de ingreso de causas a la base de datos
+	def nuevaCausa( self ):
+
+		dialogNuevaCausa = DialogNuevaCausa( self )
+		dialogNuevaCausa.exec_()
+
+	#Metodo: modificarCausa
+	#Funcion: Permite modificar la causa seleccionada 
+	def modificarCausa( self ):
+
+		fila_seleccinada_tabla = self.widgetListarCausas.tableWidgetListarCausas.currentRow()
+		if self.widgetListarCausas.isHidden() or fila_seleccinada_tabla == -1:
+
+			self.dialogInformacion.showMensaje( "Modificar Causa", 
+				"Por favor liste las causas, seleccione de la tabla la que desea modificar, luego presione 'Modificar Causa' " )
+
+		else:
+
+			dialogModificarCausa = DialogModificarCausa( "codigo_causa", "controlador", self )
+			dialogModificarCausa.exec_()
+
+	#Metodo: eliminarCausa
+	#Funcion: Permite eliminar causas de la base de datos
+	def eliminarCausa( self ):
+
+		fila_seleccinada_tabla = self.widgetListarCausas.tableWidgetListarCausas.currentRow()
+		if self.widgetListarCausas.isHidden() or fila_seleccinada_tabla == -1:
+
+			self.dialogInformacion.showMensaje( "Eliminar Causa", 
+				"Por favor liste las causas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Causa' " )
+
+		else:
+
+			print( "CAUSA ELIMINADA" )
+
+	def listarCausas( self ):
+
+		self.widgetListarAreas.hide()
+		self.widgetListarCamas.hide()
+		self.widgetListarMedicamentos.hide()
+		self.widgetListarHabilidades.hide()
+		self.widgetListarCausas.show()
+
+		self.widgetEmpleadosPorArea.hide()
+		self.widgetAgendaMedicoMes.hide()
+		self.widgetHistoriaClinicaPaciente.hide()
+		self.widgetNumeroCitasMedico.hide()
+		self.widgetCostoPromedioPaciente.hide()
+
+
+	#INFORMES
 	#Metodo: mostrarAgendaMedico
 	#Funcion: Permite visualizar la agenda programada del medico en un mes determinado
 	def mostrarAgendaMedico( self ):
@@ -387,8 +481,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
-
-		#__________________________________________
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.show()
@@ -404,8 +497,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
-
-		#__________________________________________
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
@@ -421,9 +513,8 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
-
-		#__________________________________________
-
+		self.widgetListarCausas.hide()
+		
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()
 		self.widgetHistoriaClinicaPaciente.hide()
@@ -438,8 +529,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetListarCamas.hide()
 		self.widgetListarMedicamentos.hide()
 		self.widgetListarHabilidades.hide()
-
-		#__________________________________________
+		self.widgetListarCausas.hide()
 
 		self.widgetEmpleadosPorArea.hide()
 		self.widgetAgendaMedicoMes.hide()

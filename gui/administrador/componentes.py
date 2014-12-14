@@ -385,7 +385,7 @@ DialogModificarHabilidadInterfaz_class , DialogModificarHabilidadInterfazBase_cl
 
 class DialogModificarHabilidad( QDialog, DialogModificarHabilidadInterfaz_class  ):
 
-	def __init__( self, parent=None ):
+	def __init__( self, codigo_habilidad, controlador,  parent=None ):
 
 
 		"""
@@ -405,6 +405,9 @@ class WidgetListarHabilidades( QWidget, WidgetListarHabilidadesInterfaz_class ):
 
 	def __init__( self, parent=None ):
 		
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL CONTENEDOR DE ESTE DIALOG
+		"""
 		QWidget.__init__( self, parent )
 		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
 		self.setupUi( self )
@@ -435,8 +438,38 @@ class DialogNuevaCausa( QDialog, DialogNuevaCausaInterfaz_class ):
 
 
 
+#_________________________________ Modificar Causa ________________________________________________
+
+DialogModificarCausaInterfaz_class , DialogNuevaCausaInterfazBase_class = uic.loadUiType( 'gui/administrador/uis/DialogModificarCausa.ui' )
+
+class DialogModificarCausa( QDialog, DialogModificarCausaInterfaz_class ):
+
+	def __init__( self, codigo_causa, controlador, parent=None ):
 
 
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL CONTENEDOR DE ESTE DIALOG
+		"""
+		QDialog.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )
+
+
+
+#_________________________________ Listar Causas ________________________________________________
+
+WidgetListarCausasInterfaz_class , WidgetListarCausasInterfazBase_class = uic.loadUiType( 'gui/administrador/uis/WidgetListarCausas.ui' )
+
+class WidgetListarCausas( QWidget, WidgetListarCausasInterfaz_class ):
+
+	def __init__( self, parent=None ):
+
+		"""
+			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL CONTENEDOR DE ESTE DIALOG
+		"""
+		QWidget.__init__( self, parent )
+		#setupUi es el metodo que se encarga de colocar y organizar los componentes del objeto que se le pasa como parametro
+		self.setupUi( self )
 
 
 

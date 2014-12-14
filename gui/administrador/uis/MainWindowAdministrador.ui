@@ -313,7 +313,7 @@ color: rgb(255, 255, 255);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="geometry">
@@ -663,7 +663,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="text">
-       <string>Eliminar Medicamento</string>
+       <string>Listar Medicamentos</string>
       </property>
      </widget>
      <widget class="QCommandLinkButton" name="commandLinkButtonEliminarMedicamento">
@@ -683,7 +683,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="text">
-       <string>Listar Medicamentos</string>
+       <string>Eliminar Medicamento</string>
       </property>
      </widget>
     </widget>
@@ -703,7 +703,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>100</y>
+        <y>140</y>
         <width>181</width>
         <height>31</height>
        </rect>
@@ -759,6 +759,26 @@ color: rgb(255, 255, 255);</string>
        <string>Nueva Habilidad</string>
       </property>
      </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButtonEliminarHabilidad">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Eliminar Habilidad</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_6">
      <property name="geometry">
@@ -772,7 +792,7 @@ color: rgb(255, 255, 255);</string>
      <attribute name="label">
       <string>Causas Consulta</string>
      </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonNuevaHabilidad_2">
+     <widget class="QCommandLinkButton" name="commandLinkButtonNuevaCausa">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -792,7 +812,7 @@ color: rgb(255, 255, 255);</string>
        <string>Nueva Causa</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonListarHabilidades_2">
+     <widget class="QCommandLinkButton" name="commandLinkButtonModificarCausa">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -809,7 +829,47 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="text">
+       <string>Modificar Causa</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButtonListarCausas">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>130</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
        <string>Listar Causas</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButtonEliminarCausa">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>90</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Eliminar Causa</string>
       </property>
      </widget>
     </widget>
