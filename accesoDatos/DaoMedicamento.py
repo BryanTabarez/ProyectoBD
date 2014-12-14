@@ -45,7 +45,7 @@ class DaoMedicamento():
                 return drugResult
 
             cur.close()
-            self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -54,33 +54,33 @@ class DaoMedicamento():
 
     #============================== UPDATE ====================================
     def modificarMedicamento(self, drug):
-        #try:
-            #cur = self.conn.cursor()
-            #sqlUpdate = """UPDATE Area SET nombre = %s, descripcion = %s
-            #WHERE codigo = %s"""
-            #cur.execute(sqlUpdate, (area.get_nombre_area(),
-            #area.get_descripcion(), area.get_codigo_area()))
-            #cur.close()
-            #self.conn.commit()
-        #except Exception as e:
-            #cur.close()
-            #self.conn.reset()
-            #return e
-        pass
+        try:
+            cur = self.conn.cursor()
+            sqlUpdate = """UPDATE Medicamento SET costo = %s, SET nombre = %s,
+            descripcion = %s WHERE codigo = %s"""
+            cur.execute(sqlUpdate, (drug.get_costo(), drug.get_nombre(),
+            drug.get_descripcion(), drug.get_codigo()))
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
     #==========================================================================
 
     #============================== DELETE ====================================
     def borrarMedicamento(self, codigo):
-        #try:
-            #cur = self.conn.cursor()
+        try:
+            cur = self.conn.cursor()
 
-            #cur.execute("DELETE FROM Area WHERE codigo = %s", (codigoArea,))
+            cur.execute("DELETE FROM Medicamento WHERE codigo = %s", (codigo,))
 
-            #cur.close()
-            #self.conn.commit()
-        #except Exception as e:
-            #cur.close()
-            #self.conn.reset()
-            #return e
-        pass
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
     #==========================================================================
