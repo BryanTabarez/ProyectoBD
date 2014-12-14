@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>688</width>
-    <height>528</height>
+    <width>715</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="palette">
@@ -88,8 +88,8 @@
     <rect>
      <x>10</x>
      <y>230</y>
-     <width>661</width>
-     <height>221</height>
+     <width>611</width>
+     <height>241</height>
     </rect>
    </property>
    <property name="font">
@@ -98,6 +98,16 @@
      <bold>true</bold>
     </font>
    </property>
+   <row>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </row>
    <column>
     <property name="text">
      <string>Numero cama</string>
@@ -128,13 +138,43 @@
      </font>
     </property>
    </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>11</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>Libre</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>UCI</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>12</string>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>Libre</string>
+    </property>
+   </item>
+   <item row="1" column="2">
+    <property name="text">
+     <string>Extermna</string>
+    </property>
+   </item>
   </widget>
   <widget class="QComboBox" name="comboBoxArea">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>190</y>
-     <width>661</width>
+     <width>611</width>
      <height>25</height>
     </rect>
    </property>
@@ -157,7 +197,7 @@
     <rect>
      <x>10</x>
      <y>170</y>
-     <width>661</width>
+     <width>611</width>
      <height>16</height>
     </rect>
    </property>
@@ -170,7 +210,7 @@
     <rect>
      <x>10</x>
      <y>50</y>
-     <width>661</width>
+     <width>611</width>
      <height>89</height>
     </rect>
    </property>
@@ -183,7 +223,7 @@
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="lineEditIdentificacion">
       <property name="font">
        <font>
         <weight>50</weight>
@@ -203,7 +243,7 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QLineEdit" name="lineEditNombre">
       <property name="font">
        <font>
         <weight>50</weight>
@@ -223,7 +263,7 @@
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QDateTimeEdit" name="dateTimeEdit">
+     <widget class="QDateTimeEdit" name="dateTimeEditFechaHora">
       <property name="font">
        <font>
         <weight>50</weight>
@@ -252,7 +292,7 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>661</width>
+     <width>611</width>
      <height>16</height>
     </rect>
    </property>
@@ -260,10 +300,10 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>440</x>
      <y>490</y>
      <width>178</width>
      <height>29</height>
@@ -288,22 +328,5 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushButtonCancelar</sender>
-   <signal>clicked()</signal>
-   <receiver>Dialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>509</x>
-     <y>506</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>419</x>
-     <y>493</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

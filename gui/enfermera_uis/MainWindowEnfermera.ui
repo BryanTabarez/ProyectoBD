@@ -334,7 +334,7 @@ color: rgb(255, 255, 255);</string>
        <x>0</x>
        <y>0</y>
        <width>200</width>
-       <height>390</height>
+       <height>420</height>
       </rect>
      </property>
      <attribute name="label">
@@ -367,7 +367,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>40</y>
+        <y>30</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -387,7 +387,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>80</y>
+        <y>70</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -407,7 +407,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>120</y>
+        <y>110</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -423,44 +423,11 @@ color: rgb(255, 255, 255);</string>
        <string>Listar Pacientes</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="page">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>200</width>
-       <height>390</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Camas</string>
-     </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonLiberarCama">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>40</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Liberar Cama</string>
-      </property>
-     </widget>
      <widget class="QCommandLinkButton" name="commandLinkButtonAsignarCama">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>170</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -476,11 +443,11 @@ color: rgb(255, 255, 255);</string>
        <string>Asignar Cama</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonListarCamas">
+     <widget class="QCommandLinkButton" name="commandLinkButtonLiberarCama">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>80</y>
+        <y>210</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -493,7 +460,93 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="text">
-       <string>Listar Camas</string>
+       <string>Liberar Cama</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButtonCancelarCita">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>310</y>
+        <width>181</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Cancelar Cita</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButtonAsignarCIta">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>270</y>
+        <width>181</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Asignar Cita</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>150</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>171</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButtonCancelarCita_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>350</y>
+        <width>181</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Confirmar Asistencia</string>
       </property>
      </widget>
     </widget>
@@ -503,7 +556,7 @@ color: rgb(255, 255, 255);</string>
        <x>0</x>
        <y>0</y>
        <width>200</width>
-       <height>390</height>
+       <height>420</height>
       </rect>
      </property>
      <attribute name="label">

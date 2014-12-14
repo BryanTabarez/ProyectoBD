@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>581</width>
+    <width>577</width>
     <height>481</height>
    </rect>
   </property>
@@ -79,6 +79,9 @@
     <weight>75</weight>
     <bold>true</bold>
    </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>Listar Pacientes</string>
