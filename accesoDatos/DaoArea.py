@@ -12,8 +12,8 @@ class DaoArea():
         try:
             cur = self.conn.cursor()
 
-            cur.execute("INSERT INTO Area(nombre, descripcion) VALUES (%s, %s)",
-                (a.get_nombre_area(), a.get_descripcion()))
+            cur.execute("INSERT INTO Area VALUES (%s, %s, %s)",
+                (a.get_codigo_area(), a.get_nombre_area(), a.get_descripcion()))
 
             cur.close()
             self.conn.commit()
@@ -50,10 +50,18 @@ class DaoArea():
 
     #============================== UPDATE ====================================
     def modificarArea(self, area):
-        #cur = self.conn.cursor()
-        pass
-        #cur.close()
-        #self.conn.commit()
+        try:
+            cur = self.conn.cursor()
+            sqlUpdate = """UPDATE Area SET nombre = %s, descripcion = %s
+            WHERE codigo = %s"""
+            cur.execute(sqlUpdate, (area.get_nombre_area(),
+            area.get_descripcion(), area.get_codigo_area()))
+            cur.close()
+            self.conn.commit()
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
     #==========================================================================
 
     #============================== DELETE ====================================

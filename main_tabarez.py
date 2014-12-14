@@ -2,6 +2,7 @@ from logica import *
 from accesoDatos import *
 
 
+#==============================================================================
 def mostrarReturn(resultado):
     """Este metodo por ahora es el que se encarga de "controlar" las
     excepciones a nivel de la base de datos (psycopg2).
@@ -9,15 +10,12 @@ def mostrarReturn(resultado):
     if resultado is not None:
         print("\nExcepcion capturada -->")
         print((resultado.pgerror))
-
-
-def main():
-    fachada = FachadaDB()
-    conexion = fachada.obtenerConexion()
-
-# PRUEBAS DAO PACIENTE
-    daoPac = DaoPaciente(conexion)
 #==============================================================================
+
+
+#==============================================================================
+def pruebasDaoPaciente(conexion):
+    daoPac = DaoPaciente(conexion)
 
     # INSERTAR PACIENTE
     paciente = Paciente(110, 'Esteban Quito', 'Calle 5', '018800777',
@@ -48,9 +46,10 @@ def main():
     #daoPac.borrarPaciente(110)
 #==============================================================================
 
-# PRUEBAS DAO ENFERMERA
-    daoEnfe = DaoEnfermera(conexion)
+
 #==============================================================================
+def pruebasDaoEnfermera(conexion):
+    daoEnfe = DaoEnfermera(conexion)
 
     ## INSERTAR ENFERMERA
     angely = Enfermera(114230, "Angelly", "calle 45", "3108304383", 1,
@@ -67,46 +66,68 @@ def main():
         mostrarReturn(deleteEnf)
 #==============================================================================
 
-# PRUEBAS DAO AREA
-    daoArea = DaoArea(conexion)
-#==============================================================================
 
+#==============================================================================
+def pruebasDaoArea(conexion):
+    daoArea = DaoArea(conexion)
     ## INSERTAR AREA
     """Como la llave primaria es codigo y este es un serial, se puede ingresar
     varias veces la misma area y va cambiando solo el codigo de area"""
-    #area = Area("Urgencias", """Atencion integral del paciente que requiere
-    #atencion medica de emergencia.""")
-    #insertArea = daoArea.guardarArea(area)
-    #if isinstance(insertArea, Exception):
-        #mostrarReturn(insertArea)
+    area = Area(2, "INFANTIL", """Cirugias ambulatorias y Hospitalizacion
+    desde Recien Nacido hasta menores de 16 anios.""")
+    insertArea = daoArea.guardarArea(area)
+    if isinstance(insertArea, Exception):
+        mostrarReturn(insertArea)
 
     # CONSULTAR AREA
-    area = daoArea.consultarArea(1)
+    area = daoArea.consultarArea(2)
     if isinstance(area, Exception):
         mostrarReturn(area)
     if area == 0:
         print("LA CONSULTA NO ARROJO RESULTADOS :(")
     else:
-        print(area.get_nombre_area())
+        print((area.get_nombre_area()))
+
+    # MODIFICAR AREA
+    area.set_nombre_area("Pediatria")
+    modArea = daoArea.modificarArea(area)
+    if isinstance(modArea, Exception):
+        mostrarReturn(modArea)
+
+    # BORRAR AREA
+    #delArea = daoArea.borrarArea(1)
+    #if isinstance(delArea, Exception):
+        #mostrarReturn(delArea)
 #==============================================================================
 
-# PRUEBAS DAO CAMA
-#daoCama = DaoCama(conexion)
-#==============================================================================
-
-    ##Prueba insertar cama
-    #cama = Cama("", "t", "Cama reclinable", 1)
-    #daoCama.guardarCama(cama)
-
-    ##Prueba consultar cama
-    #cama = daoCama.consultarCama(2)
-    #print("Codigo paciente = ")
-    #print(cama.get_num_cama())
-
-    ##Prueba borrar cama
-    #daoCama.borrarCama(2)
 
 #==============================================================================
+def pruebasDaoMedicamento(conexion):
+    daoDrug = DaoMedicamento(conexion)
+
+    # INSERTAR MEDICAMENTO
+    nwDrug = Medicamento("ACR01", 700, "Acetaminofeno (Rectal)",
+        """se usa para aliviar el dolor y reducir la fiebre. A diferencia de la
+        aspirina, no alivia el enrojecimiento, la rigidez o la hinchazon
+        causados por la artritis reumatoidea. Sin embargo, puede aliviar el
+        dolor causado por formas leves de artritis.""")
+    insertDrug = daoDrug.guardarMedicamento(nwDrug)
+    if isinstance(insertDrug, Exception):
+        mostrarReturn(insertDrug)
+#==============================================================================
+
+
+#==============================================================================
+def main():
+    fachada = FachadaDB()
+    conexion = fachada.obtenerConexion()
+
+    #pruebasDaoPaciente(conexion)
+    #pruebasDaoEnfermera(conexion)
+    #pruebasDaoArea(conexion)
+    pruebasDaoMedicamento(conexion)
+
     fachada.cerrarConexion()
+#==============================================================================
 
 main()
