@@ -21,6 +21,7 @@ class DaoPaciente():
 
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -37,12 +38,14 @@ class DaoPaciente():
             consulta = cur.fetchone()
             if consulta is None:
                 cur.close()
-                return 0
+                return 1
             else:
                 paciente = Paciente(consulta[0], consulta[1], consulta[2],
                     consulta[3], consulta[4], consulta[5], consulta[6])
                 cur.close()
                 return paciente
+            cur.close()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -61,15 +64,18 @@ class DaoPaciente():
             actividad_economica = %s, num_seguridad_social = %s WHERE
             identificacion = %s"""
 
+            # Actualizar datos en Persona
             cur.execute(sqlUpdate1, (p.get_nombre(), p.get_direccion(),
             p.get_telefono(), p.get_identificacion(), ))
 
+            # Actualizar datos en Paciente
             cur.execute(sqlUpdate2, (p.get_fecha_nacimiento(),
             p.get_actividad_economica(), p.get_num_seg_social(),
             p.get_identificacion(), ))
 
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -85,6 +91,7 @@ class DaoPaciente():
             cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
