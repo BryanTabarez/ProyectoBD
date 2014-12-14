@@ -1,7 +1,7 @@
 from logica import *
 from accesoDatos import *
 
-import sys
+#import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
@@ -130,6 +130,24 @@ class ControlDaoMedicamento():
             return 1
         else:
             return [drug.get_costo(), drug.get_nombre(), drug.get_descripcion()]
+
+    def modificarMedicamento(self, costo, nombre, descripcion):
+        pass
+#==============================================================================
+
+
+#==============================================================================
+def pruebasDaoCama(conexion):
+    pass
+    #daoBed = DaoCama(conexion)
+
+    ## INSERTAR CAMA
+
+    # CONSULTAR CAMA
+
+    # MODIFICAR CAMA
+
+    # BORRAR CAMA
 #==============================================================================
 
 
@@ -152,20 +170,21 @@ def pruebasDaoMedicamento(conexion):
 
 #==============================================================================
 def main():
-    app = QApplication(sys.argv)
+    #app = QApplication(sys.argv)
 
     fachada = FachadaDB()
     conexion = fachada.obtenerConexion()
 
-    mostrarVentana = VentanaMedicamento(None, conexion)
-    mostrarVentana.show()
-    r = app.exec_()
+    #mostrarVentana = VentanaMedicamento(None, conexion)
+    #mostrarVentana.show()
+    #r = app.exec_()
     #pruebasDaoMedicamento(conexion)
+    pruebasDaoCama(conexion)
 
     fachada.cerrarConexion()
 
-    print(("Fin " + str(r)))
-    sys.exit(r)
+    #print(("Fin " + str(r)))
+    #sys.exit(r)
 #==============================================================================
 
 #  CAMA
@@ -177,7 +196,6 @@ VmClass, InterfazAdministradorInterfazBase_class = uic.loadUiType('untitled.ui')
 
 
 class VentanaMedicamento(QMainWindow, VmClass):
-
 
     def __init__(self, parent, conexion):
         QMainWindow.__init__(self, parent)
@@ -230,6 +248,10 @@ class VentanaMedicamento(QMainWindow, VmClass):
             self.lineEditDescripcion.setText(result[2])
         if result is 1:
             self.lineEditMensaje.setText("La consulta no arrojo resultados!")
+
+    def pruebaModificarMedicamento(self):
+        pass
+        #pruebaBuscarMedicamento()
 
 
 main()
