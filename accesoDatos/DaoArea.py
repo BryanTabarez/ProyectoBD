@@ -17,6 +17,7 @@ class DaoArea():
 
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -34,7 +35,7 @@ class DaoArea():
             consulta = cur.fetchone()
             if consulta is None:
                 cur.close()
-                return 0
+                return 1
             else:
                 areaConsultada = Area(consulta[0], consulta[1], consulta[2])
                 cur.close()
@@ -42,6 +43,7 @@ class DaoArea():
 
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -58,6 +60,7 @@ class DaoArea():
             area.get_descripcion(), area.get_codigo_area()))
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -73,6 +76,7 @@ class DaoArea():
 
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()

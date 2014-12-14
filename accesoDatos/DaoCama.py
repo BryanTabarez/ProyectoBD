@@ -2,61 +2,80 @@ from logica.Cama import Cama
 
 
 class DaoCama():
+    """Clase DaoCama"""
 
     def __init__(self, conexion):
         self.conn = conexion
 
-    def guardarCama(self, c):
+    #============================== CREATE ====================================
+    def guardarCama(self, bed):
         try:
-            #Abrir un cursor para realizar operaciones con la base de datos
             cur = self.conn.cursor()
 
             cur.execute("""INSERT INTO Cama (estado, descripcion, codigo_area)
-            VALUES (%s, %s, %s)""", (c.get_estado(), c.get_descripcion(),
-            c.get_cod_area()))
+            VALUES (%s, %s, %s)""", (bed.get_estado(), bed.get_descripcion(),
+            bed.get_cod_area()))
 
-            # Cerrar el cursor
             cur.close()
-
-            # Hacer que los cambios en la base de datos sean permanentes
             self.conn.commit()
-        except:
-            print("Error!")
-            print("No se pudo guardar el registro en la base de datos")
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
 
-    def borrarCama(self, id):
-        cur = self.conn.cursor()
-        cur.execute("DELETE FROM Cama WHERE num_cama = %s", (id,))
-        cur.close()
-        self.conn.commit()
-
+    #============================== READ ======================================
+    # CONSULTA UNA CAMA PARTICULAR
     def consultarCama(self, id):
-        #try:
+        try:
             cur = self.conn.cursor()
-            sqlConsulta = """SELECT * FORM Cama NATURAL JOIN Area
-            WHERE num_cama = %s"""
-            cur.execute()(sqlConsulta, (id,))
+            sqlConsulta = """SELECT * FROM Cama WHERE num_cama = %s"""
+            cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
             if consulta is None:
-                print("La consulta no arrojo resultados")
                 cur.close()
-                return 0
+                return 1
             else:
                 cama = Cama(consulta[0], consulta[1], consulta[2], consulta[3])
                 cur.close()
                 return cama
-        #except:
-            #print("Error en la consulta!")
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
 
-    def modificarCama(self, c):
-        cur = self.conn.cursor()
+    #============================== UPDATE ====================================
+    def modificarCama(self, bed):
+        try:
+            cur = self.conn.cursor()
 
-        sqlUpdate = """UPDATE Cama SET estado = %s, descripcion = %s,
-        codigo_area = %s WHERE num_cama = %s"""
+            sqlUpdate = """UPDATE Cama SET estado = %s, descripcion = %s,
+            codigo_area = %s WHERE num_cama = %s"""
 
-        cur.execute(sqlUpdate, (c.get_estado(), c.get_descripcion(),
-        c.get_cod_area(), c.get_num_cama(),))
+            cur.execute(sqlUpdate, (bed.get_estado(), bed.get_descripcion(),
+            bed.get_cod_area(), bed.get_num_cama()))
 
-        self.conn.commit()
-        cur.close()
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
 
+    #============================== DELETE ====================================
+        def borrarCama(self, id):
+            try:
+                cur = self.conn.cursor()
+                cur.execute("DELETE FROM Cama WHERE num_cama = %s", (id,))
+                cur.close()
+                self.conn.commit()
+                return 0
+            except Exception as e:
+                cur.close()
+                self.conn.reset()
+                return e
+    #==========================================================================

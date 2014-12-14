@@ -1,7 +1,7 @@
 from logica import *
 from accesoDatos import *
 
-import sys
+#import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
@@ -134,22 +134,38 @@ class ControlDaoMedicamento():
 
 
 #==============================================================================
-def main():
-    app = QApplication(sys.argv)
+def pruebasDaoMedicamento(conexion):
+    daoDrug = DaoMedicamento(conexion)
 
-    # Abrir una conexion en la base de datos
+    ## INSERTAR MEDICAMENTO
+
+    # CONSULTAR MEDICAMENTO
+
+    # MODIFICAR MEDICAMENTO
+
+    # BORRAR MEDICAMENTO
+    deleteDrug = daoDrug.borrarMedicamento("vag100")
+    if isinstance(deleteDrug, Exception):
+        mostrarReturn(deleteDrug)
+#==============================================================================
+
+
+#==============================================================================
+def main():
+    #app = QApplication(sys.argv)
+
     fachada = FachadaDB()
     conexion = fachada.obtenerConexion()
 
-    mostrarVentana = VentanaMedicamento(None, conexion)
-    mostrarVentana.show()
-    r = app.exec_()
+    #mostrarVentana = VentanaMedicamento(None, conexion)
+    #mostrarVentana.show()
+    #r = app.exec_()
+    pruebasDaoMedicamento(conexion)
 
-    # Cerrar la conexion
     fachada.cerrarConexion()
 
-    print(("Fin " + str(r)))
-    sys.exit(r)
+    #print(("Fin " + str(r)))
+    #sys.exit(r)
 #==============================================================================
 
 VmClass, InterfazAdministradorInterfazBase_class = uic.loadUiType('untitled.ui')
@@ -208,4 +224,6 @@ class VentanaMedicamento(QMainWindow, VmClass):
             self.lineEditDescripcion.setText(result[2])
         if result is 1:
             self.lineEditMensaje.setText("La consulta no arrojo resultados!")
+
+
 main()

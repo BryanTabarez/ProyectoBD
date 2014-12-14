@@ -32,6 +32,7 @@ class DaoEnfermera():
 
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -48,9 +49,8 @@ class DaoEnfermera():
             cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
             if consulta is None:
-                print("La consulta no arrojo resultados")
                 cur.close()
-                return 0
+                return 1
             else:
                 cur.execute("""SELECT habilidad FROM Habilidades_Enfermera WHERE
                 id_enfermera = %s""", (id,))
@@ -60,6 +60,8 @@ class DaoEnfermera():
                     consulta[7], consulta[8], habilidades)
                 cur.close()
                 return enfermera
+            cur.close()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -102,6 +104,7 @@ class DaoEnfermera():
             cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
             cur.close()
             self.conn.commit()
+            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
