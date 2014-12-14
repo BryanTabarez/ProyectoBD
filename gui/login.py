@@ -4,6 +4,7 @@ from PyQt4.QtCore import *
 from PyQt4 import uic
 
 from administrador import InterfazAdministrador
+from enfermera import InterfazEnfermera
 
 IniciarSesionInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/login_uis/Login.ui')
 
@@ -52,7 +53,9 @@ class InterfazIniciarSesion( QMainWindow, IniciarSesionInterfaz_class ):
 		
 		elif self.lineEditUsuario.text() == "2":
 		
-			self.abrirVentanaEnfermera()
+			self.close()
+			interfazEnfermera = InterfazEnfermera( self )
+			interfazEnfermera.show()
 		
 		elif self.ui.lineEditUsuario.text() == "3":
 		

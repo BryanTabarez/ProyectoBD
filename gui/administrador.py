@@ -34,6 +34,22 @@ from componentes_administrador import WidgetHistoriaClinicaPaciente
 from componentes_administrador import WidgetNumeroCitasMedico
 from componentes_administrador import WidgetCostoPromedioPaciente
 
+#==================================================================================================================================================
+# INTEGRANTES:
+# Bryan Stiven Tabarez Mestra	- 1131782
+# Aurelio Antonio Vivas Meza	- 1110348
+# George Romero Ramirez		    - 1130924
+#==================================================================================================================================================
+#InterfazAdministrador
+#PERSONAL
+#AREAS
+#CAMAS 
+#MEDICAMENTOS
+#HABILIDADES
+#CAUSAS
+#INFROMES
+#==================================================================================================================================================
+
 
 InterfazAdministradorInterfaz_class , InterfazAdministradorInterfazBase_class = uic.loadUiType('gui/administrador_uis/MainWindowAdministrador.ui')
 
@@ -98,37 +114,37 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 			SENIALES Y SLOTS			
 		"""
 
-		#PERSONAL
+		#==========================================> PERSONAL <=================================================
 		self.connect( self.commandLinkButtonNuevoEmpleado, SIGNAL( "clicked()" ), self.nuevoEmpleado )
 		self.connect( self.commandLinkButtonModificarEmpleado, SIGNAL( "clicked()" ), self.modificarEmpleado )
 		self.connect( self.commandLinkButtonEliminarEmpleado, SIGNAL( "clicked()" ), self.eliminarEmpleado )
 		self.connect( self.commandLinkButtonListarEmpleados, SIGNAL("clicked()"), self.listarEmpleados )
-		#AREAS
+		#===========================================> AREAS <===================================================
 		self.connect( self.commandLinkButtonNuevaArea, SIGNAL( "clicked()" ),  self.nuevaArea )
 		self.connect( self.commandLinkButtonModificarArea, SIGNAL( "clicked()" ), self.modificarArea )
 		self.connect( self.commandLinkButtonEliminarArea, SIGNAL( "clicked()" ), self.eliminarArea )
 		self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
-		#CAMAS
+		#===========================================> CAMAS <===================================================
 		self.connect( self.commandLinkButtonNuevaCama, SIGNAL("clicked()"), self.nuevaCama )
 		self.connect( self.commandLinkButtonModificarCama, SIGNAL("clicked()"), self.modificarCama )
 		self.connect( self.commandLinkButtonEliminarCama, SIGNAL( "clicked()" ), self.eliminarCama )
 		self.connect( self.commandLinkButtonListarCamas, SIGNAL("clicked()"), self.listarCamas )
-		#MEDICAMENTOS
+		#=========================================> MEDICAMENTOS <==============================================
 		self.connect( self.commandLinkButtonNuevoMedicamento, SIGNAL("clicked()"), self.nuevoMedicamento )
 		self.connect( self.commandLinkButtonModificarMedicamento, SIGNAL("clicked()"), self.modificarMedicamento )
 		self.connect( self.commandLinkButtonEliminarMedicamento, SIGNAL( "clicked()" ), self.eliminarMedicamento )
 		self.connect( self.commandLinkButtonListarMedicamentos, SIGNAL("clicked()"), self.listarMedicamentos )
-		#HABILIDADES
+		#=========================================> HABILIDADES <===============================================
 		self.connect( self.commandLinkButtonNuevaHabilidad, SIGNAL("clicked()"),  self.nuevaHabilidad )
 		self.connect( self.commandLinkButtonModificarHabilidad, SIGNAL("clicked()"), self.modificarHabilidad )
 		self.connect( self.commandLinkButtonEliminarHabilidad, SIGNAL( "clicked()" ), self.eliminarHabilidad )
 		self.connect( self.commandLinkButtonListarHabilidades, SIGNAL("clicked()"), self.listarHabilidades )
-		#CAUSAS
+		#===========================================> CAUSAS <==================================================
 		self.connect( self.commandLinkButtonNuevaCausa, SIGNAL( "clicked()" ), self.nuevaCausa )
 		self.connect( self.commandLinkButtonModificarCausa, SIGNAL( "clicked()" ), self.modificarCausa )
 		self.connect( self.commandLinkButtonEliminarCausa, SIGNAL( "clicked()" ), self.eliminarCausa )
 		self.connect( self.commandLinkButtonListarCausas, SIGNAL( "clicked()" ), self.listarCausas )
-		#INFROMES
+		#==========================================> INFROMES <=================================================
 		self.connect( self.commandLinkButtonAgendaMedicoMes, SIGNAL("clicked()"), self.mostrarAgendaMedico )
 		self.connect( self.commandLinkButtonHistoriaClinicaPaciente, SIGNAL("clicked()"), self.mostrarHistoriaClinicaPaciente )
 		self.connect( self.commandLinkButtonCitasAtendidasMedicoMes, SIGNAL("clicked()"), self.mostrarCitasAtendidasMedicoMes )
@@ -138,7 +154,8 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		METODOS			
 	"""
 
-	#PERSONAL
+
+	#==========================================> PERSONAL <=================================================
 	#Metodo: nuevoEmpleado
 	#Funcion: Desplieqga el dialogo con la interfaz para ingresar un nuevo empleado
 	def nuevoEmpleado( self ):
@@ -196,7 +213,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		
 		
 
-	#AREA
+	#===========================================> AREAS <===================================================
 	#Metodo: nuevaArea
 	#Funcion: Despliega la interfaz para la creacion de areas en el hospital
 	def nuevaArea( self ):
@@ -249,7 +266,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.hide()
 
-	#CAMA
+	#===========================================> CAMAS <===================================================
 	#Metodo: nuevaCama
 	#Funcion: Despliega la interfaz que permite crear un nueva cama 
 	def nuevaCama( self ):
@@ -303,6 +320,8 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.hide()
 
+
+	#=========================================> MEDICAMENTOS <==============================================
 	#MEDICAMENTO
 	#Metodo: nuevoMedicamento
 	#Funcion: Despliega la interfaz que permite insertar medicamentos
@@ -361,7 +380,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetCostoPromedioPaciente.hide()
 
 
-	#HABILIDADES
+	#=========================================> HABILIDADES <===============================================
 	#Metodo: nuevaHabilidad
 	#Funcion: Despliega el dialog que permite ingresar habilidades a la base de datos
 	def nuevaHabilidad( self ):
@@ -420,7 +439,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.hide()
 
-	#CAUSAS
+	#===========================================> CAUSAS <==================================================
 	#Metodo: nuevaCausa
 	#Funcion: Permite mostrar la interfaz de ingreso de causas a la base de datos
 	def nuevaCausa( self ):
@@ -472,7 +491,7 @@ class InterfazAdministrador( QMainWindow, InterfazAdministradorInterfaz_class ):
 		self.widgetCostoPromedioPaciente.hide()
 
 
-	#INFORMES
+	#==========================================> INFROMES <=================================================
 	#Metodo: mostrarAgendaMedico
 	#Funcion: Permite visualizar la agenda programada del medico en un mes determinado
 	def mostrarAgendaMedico( self ):

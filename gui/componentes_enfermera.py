@@ -3,96 +3,58 @@ from PyQt4.QtCore import *
 from PyQt4 import uic
 
 
+#=======================================================================================================================
+# INTEGRANTES:
+# Bryan Stiven Tabarez Mestra	- 1131782
+# Aurelio Antonio Vivas Meza	- 1110348
+# George Romero Ramirez		    - 1130924
+#=======================================================================================================================
+#InterfazEnfermera
 
+#=======================================================================================================================
 
-#_____________________________________________________  Agendar Cita Medico _________________________________________
+#====================================================> Paciente <=======================================================
 
-DialogAgendarCitaInterfaz_class, DialogAgendarCitaInterfazBase = uic.loadUiType('gui/enfermera_uis/DialogAgendarCita.ui')
+DialogPacienteInterfaz_clas , DialogPacienteInterfazBase_clas = uic.loadUiType('gui/enfermera_uis/DialogPaciente.ui')
 
-class DialogAgendarCita( QDialog, DialogAgendarCitaInterfaz_class ):
+class DialogPaciente( QDialog, DialogPacienteInterfaz_clas ):
 	
-	def __init__( self, parent=None ):
-
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
+	#Permite el inserso y actualizacion de pacientes
+	def __init__( self, codigo_paciente=None, controlador=None, parent=None ):
 
 		QDialog.__init__( self, parent )
 		self.setupUi( self )
+
+		self.actualizar = False
+
+		if codigo_paciente and controlador:
+			
+			self.pushButtonInsertar.setText( "Actualizar" )
+			self.actualizar = True
+
+		else:
+
+			self.pushButtonInsertar.setText( "Insertar" )
+
+	#Permite actualizar e insertar aspirantes a la base de datos
+	def insertarActualizarPaciente( self ):
+
+		if self.actualizar:
+
+			print("PACIENETE ACTAULIZADO")
+
+		else:
+
+			print("PACIENTE MODIFICADO")
 		
 		
-#______________________________________________________ Cancelar Cita Paciente _______________________________________
+#===================================================> Listar Pacientes <================================================
 
-DialogCancelarCitaPacienteInterfaz_class, DialogCancelarCitaPacienteInterfazBase_class = uic.loadUiType('gui/enfermera_uis/DialogCancelarCitaPaciente.ui')
+WidgetListarPacientesInterfaz_class , WidgetLsitarPacientesInterfazBase_class = uic.loadUiType( 'gui/enfermera_uis/WidgetListarPacientes.ui' )
 
-class DialogCancelarCitaPaciente( QDialog, DialogCancelarCitaPacienteInterfaz_class ):
-	
+class WidgetListarPacientes( QWidget, WidgetListarPacientesInterfaz_class ):
+
 	def __init__( self, parent=None ):
 
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
-
-		QDialog.__init__( self, parent )
-		self.setupUi( self )
-
-#______________________________________________________ Modificar Agenda Medicos _______________________________________
-
-DialogModificarAgendaMedicosInterfaz_class, DialogModificarAgendaMedicosInterfazBase_class = uic.loadUiType('gui/enfermera_uis/DialogModificarAgendaMedicos.ui')
-
-class DialogModificarAgendaMedicos( QDialog, DialogModificarAgendaMedicosInterfaz_class ):
-	
-	def __init__( self, parent=None ):
-
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
-
-		QDialog.__init__( self, parent )
-		self.setupUi( self )
-
-#______________________________________________________ Modificar Paciente _______________________________________
-
-DialogModificarPacienteInterfaz_class, DialogModificarPacienteInterfazBase_class = uic.loadUiType('gui/enfermera_uis/DialogModificarPaciente.ui')
-
-class DialogModificarPaciente( QDialog, DialogModificarPacienteInterfaz_class ):
-	
-	def __init__( self, parent=None ):
-
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
-
-		QDialog.__init__( self, parent )
-		self.setupUi( self )
-
-#______________________________________________________ Modificar Paciente _______________________________________
-
-DialogNuevaCitaPacienteInterfaz_class, DialogNuevaCitaPacienteInterfazBase_class = uic.loadUiType('gui/enfermera_uis/DialogNuevaCitaPaciente.ui')
-
-class DialogNuevaCitaPaciente( QDialog, DialogNuevaCitaPacienteInterfaz_class ):
-	
-	def __init__( self, parent=None ):
-
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
-
-		QDialog.__init__( self, parent )
-		self.setupUi( self )
-
-
-#______________________________________________________ Nuevo Paciente _______________________________________
-
-DialogNuevoPacienteInterfaz_class, DialogNuevoPacienteInterfazBase_class = uic.loadUiType('gui/enfermera_uis/DialogNuevoPaciente.ui')
-
-class DialogNuevoPaciente( QDialog, DialogNuevoPacienteInterfaz_class ):
-	
-	def __init__( self, parent=None ):
-
-		"""
-			SE LLAMA AL CONTRUCTOR DE LA CLASE PADRE Y SE LE PASA EL WIDGETPADRE QUE ES EL QUE CONTIENDE ESTE WIDGET
-		"""
-
-		QDialog.__init__( self, parent )
+		QWidget.__init__( self, parent )
 		self.setupUi( self )

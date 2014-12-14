@@ -2,16 +2,23 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from componentes_enfermera import DialogAgendarCita
-from componentes_enfermera import DialogCancelarCitaPaciente
-from componentes_enfermera import DialogModificarAgendaMedicos
-from componentes_enfermera import DialogModificarPaciente
-from componentes_enfermera import DialogNuevaCitaPaciente
-from componentes_enfermera import DialogNuevoPaciente
+from componentes_enfermera import DialogPaciente
+from componentes_enfermera import WidgetListarPacientes
+from componentes_administrador import DialogInformacion
 
-InterfazEnfermeraInterfaz_class , InterfazEnfermeraInterfazBase_class = uic.loadUiType( 'gui/enfermera_uis/VentanaEnfermera.ui' )
+#=======================================================================================================================
+# INTEGRANTES:
+# Bryan Stiven Tabarez Mestra	- 1131782
+# Aurelio Antonio Vivas Meza	- 1110348
+# George Romero Ramirez		    - 1130924
+#=======================================================================================================================
+#InterfazEnfermera
 
-class InterfazEnfermera( QMainWindow, InterfazEnfermeraInterfaz_class ):
+#=======================================================================================================================
+
+Interfaz_E_class , Interfaz_E_Base_class = uic.loadUiType( 'gui/enfermera_uis/MainWindowEnfermera.ui' )
+
+class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 
 	def __init__( self, parent=None ):
 
@@ -31,48 +38,66 @@ class InterfazEnfermera( QMainWindow, InterfazEnfermeraInterfaz_class ):
 		pos_vertical = ( pantalla.height() - interfaz.height() ) / 2
 		self.move( pos_horizontal, pos_vertical )
 
+
+		self.dialogInformacion = DialogInformacion( self )
+		#================================================> WIDGETS LISTAR <=============================================
+		self.widgetListarPacientes = WidgetListarPacientes( self.widgetCuerpo )
+		self.widgetListarPacientes.hide()
+
 	
-	"""
-			SENIALES Y SLOTS			
-	"""	
+		"""
+				SENIALES Y SLOTS			
+		"""
+		#===================================================> PACIENTE <================================================
+		self.connect( self.commandLinkButtonNuevoPaciente, SIGNAL( "clicked()" ), self.nuevoPaciente )
+		self.connect( self.commandLinkButtonModificarPaciente, SIGNAL( "clicked()" ), self.modificarPaciente )
+		self.connect( self.commandLinkButtonEliminarPaciente, SIGNAL( "clicked()" ), self.eliminarPaciente )
+		self.connect( self.commandLinkButtonListarPacientes, SIGNAL( "clicked()" ), self.listarPacientes )
 
 
-	#Metodo: nuevaCita
-	#Funcion: Permite mostrar la interfaz que  enlaza una cita con el paciente
-	def nuevaCita( self ):
-		dialogNuevaCitaPaciente = DialogNuevaCitaPaciente( self )
-		dialogNuevaCitaPaciente.exec_()
-
-
-	#Metodo: cancelarCita
-	#Funcion: Permite mostrar la interzar para cancelacion de citas 
-	def cancelarCita( self ):
-		dialogCancelarCita = DialogCancelarCita( self )
-		dialogCancelarCita.exec_()
-
-	#Metodo: listarCitas
-	#Funcion: Permite listar citas que se han creado en la base de datos
-	def listarCitas( self ):
-		"""FALTA"""
-		pass
-
-	#Metodo: nuevoPaciente
-	#Funcion: Permite mostrar la interfaz para creacion de pacientes en la base de datos
 	def nuevoPaciente( self ):
-		dialogNuevoPaciente = DialogNuevoPaciente( self )
+
+		dialogNuevoPaciente = DialogPaciente( parent=self )
 		dialogNuevoPaciente.exec_()
 
-	#Metodo: modificarPaciente
-	#Funcion: Permite modificar un paciente ya creado en la base de datos
 	def modificarPaciente( self ):
-		dialogModificarPaciente = DialogModificarPaciente( self )
-		dialogModificarPaciente.exec_()
 
-	#Metodo: listarPacientes
-	#Funcion: Permite listar pacientes de la base de datos
+		fila_seleccionada = self.widgetListarPacientes.tableWidgetPacientes.currentRow()
+		if self.widgetListarPacientes.hide() or fila_seleccionada == -1:
+
+			self.dialogInformacion.showMensaje( "Modificar Paciente", 
+				"Por favor liste los pacientes, seleccione de la tabla el que desea modificar, luego presione 'Modificar Paciente'" )
+			
+		else:
+
+			dialogModificarPaciente = DialogPaciente( "codigo_paciente", "controaldor", self )
+			dialogModificarPaciente.exec_()
+
 	def listarPacientes( self ):
-		"""FALTA"""
-		pass
+
+		self.widgetListarPacientes.show()
+
+	def eliminarPaciente( self ):
+
+		fila_seleccionada = self.widgetListarPacientes.tableWidgetPacientes.currentRow()
+		if self.widgetListarPacientes.hide() or fila_seleccionada == -1:
+
+			self.dialogInformacion.showMensaje( "Modificar Paciente", 
+				"Por favor liste los pacientes, seleccione de la tabla el que desea modificar, luego presione 'Modificar Paciente'" )
+			
+		else:
+
+			print("PACEINTE ELIMINADO")
+
+
+
+
+
+
+
+
+
+
 
 
 

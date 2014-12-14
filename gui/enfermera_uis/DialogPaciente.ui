@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogModificarPaciente</class>
- <widget class="QDialog" name="DialogModificarPaciente">
+ <class>DialogNuevoPaciente</class>
+ <widget class="QDialog" name="DialogNuevoPaciente">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>398</height>
+    <height>542</height>
    </rect>
   </property>
   <property name="palette">
@@ -75,7 +75,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>Modificar paciente</string>
+   <string>Nuevo paciente</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -86,7 +86,7 @@
      <x>0</x>
      <y>70</y>
      <width>791</width>
-     <height>321</height>
+     <height>461</height>
     </rect>
    </property>
    <property name="font">
@@ -102,8 +102,34 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
+      <x>610</x>
+      <y>420</y>
+      <width>178</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButtonCancelar">
+       <property name="text">
+        <string>Cancelar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonInsertar">
+       <property name="text">
+        <string>Insertar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>35</y>
       <width>771</width>
       <height>227</height>
      </rect>
@@ -113,6 +139,16 @@
       <widget class="QLabel" name="labelIdentificacion">
        <property name="text">
         <string>Identificacion</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEditIdentificacion">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
       </widget>
      </item>
@@ -218,16 +254,26 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEditIdentificacion"/>
-     </item>
     </layout>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>290</y>
+      <width>771</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
    </widget>
    <widget class="QLabel" name="labelPaciente">
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>15</y>
+      <x>10</x>
+      <y>10</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -239,8 +285,8 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>25</y>
+      <x>9</x>
+      <y>20</y>
       <width>771</width>
       <height>16</height>
      </rect>
@@ -249,41 +295,80 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QLabel" name="labelHistoriaClinica">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>10</x>
       <y>280</y>
-      <width>361</width>
-      <height>29</height>
+      <width>131</width>
+      <height>16</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="pushButtonEliminar">
+    <property name="text">
+     <string>Historia Clinica</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>11</x>
+      <y>310</y>
+      <width>771</width>
+      <height>89</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelIdentificacionPaciente">
        <property name="text">
-        <string>Eliminar</string>
+        <string>identificacion paciente         </string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonActualizar">
-       <property name="text">
-        <string>Actualizar</string>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEditIdentificacionPaciente">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonCancelar">
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelNumeroDeHistoria">
        <property name="text">
-        <string>Cancelar</string>
+        <string>Numero de historia</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonAceptar">
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="lineEditNumeroDeHistoria">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelFechaDeApertura">
        <property name="text">
-        <string>Aceptar</string>
+        <string>Fecha de apertura </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QDateEdit" name="dateEditFechaDeApertura">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
       </widget>
      </item>
