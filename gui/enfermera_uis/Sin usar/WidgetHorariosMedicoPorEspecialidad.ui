@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>widgetHorariosMedico</class>
+ <widget class="QWidget" name="widgetHorariosMedico">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>681</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Horarios Medico Especialidad</string>
+  </property>
+  <widget class="QComboBox" name="comboBoxHorariosDisponibles">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>49</y>
+     <width>661</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Line" name="lineCitas">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>29</y>
+     <width>661</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelCitasDisponibles">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>9</y>
+     <width>201</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Horarios Disponibles por especalidad</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidgetHorariosDisponibles">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>661</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Identificacion Horario</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Identificacion Medico</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Fecha y Hora</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>01</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>1110348</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>18/08/1992 03:45</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>02</string>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>1238643</string>
+    </property>
+   </item>
+   <item row="1" column="2">
+    <property name="text">
+     <string>17/09/2012 05:40</string>
+    </property>
+   </item>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
