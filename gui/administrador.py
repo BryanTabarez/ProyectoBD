@@ -159,7 +159,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	def nuevoEmpleado( self ):
 		
 		dialogEmpleado = DialogEmpleado( controlador=self.controladorPersonal,  parent=self )
-		dialogNuevoEmpleado.exec_()
+		dialogEmpleado.exec_()
 
 	#Metodo: modificarEmpleado
 	#Funcion: Despliega el dialogo con la interfaz que permite modificar y eliminar un empleado
@@ -181,7 +181,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 			
 		else:
 			
-			id_empleado_eliminar = self.widgetEmpleadosPorArea.tableWidgetEmpleados.item(fila_seleccinada_tabla, 0).toString()
+			id_empleado_eliminar = self.widgetEmpleadosPorArea.tableWidgetEmpleados.item(fila_seleccinada_tabla, 0).text()
 			print( "eliminar empleado: " + id_empleado_eliminar )
 			#AQUI SE ELIMINA EL EMPLEADO CON EL CODIGO RECIBIDO
 
@@ -209,7 +209,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#Funcion: Despliega la interfaz para la creacion de areas en el hospital
 	def nuevaArea( self ):
 
-		dialogArea = DialogArea( cotrolador=self.controladorArea ,parent=self )
+		dialogArea = DialogArea( controlador=self.controladorArea ,parent=self )
 		dialogArea.exec_()
 
 
@@ -217,7 +217,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#Funcion: Despliega la interfaz que permite la modificacion de un area
 	def modificarArea( self ):
 
-		dialogArea = DialogArea( nuevo_registro=False, cotrolador=self.controladorArea ,parent=self )
+		dialogArea = DialogArea( nuevo_registro=False, controlador=self.controladorArea ,parent=self )
 		dialogArea.exec_()
 
 	#Metodo: eliminarArea
@@ -231,7 +231,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 				"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
 			
 		else:
-			cod_area_eliminar = self.widgetListarAreas.tableWidgetAreas.item(fila_seleccinada_tabla, 0).toString()
+			cod_area_eliminar = self.widgetListarAreas.tableWidgetAreas.item(fila_seleccinada_tabla, 0).text()
 			print( "eliminar area: " + cod_area_eliminar )
 			#AQUI SE ELIMINA EL AREA CON EL CODIGO RECIBIDO
 
@@ -280,7 +280,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 				"Por favor liste las camas, seleccione de la tabla la que desea eliminar, luego presione 'eliminar Cama' " )
 
 		else:
-			cod_cama_eliminar = self.widgetListarCamas.tableWidgetCamas.item(fila_seleccinada_tabla, 0).toString()
+			cod_cama_eliminar = self.widgetListarCamas.tableWidgetCamas.item(fila_seleccinada_tabla, 0).text()
 			print( "eliminar cama: " + cod_cama_eliminar )
 			#AQUI SE ELIMINA LA CAMA CON EL CODIGO RECIBIDO
 
@@ -315,7 +315,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#Funcion: Despliega la interfaz que permite modificar medicamentos medicamento
 	def modificarMedicamento( self ):
 
-		dialogMedicamento = DialogNMedicamento( nuevo_registro=False, controlador=self.controladorMedicamento, parent=self )
+		dialogMedicamento = DialogMedicamento( nuevo_registro=False, controlador=self.controladorMedicamento, parent=self )
 		dialogMedicamento.exec_()
 
 
@@ -332,7 +332,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 				"luego presione 'Eliminar Medicamento' " )
 			
 		else:
-			cod_med_eliminar = self.widgetListarMedicamentos.tableWidgetMedicamentos.item(fila_seleccinada_tabla, 0).toString()
+			cod_med_eliminar = self.widgetListarMedicamentos.tableWidgetMedicamentos.item(fila_seleccinada_tabla, 0).text()
 			print( "eliminar medicameto: " + cod_med_eliminar )
 			#AQUI SE ELIMINA EL MEDICAMENTO CON EL CODIGO RECIBIDO
 
@@ -383,7 +383,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 				"Por favor liste las habilidades, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar habilidad' " )
 
 		else:
-			cod_hab_eliminar = self.widgetListarHabilidades.tableWidgetHabilidades.item(fila_seleccinada_tabla, 0).toString()
+			cod_hab_eliminar = self.widgetListarHabilidades.tableWidgetHabilidades.item(fila_seleccinada_tabla, 0).text()
 			print( "eliminar habilidad: " + cod_hab_eliminar )
 			#AQUI SE ELIMINA LA HABILIDAD CON EL CODIGO RECIBIDO
 
@@ -433,7 +433,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 		else:
 
-			cod_cau_eliminar = self.widgetListarCausas.tableWidgetListarCausas.item(fila_seleccinada_tabla, 0).toString()
+			cod_cau_eliminar = self.widgetListarCausas.tableWidgetListarCausas.item(fila_seleccinada_tabla, 0).text()
 			print( "eliminar medicameto: " + cod_cau_eliminar )
 			#AQUI SE ELIMINA LA CAUSA CON EL CODIGO RECIBIDO
 
@@ -455,7 +455,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#==========================================> INFROMES <=================================================
 	#Metodo: mostrarAgendaMedico
 	#Funcion: Permite visualizar la agenda programada del medico en un mes determinado
-	def mostrarAgendaMedico( self ):
+	def agendaMedico( self ):
 
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()
@@ -471,7 +471,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 	#Metodo: mostrarHistoriaClinicaPaciente
 	#Funcion: Permite visualizar la historia clinica de un paciente
-	def mostrarHistoriaClinicaPaciente( self ):
+	def historiaClinicaPaciente( self ):
 
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()
@@ -487,7 +487,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 	#Metodo: mostrarCitasAtendidasMedicoMes
 	#Funcion: Permite visualizar las citas que ha atendido un medico en determinado mes
-	def mostrarCitasAtendidasMedicoMes( self ):
+	def citasAtendidasMedicoMes( self ):
 
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()
@@ -503,7 +503,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	
 	#Metodo: mostrarCostoPaciente
 	#Funcion: Permite visualizar el costo de un paciente
-	def mostrarCostoPaciente( self ):
+	def costoPaciente( self ):
 
 		self.widgetListarAreas.hide()
 		self.widgetListarCamas.hide()

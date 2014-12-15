@@ -51,8 +51,8 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 
 		#=========================================> VARIABLES
-		self.controaldorEmpleado = controaldor
-		self.nuevo_regsitro = nuevo_regsitro
+		self.controaldorEmpleado = controlador
+		self.nuevo_regsitro = nuevo_registro
 		
 		#=========================================> WIDGETS 
 		self.widgetTipoEmpleadoEnfermera = WidgetTipoEmpleadoEnfermera( self.widgetTipoEmpleado )
@@ -68,17 +68,17 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 		#==========================================>MODIFICACIONES
 		
-		if nuevo_regsitro:			
+		if self.nuevo_regsitro:			
 
 			self.setWindowTitle("Nuevo Empleado")
-			self.widgetCuerpo.pushButtonInsertar.setText("Insertar")
-			self.widgetCuerpo.pushButtonConsultar.hide()
+			self.pushButtonInsertar.setText("Insertar")
+			self.pushButtonConsultar.hide()
 
 		else:			
 
 			self.setWindowTitle("Actualizar Empleado")
-			self.widgetCuerpo.pushButtonInsertar.setText("Actualizar")
-			self.widgetCuerpo.pushButtonConsultar.show()
+			self.pushButtonInsertar.setText("Actualizar")
+			self.pushButtonConsultar.show()
 
 
 	
@@ -98,22 +98,22 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 	def insertarActualizarEmpleado( self ):
 
-		identificacion = self.widgetCuerpo.lineEditIdentificacion.text()
-		nombre = self.widgetCuerpo.lineEditNombre.text()
-		direccion = self.widgetCuerpo.lineEditDireccion.text()
-		telefono = self.widgetCuerpo.lineEditTelefono.text()
-		email = self.widgetCuerpo.lineEditEmail.text()
-		salario = self.widgetCuerpo.lineEditEmail.text()
-		cargo = self.widgetCuerpo.lineEditCargo.text()
-		codigo_area = self.widgetCuerpo.comboBoxCodigoArea.currentText()
-		codigo_jefe = self.widgetCuerpo.comboBoxCodigoJefe.currentText()
+		identificacion = self.lineEditIdentificacion.text()
+		nombre = self.lineEditNombre.text()
+		direccion = self.lineEditDireccion.text()
+		telefono = self.lineEditTelefono.text()
+		email = self.lineEditEmail.text()
+		salario = self.lineEditEmail.text()
+		cargo = self.lineEditCargo.text()
+		codigo_area = self.comboBoxCodigoArea.currentText()
+		codigo_jefe = self.comboBoxCodigoJefe.currentText()
 
 		indice =  self.comboBoxTipoEmpleado.currentIndex() 
 		if indice == 0:
 
-			anios_experiencia = self.widgetCuerpo.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.text()
-			numero_filas = self.widgetCuerpo.widgetTipoEmpleadoEnfermera.tableWidgetHabilidades.rowCount()
-			arreglo_habilidades = self.widgetCuerpo.widgetTipoEmpleadoEnfermera.habilidadesEnfermera()
+			anios_experiencia = self.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.text()
+			numero_filas = self.widgetTipoEmpleadoEnfermera.tableWidgetHabilidades.rowCount()
+			arreglo_habilidades = self.widgetTipoEmpleadoEnfermera.habilidadesEnfermera()
 			
 			#INSERTE DATOS A LA BASE DE DATOS DE ENFERMERAS 
 			if self.nuevo_regsitro:
@@ -145,23 +145,24 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 	def limpiarCampos( self ):
 
-		self.widgetCuerpo.lineEditIdentificacion.setText("")
-		self.widgetCuerpo.lineEditNombre.setText("")
-		self.widgetCuerpo.lineEditDireccion.setText("")
-		self.widgetCuerpo.lineEditTelefono.setText("")
-		self.widgetCuerpo.lineEditEmail.setText("")
-		self.widgetCuerpo.lineEditEmail.setText("")
-		self.widgetCuerpo.lineEditCargo.setText("")
-		#self.widgetCuerpo.comboBoxCodigoArea.currentText()
-		#self.widgetCuerpo.comboBoxCodigoJefe.currentText()
+		self.lineEditIdentificacion.setText("")
+		self.lineEditNombre.setText("")
+		self.lineEditDireccion.setText("")
+		self.lineEditTelefono.setText("")
+		self.lineEditEmail.setText("")
+		self.lineEditEmail.setText("")
+		self.lineEditCargo.setText("")
+		#self.comboBoxCodigoArea.currentText()
+		#self.comboBoxCodigoJefe.currentText()
 
-		self.widgetCuerpo.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.setText("")
-		self.widgetCuerpo.widgetTipoEmpleadoEnfermera.tableWidgetHabilidades.setText("")
-		self.widgetCuerpo.widgetTipoEmpleadoEnfermera.tableWidgetHabilidadesEnfermera.clear()
+		self.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.setText("")
+		numero_filas = self.widgetTipoEmpleadoEnfermera.tableWidgetHabilidadesEnfermera.rowCount()
+		if numero_filas > 0:
+			self.widgetTipoEmpleadoEnfermera.tableWidgetHabilidadesEnfermera.clear()
 
-		self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.setText("")
-		self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.setText("")
-		self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.setText("")
+		self.widgetTipoEmpleadoMedico.lineEditEspecialidad.setText("")
+		self.widgetTipoEmpleadoMedico.lineEditUniversidad.setText("")
+		self.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.setText("")
 
 
 	def consultar( self ):
@@ -184,8 +185,9 @@ class WidgetTipoEmpleadoEnfermera( QWidget, W_Enfermera_class ):
 		self.setupUi( self )
 
 		#=============================================> VARIABLES
-		indice = 0
-
+		self.codigo = ""
+		self.descripcion = " "
+ 
 		#=============================================> SENIALES Y SLOTS
 		self.connect( self.pushButtonAgregar, SIGNAL( "clicked()" ), self.agregar )
 		self.connect( self.pushButtonEliminar, SIGNAL( "clicked()" ), self.eliminar )
@@ -202,31 +204,39 @@ class WidgetTipoEmpleadoEnfermera( QWidget, W_Enfermera_class ):
 				,"Por favor seleccione un hablidad para la enfermera  de la tabla habilidades" )
 		else:
 
-			item = self.tableWidgetHabilidades.item( fila_seleccionada,0 )
-			self.tableWidgetHabilidadesEnfermera.insertRow( indice )
-			self.tableWidgetHabilidadesEnfermera.setItem( 0, 0, item )
-			self.indice = self.indice + 1
+			self.codigo = self.tableWidgetHabilidades.item( fila_seleccionada,0 ).text()
+			self.descripcion = self.tableWidgetHabilidades.item( fila_seleccionada, 1 ).text()
+			self.tableWidgetHabilidades.removeRow( fila_seleccionada )
+			self.tableWidgetHabilidadesEnfermera.insertRow( 0 )
+			self.tableWidgetHabilidadesEnfermera.setItem( 0, 0, QTableWidgetItem( self.codigo ) )
+			self.tableWidgetHabilidadesEnfermera.setItem( 0, 1, QTableWidgetItem( self.descripcion ) )
+			
 
 	def eliminar( self ):
 
 		fila_seleccionada = self.tableWidgetHabilidadesEnfermera.currentRow()
-		if fila_seleccionada == -1:
+		if fila_seleccionada == -1 :
 			self.dialogInformacion = DialogInformacion( self )
 			self.dialogInformacion.showMensaje( "Nuevo Empleado"
 				,"Por favor seleccione la habilidad de la tabla 'Habilidades Enfermera que desea eliminar'" )
 		else:
 
-			item = self.tableWidgetHabilidades.item( fila_seleccionada,0 )
-			self.tableWidgetHabilidadesEnfermera.insertRow( indice )
-			self.tableWidgetHabilidadesEnfermera.setItem( 0, 0, item )
-			self.indice = self.indice -1
+			self.codigo = self.tableWidgetHabilidadesEnfermera.item( fila_seleccionada,0 ).text()
+			self.descripcion = self.tableWidgetHabilidadesEnfermera.item( fila_seleccionada, 1 ).text()
+			self.tableWidgetHabilidadesEnfermera.removeRow( fila_seleccionada )
+			self.tableWidgetHabilidades.insertRow( 0 )
+			self.tableWidgetHabilidades.setItem( 0, 0, QTableWidgetItem( self.codigo ) )
+			self.tableWidgetHabilidades.setItem( 0, 1, QTableWidgetItem( self.descripcion ) )
+
+			
 
 	def habilidadesEnfermera( self ):
 		numero_filas =  self.tableWidgetHabilidadesEnfermera.rowCount()
-		arreglo_habilidades = [None] * numero_filas
+		arreglo_habilidades = [" "] * numero_filas
+		
 		for i in range( 0, numero_filas ):
-			value = self.tableWidgetHabilidadesEnfermera.item( i, 0).toString()
-			arreglo_habilidades[ i ] = value
+
+			arreglo_habilidades[ i ] = self.tableWidgetHabilidadesEnfermera.item( 0, 0 ).text()
 
 		return arreglo_habilidades
 
@@ -269,7 +279,7 @@ D_Area_class , D_Area_Base_class = uic.loadUiType( 'gui/administrador_uis/Dialog
 
 class DialogArea( QDialog, D_Area_class ):
 
-	def __init__( self, nuevo_registro=True, contolador=None, parent=None ):
+	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
 
 		#Constructor padre
 		QDialog.__init__( self, parent )
@@ -277,15 +287,13 @@ class DialogArea( QDialog, D_Area_class ):
 		self.setupUi( self )
 
 		#================================================> VARIABLES
-		self.controladorArea = contolador 
-		self.nuevo_regsitro = nuevo_regsitro
+		self.controladorArea = controlador 
+		self.nuevo_registro = nuevo_registro
 
-		#================================================> SENIALES Y SLOTS
-		self.controladorAreas = contolador
-		self.nuevo_regsitro
+		
 		#=================================================> MODIFICACIONES 
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.setWindowTitle( "Nueva Area" )
 			self.pushButtonInsertar.setText( "Insertar" )
@@ -316,7 +324,7 @@ class DialogArea( QDialog, D_Area_class ):
 		descripcion = self.lineEditDescripcion.text()
 
 		#AQUI SE INSERTA LA INFORMACION A LA BASE DE DATOS
-		if nuevo_regsitro:
+		if self.nuevo_registro:
 			#ENCASO DE QUE SEA UN NUEVO REGISTRO
 			pass
 
@@ -329,7 +337,7 @@ class DialogArea( QDialog, D_Area_class ):
 
 	def limpiarCampos( self ):
 
-		if nuevo_regsitro:
+		if self.nuevo_registro:
 			
 			self.lineEditNombre.setText( "" )
 			self.lineEditDescripcion.text( "" )
@@ -379,7 +387,7 @@ class DialogCama( QDialog, D_Cama_class ):
 
 		#=================================================> MODIFICACIONES 
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.setWindowTitle( "Nueva Cama" )
 			self.pushButtonInsertar.setText( "Insertar" )
@@ -409,7 +417,7 @@ class DialogCama( QDialog, D_Cama_class ):
 		descripcion = self.lineEditDescripcion.text()
 
 		#AQUIE SE INGRESAN LOS DATOS A LA BASE DE DATOS
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 			#EN CASO DE SE UN NUEVO REGISTRO
 			pass
 
@@ -421,7 +429,7 @@ class DialogCama( QDialog, D_Cama_class ):
 
 	def limpiarCampos( self ):
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 			
 			self.lineEditNumeroDeCama.setText( "" ) 
 			self.lineEditDescripcion.setText( "" )
@@ -432,7 +440,7 @@ class DialogCama( QDialog, D_Cama_class ):
 			self.lineEditNumeroDeCama.setText( "" )
 			self.lineEditDescripcion.setText( "" )
 
-	def consulta( self ):
+	def consultar( self ):
 
 		#AQUI VA LA CONSULTA DE LA CAMA 
 		pass
@@ -459,7 +467,7 @@ D_Medicamento_class , D_Medicamento_Base_class = uic.loadUiType( 'gui/administra
 
 class DialogMedicamento( QDialog, D_Medicamento_class ):
 
-	def __init__( self, nuevo_regsitro=True, controlador=None, parent=None ):
+	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
 
 		#Construtor padre
 		QDialog.__init__( self, parent )
@@ -468,11 +476,11 @@ class DialogMedicamento( QDialog, D_Medicamento_class ):
 
 		#=====================================> VARIABLES
 		self.controladorMedicamento = controlador
-		self.nuevo_regsitro = nuevo_regsitro
+		self.nuevo_registro = nuevo_registro
 
 		#=====================================> MODIFICACIONES
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.setWindowTitle( "Nuevo Medicamento" )
 			self.lineEditCodigo.setText( "Automatico" )
@@ -500,7 +508,7 @@ class DialogMedicamento( QDialog, D_Medicamento_class ):
 		descripcion = self.lineEditDescripcion.text()
 
 		#AQUI SE INGRESA LA INFOMACION EN LA BASE DE DATOS 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 			#EN CASO DE UN NUEVO REGISTRO
 			pass
 		else:
@@ -509,9 +517,9 @@ class DialogMedicamento( QDialog, D_Medicamento_class ):
 
 		self.limpiarCampos()
 
-	def limpiarCapos( self ):
+	def limpiarCampos( self ):
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.lineEditNombre.text()
 			self.lineEditCosto.text()
@@ -552,7 +560,7 @@ D_Habilidad_class , D_Habilidad_Base_class = uic.loadUiType( 'gui/administrador_
 
 class DialogHabilidad( QDialog, D_Habilidad_class ):
 
-	def __init__( self, nuevo_regsitro=True, controlador=None, parent=None ):
+	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
 
 		#Constructor padre
 		QDialog.__init__( self, parent )
@@ -561,11 +569,11 @@ class DialogHabilidad( QDialog, D_Habilidad_class ):
 		
 		#=========================================> VARIABLES
 		self.controladorHabilidad = controlador
-		self.nuevo_regsitro = nuevo_regsitro
+		self.nuevo_registro = nuevo_registro
 
 		#=========================================> MODIFICACIONES 
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.setWindowTitle( "Nueva Habilidad" )
 			self.lineEditCodigo.setReadOnly( True )
@@ -582,18 +590,18 @@ class DialogHabilidad( QDialog, D_Habilidad_class ):
 			self.pushButtonConsultar.show()
 
 		#=============================================> SENIALES Y SLOTS
-		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarHabilida )
+		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarHabilidad )
 		self.connect( self.pushButtonCancelar,SIGNAL( "clicked()" ), self.limpiarCampos )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
 
 	#=================================================> METODOS
-	def insertarActualizarHabilidad():
+	def insertarActualizarHabilidad( self ):
 
 		codigo = self.lineEditCodigo.text()
 		descripcion = self.lineEditDescripcion.text()
 
 		#AQUI SE INSEGRESA LA HABILIDAD A LA BASE DE DATOS
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 			#EN CASO DE QUE SE INGRESE UN NUEVO REGISTRO
 			pass
 		else:
@@ -604,7 +612,7 @@ class DialogHabilidad( QDialog, D_Habilidad_class ):
 
 	def limpiarCampos( self ):
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.lineEditDescripcion.setText( "" )
 
@@ -614,7 +622,7 @@ class DialogHabilidad( QDialog, D_Habilidad_class ):
 			self.lineEditDescripcion.setText( "" )
 
 
-	def consultar():
+	def consultar( self ):
 		#AQUI SE CONSULTA LA HABILIDAD
 		pass
 
@@ -652,21 +660,23 @@ class DialogCausa( QDialog, D_Causa_class ):
 
 		#========================================> VARIABLES
 		self.controladorCausa = controlador
-		self.nuevo_regsitro = nuevo_regsitro
+		self.nuevo_registro = nuevo_registro
 
 		#========================================> MODIFICACIONES
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			self.setWindowTitle( "Nueva Causa" )
 			self.lineEditCodigo.setText( "Automatico" )
 			self.lineEditCodigo.setReadOnly( True )
+			self.pushButtonConsultar.hide()
 
 		else:
 
 			self.setWindowTitle( "Modiicar Causa" )
 			self.lineEditCodigo.setText( "" )
 			self.lineEditCodigo.setReadOnly( False )
+			self.pushButtonConsultar.show()
 
 		#============================================> SENIALES Y SLOTS 
 		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarCausa )
@@ -681,7 +691,7 @@ class DialogCausa( QDialog, D_Causa_class ):
 		descripcion = self.lineEditDescripcion.text()
 
 		#AQUI SE INGRESAN LOS DATOS A LA BASE DE DATOS
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 			#EN CASO DE QUE SE INGRESE UN UEVO REGISTRO
 			pass
 
@@ -693,7 +703,7 @@ class DialogCausa( QDialog, D_Causa_class ):
 
 	def limpiarCampos( self ):
 
-		if self.nuevo_regsitro:
+		if self.nuevo_registro:
 
 			
 			self.lineEditNombre.setText( "" )
