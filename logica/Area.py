@@ -1,5 +1,5 @@
 class Area():
-    """Clase Area ([codigo_area,] nombre_area, descripcion)"""
+    """Clase Area ( [{codigo_area,} nombre_area, descripcion] )"""
     def __init__(self, *args):
         if len(args) is 3:
             self.__codigo_area = args[0]

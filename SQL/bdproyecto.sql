@@ -26,6 +26,7 @@
 -- Causa_Cita
 -- Campana_Prevencion
 -- Campana_Paciente
+
 --==================================>  CREAR LAS TABLAS <================================
 
 CREATE TABLE Area
@@ -301,13 +302,18 @@ CREATE TABLE Campana_Paciente
 	ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
-
--- CREACION DE RESTRICCIONES (UNIQUE):
+--=========================> CREACION DE RESTRICCIONES (UNIQUE) <========================
 ALTER TABLE Horario_Consulta
 ADD CONSTRAINT uniq_medico_fecha
 UNIQUE (id_medico, fecha_hora);
+--=======================================================================================
 
+<<<<<<< HEAD
 -- CREACION DE SECUENCIAS (SEQUENCE):
+=======
+
+--====================> CREACION Y ASIGNACION DE SECUENCIAS (SEQUENCE) ==================
+>>>>>>> 84fdb76660d584e1c38ae3a3f1b5e9782c4d56e8
 CREATE SEQUENCE seq_cod_area START 1;
 CREATE SEQUENCE seq_num_cama START 1;
 CREATE SEQUENCE seq_cod_habilidad START 1;
@@ -337,12 +343,31 @@ SET DEFAULT nextval('seq_num_registro');
 
 ALTER TABLE Causa ALTER COLUMN codigo
 SET DEFAULT nextval('seq_cod_causa');
+--=======================================================================================
+
 
 ALTER TABLE Empleado
   ADD CONSTRAINT empleado_codigo_area_fk
   FOREIGN KEY (codigo_area)
   references Area (codigo);
 
+
+--==============================> CREACION DE TRIGGERS <=================================
+
+-- trigger Asociar_Historia
+CREATE FUNCTION Asociar_Historia() RETURNS trigger AS $asociar_historia$
+    BEGIN
+        INSERT INTO Historia_clinica (id_paciente, fecha_apertura) 
+        VALUES (NEW.identificacion, now());
+        RETURN NULL;
+    END;
+$asociar_historia$ LANGUAGE plpgsql;
+
+CREATE TRIGGER asociar_historia AFTER INSERT ON Paciente
+    FOR EACH ROW EXECUTE PROCEDURE Asociar_Historia();
+
+-- trigger 
+--=======================================================================================
 
 
 

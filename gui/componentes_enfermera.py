@@ -11,27 +11,27 @@ from componentes_administrador import DialogInformacion
 #=======================================================================================================================
 #InterfazEnfermera
 
-#=======================================================================================================================
 
 #====================================================> PACIENTE <=======================================================
 
-#=======================================> Nuevo paciente , Actualizar pacinete
 D_Paciente_class , D_PacienteBase_clas = uic.loadUiType('gui/enfermera_uis/DialogPaciente.ui')
 
 class DialogPaciente( QDialog, D_Paciente_class ):
 	
-	
-	def __init__( self, id_paciente=None, controlador=None, parent=None ):
+	def __init__( self, nuevo_registro=None, controlador=None, parent=None ):
 
+		#Constructor padre
 		QDialog.__init__( self, parent )
+		#Configuracio interfaz
 		self.setupUi( self )
-		self.actualizar = False
-
 		
-
-		if id_paciente and controlador:
+		#=================================================> VARIABLES
+		self.controladorPaciente = controlador
+		self.nuevo_registro = nuevo_registro
+		#================================================> MODIFICACIONES 
+		if self.nuevo_registro:
 			
-			self.lineEditIdentificacion.setText(id_paciente)
+			
 			self.pushButtonInsertar.setText( "Actualizar" )
 			self.actualizar = True
 
