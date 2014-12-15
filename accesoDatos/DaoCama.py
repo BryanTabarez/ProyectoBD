@@ -67,15 +67,15 @@ class DaoCama():
     #==========================================================================
 
     #============================== DELETE ====================================
-        def borrarCama(self, id):
-            try:
-                cur = self.conn.cursor()
-                cur.execute("DELETE FROM Cama WHERE num_cama = %s", (id,))
-                cur.close()
-                self.conn.commit()
-                return 0
-            except Exception as e:
-                cur.close()
-                self.conn.reset()
-                return e
+    def borrarCama(self, id):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("DELETE FROM Cama WHERE num_cama = %s", (id,))
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
     #==========================================================================
