@@ -1,10 +1,16 @@
 class Medicamento():
     """Clase Medicamento"""
-    def __init__(self, codigo, costo, nombre, descripcion):
-        self.__codigo = codigo
-        self.__costo = costo
-        self.__nombre = nombre
-        self.__descripcion = descripcion
+    def __init__(self, *args):
+        if len(args) is 4:
+            self.__codigo = args[0]
+            self.__costo = args[1]
+            self.__nombre = args[2]
+            self.__descripcion = args[3]
+
+        if len(args) is 3:
+            self.__costo = args[0]
+            self.__nombre = args[1]
+            self.__descripcion = args[2]
 
     def get_codigo(self):
         return self.__codigo

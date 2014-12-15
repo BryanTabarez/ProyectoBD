@@ -130,6 +130,24 @@ class ControlDaoMedicamento():
             return 1
         else:
             return [drug.get_costo(), drug.get_nombre(), drug.get_descripcion()]
+
+    def modificarMedicamento(self, costo, nombre, descripcion):
+        pass
+#==============================================================================
+
+
+#==============================================================================
+def pruebasDaoCama(conexion):
+    pass
+    #daoBed = DaoCama(conexion)
+
+    ## INSERTAR CAMA
+
+    # CONSULTAR CAMA
+
+    # MODIFICAR CAMA
+
+    # BORRAR CAMA
 #==============================================================================
 
 
@@ -160,13 +178,19 @@ def main():
     #mostrarVentana = VentanaMedicamento(None, conexion)
     #mostrarVentana.show()
     #r = app.exec_()
-    pruebasDaoMedicamento(conexion)
+    #pruebasDaoMedicamento(conexion)
+    pruebasDaoCama(conexion)
 
     fachada.cerrarConexion()
 
     #print(("Fin " + str(r)))
     #sys.exit(r)
 #==============================================================================
+
+#  CAMA
+#  CAUSA
+#  CAMPANIA_PREVENCION
+#  FORMULA_MEDICA
 
 VmClass, InterfazAdministradorInterfazBase_class = uic.loadUiType('untitled.ui')
 
@@ -224,6 +248,10 @@ class VentanaMedicamento(QMainWindow, VmClass):
             self.lineEditDescripcion.setText(result[2])
         if result is 1:
             self.lineEditMensaje.setText("La consulta no arrojo resultados!")
+
+    def pruebaModificarMedicamento(self):
+        pass
+        #pruebaBuscarMedicamento()
 
 
 main()
