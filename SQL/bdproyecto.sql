@@ -308,8 +308,8 @@ ADD CONSTRAINT uniq_medico_fecha
 UNIQUE (id_medico, fecha_hora);
 
 -- CREACION DE SECUENCIAS (SEQUENCE):
---CREATE SEQUENCE seq_cod_area START 1;
---CREATE SEQUENCE seq_num_cama START 1;
+CREATE SEQUENCE seq_cod_area START 1;
+CREATE SEQUENCE seq_num_cama START 1;
 CREATE SEQUENCE seq_cod_habilidad START 1;
 CREATE SEQUENCE seq_num_historia START 1;
 CREATE SEQUENCE seq_id_horario START 1;
@@ -317,11 +317,11 @@ CREATE SEQUENCE seq_num_registro START 1;
 CREATE SEQUENCE seq_cod_causa START 1;
 
 -- ASIGNACION DE SECUENCIAS (SEQUENCE):
---ALTER TABLE Area ALTER COLUMN codigo
---SET DEFAULT nextval('seq_cod_area');
+ALTER TABLE Area ALTER COLUMN codigo
+SET DEFAULT nextval('seq_cod_area');
 
---ALTER TABLE Cama ALTER COLUMN num_cama
---SET DEFAULT nextval('seq_num_cama');
+ALTER TABLE Cama ALTER COLUMN num_cama
+SET DEFAULT nextval('seq_num_cama');
 
 ALTER TABLE Habilidad ALTER COLUMN codigo
 SET DEFAULT nextval('seq_cod_habilidad');
