@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>753</width>
+    <width>341</width>
     <height>600</height>
    </rect>
   </property>
@@ -222,7 +222,7 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>70</y>
+      <y>60</y>
       <width>341</width>
       <height>291</height>
      </rect>
@@ -260,9 +260,9 @@ color: rgb(255, 255, 255);</string>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>57</red>
-          <green>77</green>
-          <blue>76</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -298,9 +298,9 @@ color: rgb(255, 255, 255);</string>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>57</red>
-          <green>77</green>
-          <blue>76</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -327,18 +327,18 @@ color: rgb(255, 255, 255);</string>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>57</red>
-          <green>77</green>
-          <blue>76</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>57</red>
-          <green>77</green>
-          <blue>76</blue>
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
@@ -356,7 +356,10 @@ color: rgb(255, 255, 255);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(9, 41, 4, 255), stop:0.085 rgba(2, 79, 0, 255), stop:0.19 rgba(50, 147, 22, 255), stop:0.275 rgba(236, 191, 49, 255), stop:0.39 rgba(243, 61, 34, 255), stop:0.555 rgba(135, 81, 60, 255), stop:0.667 rgba(121, 75, 255, 255), stop:0.825 rgba(164, 255, 244, 255), stop:0.885 rgba(104, 222, 71, 255), stop:1 rgba(93, 128, 0, 255));</string>
     </property>
     <widget class="QPushButton" name="pushButtonIngresar">
      <property name="geometry">
@@ -370,37 +373,6 @@ color: rgb(255, 255, 255);</string>
      <property name="text">
       <string>Ingresar</string>
      </property>
-    </widget>
-    <widget class="QWidget" name="widget_2" native="true">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>10</y>
-       <width>281</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <widget class="QLabel" name="labelIniciarSesion">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>-10</y>
-        <width>251</width>
-        <height>61</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Ubuntu Condensed</family>
-        <pointsize>36</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Iniciar Sesion</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QPushButton" name="pushButtonOlvideLaContrasenia">
      <property name="geometry">
@@ -495,6 +467,64 @@ color: rgb(255, 255, 255);</string>
        </widget>
       </item>
      </layout>
+    </widget>
+    <widget class="QLabel" name="labelIniciarSesion">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>10</y>
+       <width>251</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="palette">
+      <palette>
+       <active>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>56</red>
+           <green>75</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </active>
+       <inactive>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>56</red>
+           <green>75</green>
+           <blue>76</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </inactive>
+       <disabled>
+        <colorrole role="WindowText">
+         <brush brushstyle="SolidPattern">
+          <color alpha="255">
+           <red>159</red>
+           <green>158</green>
+           <blue>158</blue>
+          </color>
+         </brush>
+        </colorrole>
+       </disabled>
+      </palette>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu Condensed</family>
+       <pointsize>36</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Iniciar Sesion</string>
+     </property>
     </widget>
    </widget>
   </widget>
