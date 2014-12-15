@@ -11,9 +11,8 @@ class DaoArea():
     def guardarArea(self, a):
         try:
             cur = self.conn.cursor()
-
-            cur.execute("INSERT INTO Area VALUES (%s, %s, %s)",
-                (a.get_codigo_area(), a.get_nombre_area(), a.get_descripcion()))
+            cur.execute("INSERT INTO Area (nombre, descripcion) VALUES(%s, %s)",
+                (a.get_nombre_area(), a.get_descripcion()))
 
             cur.close()
             self.conn.commit()

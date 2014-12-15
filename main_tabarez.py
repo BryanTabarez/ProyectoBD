@@ -86,20 +86,20 @@ def pruebasDaoArea(conexion):
     if isinstance(insertArea, Exception):
         mostrarReturn(insertArea)
 
-    # CONSULTAR AREA
-    area = daoArea.consultarArea(2)
-    if isinstance(area, Exception):
-        mostrarReturn(area)
-    if area == 0:
-        print("LA CONSULTA NO ARROJO RESULTADOS :(")
-    else:
-        print((area.get_nombre_area()))
+    ## CONSULTAR AREA
+    #area = daoArea.consultarArea(2)
+    #if isinstance(area, Exception):
+        #mostrarReturn(area)
+    #if area == 0:
+        #print("LA CONSULTA NO ARROJO RESULTADOS :(")
+    #else:
+        #print((area.get_nombre_area()))
 
-    # MODIFICAR AREA
-    area.set_nombre_area("Pediatria")
-    modArea = daoArea.modificarArea(area)
-    if isinstance(modArea, Exception):
-        mostrarReturn(modArea)
+    ## MODIFICAR AREA
+    #area.set_nombre_area("Pediatria")
+    #modArea = daoArea.modificarArea(area)
+    #if isinstance(modArea, Exception):
+        #mostrarReturn(modArea)
 
     # BORRAR AREA
     #delArea = daoArea.borrarArea(1)
@@ -178,7 +178,8 @@ def main():
     #mostrarVentana = VentanaMedicamento(None, conexion)
     #mostrarVentana.show()
     #r = app.exec_()
-    pruebasDaoPaciente(conexion)
+    #pruebasDaoPaciente(conexion)
+    pruebasDaoArea(conexion)
     #pruebasDaoMedicamento(conexion)
     #pruebasDaoCama(conexion)
 

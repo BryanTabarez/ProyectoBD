@@ -2,31 +2,9 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
-from componentes_administrador import DialogInformacion
-
-from componentes_administrador import DialogEmpleado
-from componentes_administrador import WidgetEmpleadosPorArea
-
-from componentes_administrador import DialogArea
-from componentes_administrador import WidgetListarAreas
-
-from componentes_administrador import DialogCama
-from componentes_administrador import WidgetListarCamas
-
-from componentes_administrador import DialogMedicamento
-from componentes_administrador import WidgetListarMedicamentos
-
-from componentes_administrador import DialogHabilidad
-from componentes_administrador import WidgetListarHabilidades
-
-from componentes_administrador import DialogCausa
-from componentes_administrador import WidgetListarCausas
-
-
-from componentes_administrador import WidgetAgendaMedicoMes
-from componentes_administrador import WidgetHistoriaClinicaPaciente
-from componentes_administrador import WidgetNumeroCitasMedico
-from componentes_administrador import WidgetCostoPromedioPaciente
+from componentes_administrador import *
+from accesoDatos import *
+from control import *
 
 #=======================================================================================================================
 # INTEGRANTES:
@@ -35,13 +13,13 @@ from componentes_administrador import WidgetCostoPromedioPaciente
 # George Romero Ramirez		    - 1130924
 #=======================================================================================================================
 #InterfazAdministrador
-#PERSONAL
+#PERSONAL --> EMPLEADOS
 #AREAS
 #CAMAS 
 #MEDICAMENTOS
 #HABILIDADES
 #CAUSAS
-#INFROMES
+#INFORMES
 #=======================================================================================================================
 
 #========================================> INTERFAZ ADMINISTRADOR <=====================================================
@@ -51,7 +29,12 @@ I_Administrador_class , I_Administrador_Base_class = uic.loadUiType('gui/adminis
 class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 	def __init__( self, parent=None ):
-
+		#************************************************************************
+		# ABRIR CONEXION EN LA BASE DE DATOS
+		self.fachada = FachadaDB()
+		conexion = self.fachada.obtenerConexion()
+		#************************************************************************
+		
 		#Constructor padre
 		QMainWindow.__init__( self, parent )
 		#Configuracion interfaz
@@ -66,8 +49,9 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		self.move( pos_horizontal, pos_vertical )
 		
 		#=====================================================> VARIABLES 
+		# PERSONAL --> EMPLEADO
 		self.controladorPersonal = " " #AQUI VA EL CONTROLADOR NO CAMBIAR NOMBRE DE VARIABLE  
-		self.controladorArea = " "
+		self.controladorArea = ControlDaoArea(conexion)
 		self.controladorCama = " "
 		self.controladorMedicamento = " "
 		self.controladorHabilidad = " "
@@ -516,5 +500,11 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		self.widgetHistoriaClinicaPaciente.hide()
 		self.widgetNumeroCitasMedico.hide()
 		self.widgetCostoPromedioPaciente.show()
-		
-		
+	
+
+	def closeEvent(self, event):
+		#************************************************************************
+		# CERRAR LA CONEXION EN LA BASE DE DATOS
+		self.fachada.cerrarConexion()
+		#************************************************************************
+		event.accept()

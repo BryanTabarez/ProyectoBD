@@ -42,14 +42,12 @@ class InterfazIniciarSesion( QMainWindow, IniciarSesionInterfaz_class ):
 		print "Recuperar Contrasenia"
 
 	def buscarUsuario( self ):
-		print "Buscar Usuario"
 
 		if self.lineEditUsuario.text() == "1":
 
 			self.close()
 			interfazAdministrador = InterfazAdministrador( self )
 			interfazAdministrador.show()
-
 		
 		elif self.lineEditUsuario.text() == "2":
 		

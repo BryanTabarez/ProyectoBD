@@ -19,7 +19,7 @@ from componentes_administrador import DialogInformacion
 #=======================================================================================================================
 #InterfazEnfermera
 
-#=======================================================================================================================
+#==============================================> INETRAFZ ENFERMERA <===================================================
 
 Interfaz_E_class , Interfaz_E_Base_class = uic.loadUiType( 'gui/enfermera_uis/MainWindowEnfermera.ui' )
 
@@ -27,8 +27,10 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 
 	def __init__( self, parent=None ):
 
-		
+
+		#Constructor padre
 		QMainWindow.__init__( self, parent )
+		#Consfiguracion interfaz
 		self.setupUi( self )
 
 
@@ -41,21 +43,17 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		self.move( pos_horizontal, pos_vertical )
 
 
-		#================================================> CONTROLADORES <==============================================
-		self.controladorPaciente = "controladorPacientes"
+		#================================================> VARIABLES 
+		self.controladorPaciente = "controladorPacientes" #AQUI VAN LOS CONTROLADORES
 		self.controladorCama = "controladorCama"
-		#================================================> WIDGETS  <===================================================
-		dialogInformacion = DialogInformacion( self )
-
-		self.widgetListarPacientes = WidgetListarPacientes( 
-			controlador=self.controladorPaciente, parent=self.widgetCuerpo )
+		#================================================> WIDGETS  
+		self.dialogInformacion = DialogInformacion( self )
+		self.widgetListarPacientes = WidgetListarPacientes( self.widgetCuerpo )
 		self.widgetListarPacientes.hide()
 
 		self.widgetListarCamas = WidgetListarCamas( self.widgetCuerpo )
 		self.widgetListarCamas.hide()
 		
-
-
 	
 		#================================================> SENIALES Y SLOTS <===========================================
 		
@@ -67,7 +65,6 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		#===================================================> CAMAS 
 		self.connect( self.commandLinkButtonAsignarCama, SIGNAL( "clicked()" ), self.asignarCama )
 		self.connect( self.commandLinkButtonLiberarCama, SIGNAL( "clicked()" ), self.liberarCama )
-		#self.connect( self.commandLinkButtonListarCamas, SIGNAL( "clicked()" ), self.listarCamas )
 		#===================================================> CAMAS 
 
 
@@ -81,22 +78,8 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 
 	def modificarPaciente( self ):
 
-		fila_seleccionada = self.widgetListarPacientes.tableWidgetPacientes.currentRow()
-		if self.widgetListarPacientes.isHidden() or fila_seleccionada == -1:
-			
-			self.dialogInformacion.showMensaje(
-			 "Modificar Paciente", 
-				"Por favor liste los pacientes, seleccione de la tabla el que desea modificar"
-				", luego presione 'Modificar Paciente'" )
-			
-		else:
-
-			id_paciente = self.widgetListarPacientes.tableWidgetPacientes.item( fila_seleccionada, 0 ).text()
-			dialogModificarPaciente = DialogPaciente( 
-				id_paciente=id_paciente, controlador=self.controladorPaciente, parent=self )
-			dialogModificarPaciente.exec_()
-
-	
+		dialogModificarPaciente = DialogPaciente( nuevo_registro=False, controlador=self.controladorPaciente, parent=self)
+		dialogModificarPaciente.exec_()	
 
 	def eliminarPaciente( self ):
 
@@ -109,8 +92,8 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 			
 		else:
 
+			#AQUI SE ELIMINA EL PACIENTE
 			id_paciente_eliminar = self.widgetListarPacientes.tableWidgetPacientes.item(fila_seleccionada, 0).text()
-
 			print( "PACEINTE ELIMINADO: " + id_paciente_eliminar )
 
 			
@@ -122,35 +105,17 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 	#===================================================> CAMAS 
 	def asignarCama( self ):
 
-		fila_seleccionada = self.widgetListarPacientes.tableWidgetPacientes.currentRow()
-		if self.widgetListarPacientes.isHidden() or fila_seleccionada == -1:
-			
-			self.dialogInformacion.showMensaje( "Asignar Cama Paciente", 
-				"Por favor liste los pacientes, seleccione de la tabla el que desea asignar"
-				", luego presione 'Asignar Cama'" )
-			
-		else:
-
-			id_paciente = self.widgetListarPacientes.tableWidgetPacientes.item(fila_seleccionada, 0).text()
-			nombre = self.widgetListarPacientes.tableWidgetPacientes.item(fila_seleccionada, 1).text()
-			
-			dialogAsignarCama = DialogAsignarCama( 
-				id_paciente=id_paciente, nombre_paciente=nombre, controlador=self.controladorPaciente, parent=self )
-			dialogAsignarCama.exec_()
-
+		dialogAsignarCama = DialogAsignarCama( 
+			controladorPaciente= self.controladorPaciente,
+			controladorCama=self.controladorCama, parent=self )
+		dialogAsignarCama.exec_()
 
 	def liberarCama( self ):
 
-		fila_seleccionada = self.widgetListarCamas.tableWidgetCamas.currentRow()
-		if self.widgetListarCamas.isHidden() or fila_seleccionada == -1:
-	
-			self.dialogInformacion.showMensaje( "Liberar Cama", 
-				"Por favor liste las camas, seleccione de la tabla la que desea liberar,"
-				" luego presione 'Liberar Cama'" )
-			
-		else:
-
-			print( "CAMA LIBERADA" )
+		dialogLiberarCama = DialogAsignarCama( asignar=False, 
+			controladorPaciente= self.controladorPaciente,
+			controladorCama=self.controladorCama, parent=self )
+		dialogLiberarCama.exec_()
 
 	def listarCamas( self ):
 

@@ -367,7 +367,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>30</y>
+        <y>40</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -387,7 +387,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>70</y>
+        <y>80</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -407,7 +407,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>110</y>
+        <y>120</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -427,7 +427,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>170</y>
+        <y>180</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -447,7 +447,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>210</y>
+        <y>220</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -467,7 +467,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>310</y>
+        <y>320</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -487,7 +487,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>270</y>
+        <y>280</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -507,7 +507,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>150</y>
+        <y>160</y>
         <width>171</width>
         <height>16</height>
        </rect>
@@ -520,33 +520,13 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>250</y>
+        <y>260</y>
         <width>171</width>
         <height>16</height>
        </rect>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonCancelarCita_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>350</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Confirmar Asistencia</string>
       </property>
      </widget>
     </widget>
