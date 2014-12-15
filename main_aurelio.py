@@ -1,6 +1,6 @@
 import sys
 from PyQt4.QtGui import *
-from gui import *
+from gui.login import InterfazIniciarSesion
 
 if __name__ == "__main__":
 	app = QApplication( sys.argv )
