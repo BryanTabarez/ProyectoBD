@@ -232,7 +232,7 @@ CREATE TABLE Medicamento
 CREATE TABLE Formula_Medica
 (
 	numero_registro INTEGER NOT NULL,
-	codigo_medicamento VARCHAR (25) NOT NULL,
+	codigo_medicamento INTEGER NOT NULL,
 	cantidad INTEGER NOT NULL,
 
 	CONSTRAINT formula_medica_pk PRIMARY KEY (numero_registro, codigo_medicamento),
