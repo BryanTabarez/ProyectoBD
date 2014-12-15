@@ -308,12 +308,12 @@ ADD CONSTRAINT uniq_medico_fecha
 UNIQUE (id_medico, fecha_hora);
 --=======================================================================================
 
-<<<<<<< HEAD
--- CREACION DE SECUENCIAS (SEQUENCE):
-=======
 
---====================> CREACION Y ASIGNACION DE SECUENCIAS (SEQUENCE) ==================
->>>>>>> 84fdb76660d584e1c38ae3a3f1b5e9782c4d56e8
+-- CREACION DE SECUENCIAS (SEQUENCE):
+
+
+--====================> CREACION Y ASIGNACION DE SECUENCIA (SEQUENCE)==================
+
 CREATE SEQUENCE seq_cod_area START 1;
 CREATE SEQUENCE seq_num_cama START 1;
 CREATE SEQUENCE seq_cod_habilidad START 1;
