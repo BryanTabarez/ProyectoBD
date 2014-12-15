@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>widgetCamaPaciente</class>
+ <widget class="QWidget" name="widgetCamaPaciente">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>603</width>
-    <height>486</height>
+    <width>581</width>
+    <height>481</height>
    </rect>
   </property>
   <property name="palette">
@@ -80,49 +80,16 @@
     <bold>true</bold>
    </font>
   </property>
-  <property name="windowTitle">
-   <string>Dialog</string>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
   </property>
-  <widget class="QComboBox" name="comboBoxArea">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>190</y>
-     <width>561</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelArea">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>150</y>
-     <width>151</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Camas Disponibles Por Areas</string>
-   </property>
-  </widget>
-  <widget class="Line" name="lineArea">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>170</y>
-     <width>561</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
+  <property name="windowTitle">
+   <string>Asignar Cama Paciente</string>
+  </property>
   <widget class="QTableWidget" name="tableWidgetCamas">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>230</y>
      <width>561</width>
      <height>241</height>
@@ -199,10 +166,59 @@
     </property>
    </item>
   </widget>
+  <widget class="QComboBox" name="comboBoxArea">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>561</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="labelArea">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>151</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Camas Disponibles Por Areas</string>
+   </property>
+  </widget>
+  <widget class="Line" name="lineArea">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>561</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="lineArea_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>30</y>
+     <width>561</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <widget class="QLabel" name="labelArea_2">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>10</y>
      <width>151</width>
      <height>25</height>
@@ -212,12 +228,12 @@
     <string>Paciente</string>
    </property>
   </widget>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>50</y>
-     <width>561</width>
+     <width>551</width>
      <height>95</height>
     </rect>
    </property>
@@ -331,19 +347,6 @@
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="Line" name="lineArea_2">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>561</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
   </widget>
  </widget>
  <resources/>

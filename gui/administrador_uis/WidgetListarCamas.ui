@@ -126,7 +126,7 @@
     </property>
    </column>
   </widget>
-  <widget class="QComboBox" name="comboBoxArea">
+  <widget class="QComboBox" name="comboBoxAreaCamas">
    <property name="geometry">
     <rect>
      <x>10</x>

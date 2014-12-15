@@ -98,10 +98,10 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 	def insertarActualizarEmpleado( self ):
 
-		identificacion = self.lineEditIdentificacion.text()
-		nombre = self.lineEditNombre.text()
-		direccion = self.lineEditDireccion.text()
-		telefono = self.lineEditTelefono.text()
+		identificacion = str( self.lineEditIdentificacion.text() )
+		nombre = str ( self.lineEditNombre.text() )
+		direccion = str( self.lineEditDireccion.text() )
+		telefono = str ( self.lineEditTelefono.text() )
 		email = self.lineEditEmail.text()
 		salario = self.lineEditEmail.text()
 		cargo = self.lineEditCargo.text()
@@ -185,6 +185,7 @@ class WidgetTipoEmpleadoEnfermera( QWidget, W_Enfermera_class ):
 		self.setupUi( self )
 
 		#=============================================> VARIABLES
+		self.controladorHabilidad = " " #AQUI VA EL CONTROLADOR DE HABILIDADES DE LA ENFERMERA
 		self.codigo = ""
 		self.descripcion = " "
  
@@ -193,6 +194,16 @@ class WidgetTipoEmpleadoEnfermera( QWidget, W_Enfermera_class ):
 		self.connect( self.pushButtonEliminar, SIGNAL( "clicked()" ), self.eliminar )
 
 	#==================================================> METODOS 
+
+	def actualizar( self ):
+
+		#AQUI SE DEBE ACTUALIZAR LA TABLA QUE CONTIENE LAS HABILIDADES DE LA ENFERMERA CON LA 
+		#INFROMACION DE LA BASE DE DATOS
+		#self.tableWidgetHabilidadesEnfermera.clearContents()
+		#self.tableWidgetHabilidadesEnfermera.insertRow( 0 )
+		#self.tableWidgetHabilidadesEnfermera.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetHabilidadesEnfermera.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 
 
 	def agregar( self ):
@@ -236,6 +247,7 @@ class WidgetTipoEmpleadoEnfermera( QWidget, W_Enfermera_class ):
 		
 		for i in range( 0, numero_filas ):
 
+			self.tableWidgetHabilidadesEnfermera.insertRow( 0 )
 			arreglo_habilidades[ i ] = self.tableWidgetHabilidadesEnfermera.item( 0, 0 ).text()
 
 		return arreglo_habilidades
@@ -271,6 +283,22 @@ class WidgetEmpleadosPorArea( QWidget , W_Empleados_Area_class ):
 		QWidget.__init__( self, parent )
 		#Configuracion de la interfaz
 		self.setupUi( self )
+
+		#==========================================> VARIABLES
+		self.controladorEmpleado = " " #AQUI VA EL CONTROLADOR PARA EMPLEADO 
+
+
+	#===============================================> METODOS
+	def actualizar( self ):
+
+		
+		#area_seleccionada = str( self.comboBoxAreaEmpleado.currentText() )
+		#self.tableWidgetEmpleados.clearContents()
+		#AQUI SE LISTAN LOS EMPLEADOS POR AREAS
+		#self.tableWidgetEmpleados.insertRow( 0 )
+		#self.tableWidgetEmpleados.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetEmpleados.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 
 		
 #===============================================> AREAS <===============================================================
@@ -364,6 +392,18 @@ class WidgetListarAreas( QWidget, W_Areas_class ):
 		QWidget.__init__( self, parent )
 		#Configuracion interfaz
 		self.setupUi( self )
+
+		#========================================> VARIABLES
+		self.controladorArea = " " #AQUI VA EL CONTROLADOR DE AREA
+
+	#============================================> METODOS
+	def actualizar( self ):
+		#AQUI SE LISTAN LAS AREAS EN LA TABLA DE AREAS 
+		#self.tableWidgetAreas.clearContents()
+		#self.tableWidgetAreas.insertRow( 0 )
+		#self.tableWidgetAreas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetAreas.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 	
 #===============================================> CAMA <================================================================
 
@@ -455,6 +495,20 @@ class WidgetListarCamas( QWidget, W_Camas_class ):
 		QWidget.__init__( self, parent )
 		#Configuracion de la interfaz
 		self.setupUi( self )
+
+		#========================================> VARIABLES
+		self.controladorCama = " " #AQUI VA EL CONTROLADOR DE CAMA
+
+
+	#============================================> METODOS
+	def actualizar( self ):
+		#area_seleccionada = self.comboBoxAreaCamas.currentText()
+		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS 
+		#self.tableWidgetCamas.clearContents()
+		#self.tableWidgetCamas.insertRow( 0 )
+		#self.tableWidgetCamas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetCamas.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 			
 
 
@@ -548,7 +602,21 @@ class WidgetListarMedicamentos( QWidget, W_Medicamentos_class ):
 		#Constructor padre
 		QWidget.__init__( self, parent )
 		#Configuracion interfaz
-		self.setupUi( self )	
+		self.setupUi( self )
+
+		#========================================> VARIABLES
+		self.controladorMedicamento = " " #AQUI VA EL CONTROLADOR DE MEDICAMENTO
+
+
+	#============================================> METODOS
+	def actualizar( self ):
+		
+		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS 
+		#self.tableWidgetMedicamentos.clearContents()
+		#self.tableWidgetMedicamentos.insertRow( 0 )
+		#self.tableWidgetMedicamentos.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetMedicamentos.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 
 #===========================================> HABILIDAD <===============================================================
 
@@ -638,6 +706,20 @@ class WidgetListarHabilidades( QWidget, W_Habilidades_class ):
 		QWidget.__init__( self, parent )
 		#Configuracion interfaz
 		self.setupUi( self )
+
+		#========================================> VARIABLES
+		self.controladorMedicamento = " " #AQUI VA EL CONTROLADOR DE HABILIDADES
+
+
+	#============================================> METODOS
+	def actualizar( self ):
+		
+		#AQUI SE LISTAN LAS HABILIDADES EN LA TABLA DE HABILIDADES_ENFERMERA DE LA BASE DE DATOS 
+		#self.tableWidgetHabilidades.clearContents()
+		#self.tableWidgetHabilidades.insertRow( 0 )
+		#self.tableWidgetHabilidades.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetHabilidades.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 		
 
 	
@@ -735,6 +817,20 @@ class WidgetListarCausas( QWidget, W_Causas_class ):
 		QWidget.__init__( self, parent )
 		#Configuracion interfaz
 		self.setupUi( self )
+
+		#========================================> VARIABLES
+		self.controladorCausa = " " #AQUI VA EL CONTROLADOR DE CAUSA
+
+
+	#============================================> METODOS
+	def actualizar( self ):
+		
+		#AQUI SE LISTAN LAS CAUSAS DE LA BASE DE DATOS
+		#self.tableWidgetListarCausas.clearContents()
+		#self.tableWidgetListarCausas.insertRow( 0 )
+		#self.tableWidgetListarCausas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
+		#self.tableWidgetListarCausas.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		pass
 
 
 #=============================================> INFORMES <==============================================================
