@@ -19,7 +19,7 @@ from componentes_administrador import DialogInformacion
 #=======================================================================================================================
 #InterfazEnfermera
 
-#=======================================================================================================================
+#===============================================> INTERFAZ ENFERMERA <==================================================
 
 Interfaz_E_class , Interfaz_E_Base_class = uic.loadUiType( 'gui/enfermera_uis/MainWindowEnfermera.ui' )
 
@@ -27,8 +27,9 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 
 	def __init__( self, parent=None ):
 
-		
+		#Constructor padre
 		QMainWindow.__init__( self, parent )
+		#Configuracion interfaz
 		self.setupUi( self )
 
 
@@ -41,10 +42,10 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		self.move( pos_horizontal, pos_vertical )
 
 
-		#================================================> CONTROLADORES <==============================================
+		#================================================> VARIABLES 
 		self.controladorPaciente = "controladorPacientes"
 		self.controladorCama = "controladorCama"
-		#================================================> WIDGETS  <===================================================
+		#================================================> WIDGETS  
 		dialogInformacion = DialogInformacion( self )
 
 		self.widgetListarPacientes = WidgetListarPacientes( 
@@ -54,10 +55,7 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		self.widgetListarCamas = WidgetListarCamas( self.widgetCuerpo )
 		self.widgetListarCamas.hide()
 		
-
-
-	
-		#================================================> SENIALES Y SLOTS <===========================================
+		#================================================> SENIALES Y SLOTS 
 		
 		#===================================================> PACIENTE 
 		self.connect( self.commandLinkButtonNuevoPaciente, SIGNAL( "clicked()" ), self.nuevoPaciente )

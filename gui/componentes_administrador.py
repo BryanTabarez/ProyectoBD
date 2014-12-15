@@ -52,7 +52,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 		#=========================================> VARIABLES
 		self.controaldorEmpleado = controlador
-		self.nuevo_regsitro = nuevo_registro
+		self.nuevo_registro = nuevo_registro
 		
 		#=========================================> WIDGETS 
 		self.widgetTipoEmpleadoEnfermera = WidgetTipoEmpleadoEnfermera( self.widgetTipoEmpleado )
@@ -68,7 +68,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 		#==========================================>MODIFICACIONES
 		
-		if self.nuevo_regsitro:			
+		if self.nuevo_registro:			
 
 			self.setWindowTitle("Nuevo Empleado")
 			self.pushButtonInsertar.setText("Insertar")
@@ -116,7 +116,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			arreglo_habilidades = self.widgetTipoEmpleadoEnfermera.habilidadesEnfermera()
 			
 			#INSERTE DATOS A LA BASE DE DATOS DE ENFERMERAS 
-			if self.nuevo_regsitro:
+			if self.nuevo_registro:
 				#Cuando la opeacion de de insercion 
 				pass
 
@@ -132,7 +132,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
 			
 			#INSERTE DATOS A LA BASE DE DATOS DE MEDICOS
-			if self.nuevo_regsitro:
+			if self.nuevo_registro:
 				#Cuando la opeacion de de insercion 
 				pass
 
