@@ -14,6 +14,10 @@ INSERT INTO Cama(estado, descripcion, codigo_area) VALUES (TRUE, 'esta es una de
 
 -- INSERTAR PERSONAS: Persona (identificacion, nombre, direccion, telefono)
 INSERT INTO Persona VALUES (1111, 'Carlos Wasowsky', 'Calle 5', '3216406464');
+INSERT INTO Persona VALUES (2222, 'Ardila Lule', 'Calle 6 oeste', '3054238585');
+
+--INSERTAR PACIENTE: Paciente (identificacion, fecha_nacimiento, actividad_economica, num_seguridad_social)
+INSERT INTO Paciente VALUES (2222, '1950-1-1', 'super empresario dueño de medio colombia', 2222);
 -- INSERTAR EMPLEADOS: Empleado (identificacion, codigo_area, email, salario, id_jefe)
 INSERT INTO Empleado VALUES (1111, 1, 'carlos@wasowsky.com', 3500000, 1111);
 -- INSERTAR MEDICOS: Medico (identificacion, especialidad, universidad, num_licencia)
@@ -23,7 +27,21 @@ INSERT INTO Persona VALUES (110, 'Antonio', 'CALLE 13 CRA 5', '4444123');
 INSERT INTO Empleado VALUES (110,  1, 'antonio@correo.com', 2500000, 110);
 
 INSERT INTO Habilidad (descripcion) VALUES ('cuidar viejitos');
-INSERT INTO Habilidad (descripcion) VALUES ('inyectar');
+INSERT INTO Habilidad (descripcion) VALUES ('inyectar'); 
+
+-- George lo hizo
+
+--INSERTAR HORARIO CONSULTA: Horario_Consulta (id_horario, id_medico, fecha_hora, disponible)
+INSERT INTO Horario_Consulta (id_medico, fecha_hora, disponible) VALUES (1111, '2014-1-1 02:30:10', 'true');
+
+--INSERTAR Cita: Cita(id_horario, id_paciente, asistencia, tipo_solicitud)
+INSERT INTO Cita VALUES (1, 2222, 'true', 'dolencia en el cuerpo');
+
+--INSERTAR Registro Medico: Registro_Medico(numero_registro, id_horario, id_paciente, costo)
+INSERT INTO Registro_Medico ( id_horario, id_paciente, costo) VALUES (1, 2222, '25000');
+
+--INSERTAR Medicamento: Medicamento (codigo,  costo, nombre, descripcion)  
+INSERT INTO Medicamento (costo, nombre, descripcion) VALUES ('1000', 'Acetaminofen 500mg', 'es de uso general para cualquier sintoma');
 
 -- Acetaminofeno (Rectal)
 -- se usa para aliviar el dolor y reducir la fiebre. A diferencia de la aspirina, no alivia el enrojecimiento, la rigidez o la hinchazon causados por la artritis reumatoidea. Sin embargo, puede aliviar el dolor causado por formas leves de artritis. 
