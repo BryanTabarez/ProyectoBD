@@ -8,12 +8,12 @@ class DaoCita():
         self.conn = conexion
 
     #============================== CREATE ====================================
-    def guardarArea(self, a):
+    def guardarCita(self, cita):
         try:
             cur = self.conn.cursor()
 
-            cur.execute("INSERT INTO Area VALUES (%s, %s, %s)",
-                (a.get_codigo_area(), a.get_nombre_area(), a.get_descripcion()))
+            cur.execute("INSERT INTO Cita VALUES (%s, %s, %s)",
+                (cita.get_id_horario(), cita.get_numero_historia(), cita.get_tipo_solicitud()))
 
             cur.close()
             self.conn.commit()

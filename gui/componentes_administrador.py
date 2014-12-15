@@ -319,21 +319,18 @@ class DialogArea( QDialog, D_Area_class ):
 
 	def insertarActualizarArea( self ):
 
-		codigo = self.lineEditCodigo.text()
-		nombre = self.lineEditNombre.text()
-		descripcion = self.lineEditDescripcion.text()
+		codigo = str(self.lineEditCodigo.text())
+		nombre = str(self.lineEditNombre.text())
+		descripcion = str(self.lineEditDescripcion.text())
 
 		#AQUI SE INSERTA LA INFORMACION A LA BASE DE DATOS
 		if self.nuevo_registro:
-			#ENCASO DE QUE SEA UN NUEVO REGISTRO
-			pass
-
+			self.controladorArea.insertarArea(nombre, descripcion)
+			#dialogArea.exec_()
+			self.close()
 		else:
 			#EN CASO DE QUE SEA UNA ACTUALIZACION
 			pass
-
-
-		self.limpiarCampos
 
 	def limpiarCampos( self ):
 
