@@ -12,7 +12,7 @@ def mostrarReturn(resultado):
 
 
 def pruebaDaoCama(conexion):
-    daoCama = DaoCama(conexion)
+    #daoCama = DaoCama(conexion)
 
     ##Prueba insertar cama
     #cama = Cama('true', "cama doble", 1)
@@ -27,28 +27,38 @@ def pruebaDaoCama(conexion):
         #mostrarReturn(modificacionCama)
 
     ##Prueba consultar cama
-    cama = daoCama.consultarCama(1)
-    if isinstance(cama, Exception):
-        mostararReturn(cama)
-    if cama == 1:
-        print("la consulta no arrojo resultados")
-    else:
-        print "numero de la cama es: ", (cama.get_num_cama())
-        print "el estado de la cama es: ", (cama.get_estado())
-        print "esta es la descripcion de la cama: ", (cama.get_descripcion())
-        print "el codigo de area de pertenecia: ", (cama.get_cod_area())
+    #cama = daoCama.consultarCama(1)
+    #if isinstance(cama, Exception):
+        #mostararReturn(cama)
+    #if cama == 1:
+        #print("la consulta no arrojo resultados")
+    #else:
+        #print "numero de la cama es: ", (cama.get_num_cama())
+        #print "el estado de la cama es: ", (cama.get_estado())
+        #print "esta es la descripcion de la cama: ", (cama.get_descripcion())
+        #print "el codigo de area de pertenecia: ", (cama.get_cod_area())
 
     ##Prueba borrar cama
     #borradoCama = daoCama.borrarCama(2)
     #if isinstance(borradoCama, Exception):
         #mostrarReturn(borradoCama)
+    pass
+
+def pruebaDaoFormulaMedica(conexion):
+    ##daoFormulaMedica = DaoFormulaMedica(conexion)
+
+    ##Prueba de guardar Formula medica
+    ##fm = FormulaMedica()
+
+    ##Prueba consultar formula medica
+    pass
 
 
 def main():
     fachada = FachadaDB()
-    conexion = fachada.obtenerConexion()
+    #conexion = fachada.obtenerConexion()
 
-    pruebaDaoCama(conexion)
+    #pruebaDaoCama(conexion)
 
     fachada.cerrarConexion()
 

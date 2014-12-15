@@ -173,7 +173,7 @@ CREATE TABLE Horario_Consulta
 	id_horario INTEGER NOT NULL,
 	id_medico INTEGER NOT NULL,
 	fecha_hora TIMESTAMP NOT NULL,
-	vacante BOOLEAN DEFAULT TRUE,
+	disponible BOOLEAN DEFAULT TRUE,
 
 	CONSTRAINT horario_pk PRIMARY KEY (id_horario),
 
@@ -188,7 +188,7 @@ CREATE TABLE Cita
 	id_horario INTEGER NOT NULL,
 	numero_historia INTEGER NOT NULL,
 	asistencia BOOLEAN DEFAULT FALSE,
-	tipo_solicitud VARCHAR(20) NOT NULL,
+	tipo_solicitud VARCHAR(50) NOT NULL,
 
 	CONSTRAINT cita_pk PRIMARY KEY (id_horario, numero_historia),
 
@@ -222,7 +222,7 @@ CREATE TABLE Registro_Medico
 
 CREATE TABLE Medicamento
 (
-	codigo VARCHAR (25) NOT NULL PRIMARY KEY,
+	codigo INTEGER NOT NULL PRIMARY KEY,
 	costo MONEY NOT NULL,
 	nombre VARCHAR (50) NOT NULL,
 	descripcion TEXT
@@ -232,7 +232,7 @@ CREATE TABLE Medicamento
 CREATE TABLE Formula_Medica
 (
 	numero_registro INTEGER NOT NULL,
-	codigo_medicamento VARCHAR (25) NOT NULL,
+	codigo_medicamento INTEGER NOT NULL,
 	cantidad INTEGER NOT NULL,
 
 	CONSTRAINT formula_medica_pk PRIMARY KEY (numero_registro, codigo_medicamento),
@@ -306,6 +306,23 @@ CREATE TABLE Campana_Paciente
 ALTER TABLE Horario_Consulta
 ADD CONSTRAINT uniq_medico_fecha
 UNIQUE (id_medico, fecha_hora);
+
+--NUEVOS UNIQUE
+ALTER TABLE Area
+ADD CONSTRAINT uniq_area_nombre
+UNIQUE (codigo, nombre);
+
+ALTER TABLE Habilidad
+ADD CONSTRAINT uniq_habilidad_descripcion
+UNIQUE (codigo, descripcion);
+
+ALTER TABLE Causa
+ADD CONSTRAINT uniq_causa_nombre
+UNIQUE (codigo, nombre);
+
+ALTER TABLE Medicamento
+ADD CONSTRAINT uniq_medicamento_nombre
+UNIQUE (codigo, nombre);
 --=======================================================================================
 
 
@@ -321,6 +338,8 @@ CREATE SEQUENCE seq_num_historia START 1;
 CREATE SEQUENCE seq_id_horario START 1;
 CREATE SEQUENCE seq_num_registro START 1;
 CREATE SEQUENCE seq_cod_causa START 1;
+--NUEVA SECUENCIA
+CREATE SEQUENCE seq_cod_medicamento START 1;
 
 -- ASIGNACION DE SECUENCIAS (SEQUENCE):
 ALTER TABLE Area ALTER COLUMN codigo
@@ -343,6 +362,10 @@ SET DEFAULT nextval('seq_num_registro');
 
 ALTER TABLE Causa ALTER COLUMN codigo
 SET DEFAULT nextval('seq_cod_causa');
+
+--NUEVA SECUENCIA
+ALTER TABLE Medicamento ALTER COLUMN codigo
+SET DEFAULT nextval('seq_cod_medicamento');
 --=======================================================================================
 
 
