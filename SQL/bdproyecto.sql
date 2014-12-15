@@ -222,7 +222,7 @@ CREATE TABLE Registro_Medico
 
 CREATE TABLE Medicamento
 (
-	codigo VARCHAR (25) NOT NULL PRIMARY KEY,
+	codigo INTEGER NOT NULL PRIMARY KEY,
 	costo MONEY NOT NULL,
 	nombre VARCHAR (50) NOT NULL,
 	descripcion TEXT
@@ -306,6 +306,23 @@ CREATE TABLE Campana_Paciente
 ALTER TABLE Horario_Consulta
 ADD CONSTRAINT uniq_medico_fecha
 UNIQUE (id_medico, fecha_hora);
+
+--NUEVOS UNIQUE
+ALTER TABLE Area
+ADD CONSTRAINT uniq_area_nombre
+UNIQUE (codigo, nombre);
+
+ALTER TABLE Horario_Consulta
+ADD CONSTRAINT uniq_habilidad_descripcion
+UNIQUE (codigo, descripcion);
+
+ALTER TABLE Causa
+ADD CONSTRAINT uniq_causa_nombre
+UNIQUE (codigo, nombre);
+
+ALTER TABLE Medicamento
+ADD CONSTRAINT uniq_medicamento_nombre
+UNIQUE (codigo, nombre);
 --=======================================================================================
 
 
@@ -321,6 +338,8 @@ CREATE SEQUENCE seq_num_historia START 1;
 CREATE SEQUENCE seq_id_horario START 1;
 CREATE SEQUENCE seq_num_registro START 1;
 CREATE SEQUENCE seq_cod_causa START 1;
+--NUEVA SECUENCIA
+CREATE SEQUENCE seq_cod_medicamento START 1;
 
 -- ASIGNACION DE SECUENCIAS (SEQUENCE):
 ALTER TABLE Area ALTER COLUMN codigo
@@ -343,6 +362,10 @@ SET DEFAULT nextval('seq_num_registro');
 
 ALTER TABLE Causa ALTER COLUMN codigo
 SET DEFAULT nextval('seq_cod_causa');
+
+--NUEVA SECUENCIA
+ALTER TABLE Medicamento ALTER COLUMN codigo
+SET DEFAULT nextval('seq_cod_medicamento');
 --=======================================================================================
 
 
