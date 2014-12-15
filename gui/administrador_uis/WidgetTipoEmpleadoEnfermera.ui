@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>761</width>
-    <height>241</height>
+    <width>781</width>
+    <height>291</height>
    </rect>
   </property>
   <property name="palette">
@@ -105,7 +105,7 @@
     <rect>
      <x>10</x>
      <y>50</y>
-     <width>311</width>
+     <width>301</width>
      <height>31</height>
     </rect>
    </property>
@@ -126,7 +126,7 @@
        </font>
       </property>
       <property name="inputMask">
-       <string>NN; </string>
+       <string>99; </string>
       </property>
      </widget>
     </item>
@@ -137,7 +137,7 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>311</width>
+     <width>761</width>
      <height>20</height>
     </rect>
    </property>
@@ -148,8 +148,8 @@
   <widget class="QLabel" name="labelHabilidades">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>20</y>
+     <x>10</x>
+     <y>100</y>
      <width>81</width>
      <height>16</height>
     </rect>
@@ -161,70 +161,34 @@
   <widget class="Line" name="lineHabilidades">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>30</y>
-     <width>381</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="Line" name="lineAgregarEliminarHabilidad">
-   <property name="geometry">
-    <rect>
      <x>10</x>
      <y>110</y>
-     <width>311</width>
+     <width>301</width>
      <height>20</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelAgregarEliminarHabilidad">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>100</y>
-     <width>161</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Agregar o eliminar habildad</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBoxAgregarEliminarHabilidad">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>130</y>
-     <width>311</width>
-     <height>27</height>
-    </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonAgregar">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>340</x>
      <y>170</y>
      <width>98</width>
      <height>27</height>
     </rect>
    </property>
    <property name="text">
-    <string>Agregar</string>
+    <string>Agregar </string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButtonEliminar">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>170</y>
+     <x>340</x>
+     <y>210</y>
      <width>98</width>
      <height>27</height>
     </rect>
@@ -236,10 +200,10 @@
   <widget class="QTableWidget" name="tableWidgetHabilidades">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>50</y>
-     <width>381</width>
-     <height>101</height>
+     <x>10</x>
+     <y>140</y>
+     <width>301</width>
+     <height>141</height>
     </rect>
    </property>
    <column>
@@ -266,6 +230,94 @@
      </font>
     </property>
    </column>
+  </widget>
+  <widget class="QTableWidget" name="tableWidgetHabilidadesEnfermera">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>130</y>
+     <width>301</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>New Row</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Codigo</string>
+    </property>
+    <property name="font">
+     <font>
+      <family>Ubuntu Condensed</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>aaaa</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>33</string>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="text">
+     <string>22</string>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string>111</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="labelHabilidades_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>100</y>
+     <width>151</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Habilidades Enfermera</string>
+   </property>
+  </widget>
+  <widget class="Line" name="lineHabilidades_2">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>110</y>
+     <width>301</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
   </widget>
  </widget>
  <resources/>
