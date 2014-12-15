@@ -307,7 +307,7 @@ D_Area_class , D_Area_Base_class = uic.loadUiType( 'gui/administrador_uis/Dialog
 
 class DialogArea( QDialog, D_Area_class ):
 
-	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
+	def __init__( self, tipo_operacion=1, controlador=None, parent=None ):
 
 		#Constructor padre
 		QDialog.__init__( self, parent )
@@ -316,12 +316,13 @@ class DialogArea( QDialog, D_Area_class ):
 
 		#================================================> VARIABLES
 		self.controladorArea = controlador 
-		self.nuevo_registro = nuevo_registro
+		self.tipo_operacion = tipo_operacion
 
 		
 		#=================================================> MODIFICACIONES 
 
-		if self.nuevo_registro:
+		# OPERACION --> NUEVA AREA
+		if tipo_operacion is 1:
 
 			self.setWindowTitle( "Nueva Area" )
 			self.pushButtonInsertar.setText( "Insertar" )
@@ -329,36 +330,48 @@ class DialogArea( QDialog, D_Area_class ):
 			self.lineEditCodigo.setText( "Automatico" )
 			self.lineEditCodigo.setReadOnly(True)
 
-		else:
+		# OPERACION --> MODIFICAR AREA
+		if tipo_operacion is 2:
 
 			self.setWindowTitle( "Modificar Area" )
-			self.pushButtonInsertar.setText( "Actualizar" )
+			self.pushButtonInsertar.setText( "Modificar" )
 			self.pushButtonConsultar.show()
-			self.lineEditCodigo.setText( "" )
-			self.lineEditCodigo.setReadOnly(False)
+			# self.lineEditCodigo.setText( "" )
+			self.lineEditCodigo.setReadOnly(True)
+
+		# OPERACION --> ELIMINAR AREA
+		if tipo_operacion is 3:
+
+			self.setWindowTitle( "Eliminar Area" )
+			self.pushButtonInsertar.setText( "Eliminar" )
+			self.pushButtonConsultar.show()
+			# self.lineEditCodigo.setText( "" )
+			self.lineEditCodigo.setReadOnly(True)		
 
 
 		#=================================================> SENIALES Y SLOTS 
-		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarArea )
-		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos  )
+		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.realizarOperacionArea )
+		#self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos  )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
 
 	#====================================================> METODOS
+	# INSERTAR, MODIFICAR, ELIMINAR
+	def realizarOperacionArea( self ):
 
-	def insertarActualizarArea( self ):
-
-		codigo = str(self.lineEditCodigo.text())
 		nombre = str(self.lineEditNombre.text())
 		descripcion = str(self.lineEditDescripcion.text())
+		codigo = str(self.lineEditCodigo.text())
 
-		#AQUI SE INSERTA LA INFORMACION A LA BASE DE DATOS
-		if self.nuevo_registro:
-			self.controladorArea.insertarArea(nombre, descripcion)
-			#dialogArea.exec_()
+		# AQUI SE INSERTA LA INFORMACION A LA BASE DE DATOS
+		if self.tipo_operacion is 1:
+			self.controladorArea.insertarArea(codigo, nombre, descripcion)
 			self.close()
-		else:
-			#EN CASO DE QUE SEA UNA ACTUALIZACION
-			pass
+		if self.tipo_operacion is 2:
+			self.controladorArea.actualizarArea(codigo, nombre, descripcion)
+			self.close()
+		if self.tipo_operacion is 3:
+			self.controladorArea.eliminarArea(codigo)
+			self.close()
 
 	def limpiarCampos( self ):
 
@@ -374,10 +387,10 @@ class DialogArea( QDialog, D_Area_class ):
 			self.lineEditDescripcion.setText( "" )
 
 	def consultar( self ):
-
-		#AQUI SE CONSULTA EL CODIGO DEL AREA 
-		pass
-
+			nombre = str(self.lineEditNombre.text())
+			codigo, descripcion = self.controladorArea.buscarArea(nombre)
+			self.lineEditDescripcion.setText(descripcion)
+			self.lineEditCodigo.setText(codigo)
 		
 #===========================================> LISTAR AREAS <============================================================
 

@@ -11,10 +11,35 @@ class ControlDaoArea():
 	def __init__(self, conexion):
 		self.daoArea = DaoArea(conexion)
 
-	def insertarArea(self, nombre, descripcion):
-		area = Area(nombre, descripcion)
+	def insertarArea(self, codigo, nombre, descripcion):
+		area = Area(codigo, nombre, descripcion)
 		insertArea = self.daoArea.guardarArea(area)
 		if insertArea is 0:
 			print "INSERCION EXITOSA!"
 		if isinstance(insertArea, Exception):
 			mostrarReturn(insertArea)
+
+	def buscarArea(self, nombre):
+		area = self.daoArea.consultarArea(nombre)
+		if isinstance(area, Exception):
+			mostrarReturn(area)
+		if area == 1:
+			print("LA CONSULTA NO ARROJO RESULTADOS :(")
+			return "", ""
+		else:
+			return str(area.get_codigo_area()), area.get_descripcion()
+
+	def actualizarArea(self, codigo, nombre, descripcion):
+		area = Area(codigo, nombre, descripcion)
+		modArea = self.daoArea.modificarArea(area)
+		if modArea is 0:
+			print "MODIFICACION EXITOSA!"
+		if isinstance(modArea, Exception):
+			mostrarReturn(modArea)
+
+	def eliminarArea(self, codigo):
+		delArea = self.daoArea.borrarArea(codigo)
+		if delArea is 0:
+			print "ELIMINACION EXITOSA!"
+		if isinstance(delArea, Exception):
+			mostrarReturn(delArea)

@@ -25,11 +25,11 @@ class DaoArea():
 
     #============================== READ ======================================
     # CONSULTA UN AREA PARTICULAR
-    def consultarArea(self, codigo):
+    def consultarArea(self, nombre):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT * FROM Area WHERE codigo = %s",
-                (codigo,))
+            cur.execute("SELECT * FROM Area WHERE nombre ilike %s",
+                (nombre,))
 
             consulta = cur.fetchone()
             if consulta is None:

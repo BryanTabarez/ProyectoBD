@@ -193,31 +193,36 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#Funcion: Despliega la interfaz para la creacion de areas en el hospital
 	def nuevaArea( self ):
 
-		dialogArea = DialogArea( controlador=self.controladorArea ,parent=self )
+		dialogArea = DialogArea( tipo_operacion=1, controlador=self.controladorArea ,parent=self )
 		dialogArea.exec_()
-
 
 	#Metodo: modificarArea
 	#Funcion: Despliega la interfaz que permite la modificacion de un area
 	def modificarArea( self ):
 
-		dialogArea = DialogArea( nuevo_registro=False, controlador=self.controladorArea ,parent=self )
+		dialogArea = DialogArea( tipo_operacion=2, controlador=self.controladorArea ,parent=self )
 		dialogArea.exec_()
 
-	#Metodo: eliminarArea
-	#Funcion: permite eliminar areas de la clinica de la base de datos
+
 	def eliminarArea( self ):
 
-		fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
-		if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
+		dialogArea = DialogArea( tipo_operacion=3, controlador=self.controladorArea ,parent=self )
+		dialogArea.exec_()	
+
+	# #Metodo: eliminarArea
+	# #Funcion: permite eliminar areas de la clinica de la base de datos
+	# def eliminarArea( self ):
+
+	# 	fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
+	# 	if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
 			
-			self.dialogInformacion.showMensaje( "Eliminar Area", 
-				"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
+	# 		self.dialogInformacion.showMensaje( "Eliminar Area", 
+	# 			"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
 			
-		else:
-			cod_area_eliminar = self.widgetListarAreas.tableWidgetAreas.item(fila_seleccinada_tabla, 0).text()
-			print( "eliminar area: " + cod_area_eliminar )
-			#AQUI SE ELIMINA EL AREA CON EL CODIGO RECIBIDO
+	# 	else:
+	# 		cod_area_eliminar = self.widgetListarAreas.tableWidgetAreas.item(fila_seleccinada_tabla, 0).text()
+	# 		print( "eliminar area: " + cod_area_eliminar )
+	# 		#AQUI SE ELIMINA EL AREA CON EL CODIGO RECIBIDO
 
 
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>219</height>
+    <width>797</width>
+    <height>246</height>
    </rect>
   </property>
   <property name="palette">
@@ -96,7 +96,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>65</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="palette">
@@ -199,7 +199,7 @@
       <x>20</x>
       <y>0</y>
       <width>162</width>
-      <height>62</height>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_5">
@@ -235,23 +235,23 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>70</y>
+     <y>80</y>
      <width>781</width>
-     <height>95</height>
+     <height>111</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
     <property name="fieldGrowthPolicy">
      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
     </property>
-    <item row="2" column="0">
+    <item row="1" column="0">
      <widget class="QLabel" name="labelNombre">
       <property name="text">
        <string>Nombre</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="1" column="1">
      <widget class="QLineEdit" name="lineEditNombre">
       <property name="font">
        <font>
@@ -259,22 +259,25 @@ color: rgb(255, 255, 255);</string>
         <bold>false</bold>
        </font>
       </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
       <property name="inputMask">
-       <string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; </string>
+       <string/>
       </property>
       <property name="maxLength">
-       <number>40</number>
+       <number>50</number>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="2" column="0">
      <widget class="QLabel" name="labelDescripcion">
       <property name="text">
        <string>Descripcion</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
+    <item row="2" column="1">
      <widget class="QLineEdit" name="lineEditDescripcion">
       <property name="font">
        <font>
@@ -282,22 +285,25 @@ color: rgb(255, 255, 255);</string>
         <bold>false</bold>
        </font>
       </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
       <property name="inputMask">
-       <string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; </string>
+       <string/>
       </property>
       <property name="maxLength">
-       <number>40</number>
+       <number>32767</number>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="3" column="0">
      <widget class="QLabel" name="labelCodigo">
       <property name="text">
-       <string>Codigo         </string>
+       <string>Codigo</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="3" column="1">
      <widget class="QLineEdit" name="lineEditCodigo">
       <property name="font">
        <font>
@@ -305,8 +311,17 @@ color: rgb(255, 255, 255);</string>
         <bold>false</bold>
        </font>
       </property>
-      <property name="text">
-       <string>Automatico</string>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>32767</number>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -318,8 +333,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>180</y>
+     <x>250</x>
+     <y>200</y>
      <width>269</width>
      <height>29</height>
     </rect>
@@ -333,13 +348,6 @@ color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="pushButtonCancelar">
-      <property name="text">
-       <string>Cancelar</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="2">
      <widget class="QPushButton" name="pushButtonInsertar">
       <property name="text">
        <string>Insertar</string>
@@ -348,7 +356,18 @@ color: rgb(255, 255, 255);</string>
     </item>
    </layout>
   </widget>
+  <zorder>widgetCabecera</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>pushButtonInsertar</zorder>
+  <zorder>pushButtonConsultar</zorder>
  </widget>
+ <tabstops>
+  <tabstop>lineEditNombre</tabstop>
+  <tabstop>lineEditDescripcion</tabstop>
+  <tabstop>pushButtonConsultar</tabstop>
+  <tabstop>pushButtonInsertar</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

@@ -267,7 +267,7 @@ font: 12pt &quot;Ubuntu Condensed&quot;;</string>
        <x>20</x>
        <y>0</y>
        <width>162</width>
-       <height>62</height>
+       <height>75</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -313,15 +313,15 @@ color: rgb(255, 255, 255);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>270</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -414,7 +414,7 @@ color: rgb(255, 255, 255);</string>
        <x>0</x>
        <y>0</y>
        <width>200</width>
-       <height>270</height>
+       <height>249</height>
       </rect>
      </property>
      <attribute name="label">
@@ -477,7 +477,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="text">
-       <string>Listar Areas</string>
+       <string>BORRARESTO(?) Listar Areas</string>
       </property>
      </widget>
      <widget class="QCommandLinkButton" name="commandLinkButtonEliminarArea">
@@ -506,8 +506,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>270</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -599,8 +599,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>270</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -692,8 +692,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>270</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -785,8 +785,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>270</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -878,8 +878,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>270</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
