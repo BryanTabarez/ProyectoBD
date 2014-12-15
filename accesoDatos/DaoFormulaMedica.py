@@ -1,20 +1,20 @@
-from logica.Cama import Cama
+from logica.FormulaMedica import FormulaMedica
 
 
-class DaoCama():
-    """Clase DaoCama"""
+class DaoFormulaMedica():
+    "Clase DaoFormulaMedica"
 
     def __init__(self, conexion):
         self.conn = conexion
 
     #============================== CREATE ====================================
-    def guardarCama(self, bed):
+    def guardarFormulaMedica(self, fm):
         try:
             cur = self.conn.cursor()
 
-            cur.execute("""INSERT INTO Cama (estado, descripcion, codigo_area)
-            VALUES (%s, %s, %s)""", (bed.get_estado(), bed.get_descripcion(),
-            bed.get_cod_area()))
+            cur.execute("""INSERT INTO FormulaMedica VALUES (%s, %s, %s)""",
+            (fm.get_num_registro(), fm.get_cod_medicamento(),
+            fm.get_cantidad()))
 
             cur.close()
             self.conn.commit()
@@ -27,19 +27,21 @@ class DaoCama():
 
     #============================== READ ======================================
     # CONSULTA UNA CAMA PARTICULAR
-    def consultarCama(self, id):
+    def consultarFormulaMedica(self, id):
         try:
             cur = self.conn.cursor()
-            sqlConsulta = """SELECT * FROM Cama WHERE num_cama = %s"""
+            sqlConsulta = """SELECT * FROM FormulaMedica WHERE
+            numero_registro = %s"""
             cur.execute(sqlConsulta, (id,))
-            consulta = cur.fetchone()
+            consulta = cur.fetchall()
             if consulta is None:
                 cur.close()
                 return 1
             else:
-                cama = Cama(consulta[0], consulta[1], consulta[2], consulta[3])
+                fm = FormulaMedica(consulta[0][0], consulta[0][1],
+                consulta[0][2])
                 cur.close()
-                return cama
+                return fm
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -47,15 +49,15 @@ class DaoCama():
     #==========================================================================
 
     #============================== UPDATE ====================================
-    def modificarCama(self, bed):
+    def modificarFormulaMedica(self, fm):
         try:
             cur = self.conn.cursor()
 
-            sqlUpdate = """UPDATE Cama SET estado = %s, descripcion = %s,
-            codigo_area = %s WHERE num_cama = %s"""
+            sqlUpdate = """UPDATE FormulaMedica SET cantidad = %s
+            WHERE numero_registro = %s AND codigo_medicamento = %s"""
 
-            cur.execute(sqlUpdate, (bed.get_estado(), bed.get_descripcion(),
-            bed.get_cod_area(), bed.get_num_cama()))
+            cur.execute(sqlUpdate, (fm.get_cantidad(), fm.get_num_registro(),
+            fm.get_cod_medicamento()))
 
             cur.close()
             self.conn.commit()
@@ -67,10 +69,12 @@ class DaoCama():
     #==========================================================================
 
     #============================== DELETE ====================================
-    def borrarCama(self, id):
+    def borrarCama(self, fm):
         try:
             cur = self.conn.cursor()
-            cur.execute("DELETE FROM Cama WHERE num_cama = %s", (id,))
+            cur.execute("""DELETE FROM FormulaMedica
+            WHERE numero_registro = %s AND codigo_medicamento = %s""",
+            (fm.get_num_registro(), fm.get_cod_medicamento()))
             cur.close()
             self.conn.commit()
             return 0
