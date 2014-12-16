@@ -53,13 +53,13 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		self.controladorDaosEmpleados = controlador
 		self.tipo_operacion = tipo_operacion
 		
-		#=========================================> WIDGETS 
+		#=========================================> WIDGETS
 		self.widgetTipoEmpleadoEnfermera = WidgetTipoEmpleadoEnfermera( self.widgetTipoEmpleado )
 		self.widgetTipoEmpleadoEnfermera.hide()
 		self.widgetTipoEmpleadoMedico = WidgetTipoEmpleadoMedico( self.widgetTipoEmpleado )
 		self.widgetTipoEmpleadoMedico.hide()
 
-		#=========================================> SENIALES Y SLOTS 
+		#=========================================> SENIALES Y SLOTS
 		self.connect( self.comboBoxTipoEmpleado, SIGNAL( "currentIndexChanged(int)" ), self.mostrarTipoEmpleado )
 		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.realizarOperacionEmpleado )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultarEmpleado )
@@ -100,6 +100,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 	# CAMBIAR FUNCION DEL BOTON DEPENDIENDO LA VENTANA
 	# OPERACION EN DB: INSERT, DELETE, UPDATE
 	def realizarOperacionEmpleado( self ):
+		self.identificacion = str( self.lineEditIdentificacion.text() )
 		self.nombre = str ( self.lineEditNombre.text() )
 		self.direccion = str( self.lineEditDireccion.text() )
 		self.telefono = str ( self.lineEditTelefono.text() )
@@ -128,7 +129,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 	def accionPorTipoEmpleado( self ):
 		# INDICE 0: ENFERMERA  INDICE 0: MEDICO
-		indice =  self.comboBoxTipoEmpleado.currentIndex() 
+		indice =  self.comboBoxTipoEmpleado.currentIndex()
 		
 		# INDICE = 1 -> ENFERMERA
 		if indice is 0:
@@ -139,8 +140,8 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			
 			# INSERTAR ENFERMERA
 			if self.tipo_operacion is 1:
-				self.controladorDaosEmpleados.insertarEnfermera( self.identificacion, nombre, direccion, telefono,
-					codigo_area, email, salario, id_jefe, anios_experiencia, [1, 2] )
+				self.controladorDaosEmpleados.insertarEnfermera( self.identificacion, self.nombre, self.direccion, self.telefono,
+					self.codigo_area, self.email, self.salario, self.id_jefe, anios_experiencia, [1] )
 				# identificacion, nombre, direccion, telefono, codigo_area,
 				#     		email, salario, id_jefe, anhos_experiencia, habilidades
 			
@@ -203,16 +204,16 @@ class WidgetTipoEmpleadoEnfermera( QWidget, W_Enfermera_class ):
 		self.controladorHabilidad = " " #AQUI VA EL CONTROLADOR DE HABILIDADES DE LA ENFERMERA
 		self.codigo = ""
 		self.descripcion = " "
- 
+
 		#=============================================> SENIALES Y SLOTS
 		self.connect( self.pushButtonAgregar, SIGNAL( "clicked()" ), self.agregar )
 		self.connect( self.pushButtonEliminar, SIGNAL( "clicked()" ), self.eliminar )
 
-	#==================================================> METODOS 
+	#==================================================> METODOS
 
 	def actualizar( self ):
 
-		#AQUI SE DEBE ACTUALIZAR LA TABLA QUE CONTIENE LAS HABILIDADES DE LA ENFERMERA CON LA 
+		#AQUI SE DEBE ACTUALIZAR LA TABLA QUE CONTIENE LAS HABILIDADES DE LA ENFERMERA CON LA
 		#INFROMACION DE LA BASE DE DATOS
 		#self.tableWidgetHabilidadesEnfermera.clearContents()
 		#self.tableWidgetHabilidadesEnfermera.insertRow( 0 )
@@ -277,7 +278,7 @@ class WidgetTipoEmpleadoMedico( QWidget, W_Medico_class ):
 
 	def __init__( self, parent=None ):
 
-		#Constructor padre 
+		#Constructor padre
 		QWidget.__init__( self, parent )
 		#Configuracion de la interfaz
 		self.setupUi( self )
@@ -300,7 +301,7 @@ class WidgetEmpleadosPorArea( QWidget , W_Empleados_Area_class ):
 		self.setupUi( self )
 
 		#==========================================> VARIABLES
-		self.controladorEmpleado = " " #AQUI VA EL CONTROLADOR PARA EMPLEADO 
+		self.controladorEmpleado = " " #AQUI VA EL CONTROLADOR PARA EMPLEADO
 
 
 	#===============================================> METODOS
@@ -330,11 +331,11 @@ class DialogArea( QDialog, D_Area_class ):
 		self.setupUi( self )
 
 		#================================================> VARIABLES
-		self.controladorArea = controlador 
+		self.controladorArea = controlador
 		self.tipo_operacion = tipo_operacion
 
 		
-		#=================================================> MODIFICACIONES 
+		#=================================================> MODIFICACIONES
 
 		# OPERACION --> NUEVA AREA
 		if tipo_operacion is 1:
@@ -364,7 +365,7 @@ class DialogArea( QDialog, D_Area_class ):
 			self.lineEditCodigo.setReadOnly(True)		
 
 
-		#=================================================> SENIALES Y SLOTS 
+		#=================================================> SENIALES Y SLOTS
 		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.realizarOperacionArea )
 		#self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos  )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
@@ -426,7 +427,7 @@ class WidgetListarAreas( QWidget, W_Areas_class ):
 
 	#============================================> METODOS
 	def actualizar( self ):
-		#AQUI SE LISTAN LAS AREAS EN LA TABLA DE AREAS 
+		#AQUI SE LISTAN LAS AREAS EN LA TABLA DE AREAS
 		#self.tableWidgetAreas.clearContents()
 		#self.tableWidgetAreas.insertRow( 0 )
 		#self.tableWidgetAreas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
@@ -450,7 +451,7 @@ class DialogCama( QDialog, D_Cama_class ):
 		self.nuevo_registro = nuevo_registro
 		self.controladorCama = controlador
 
-		#=================================================> MODIFICACIONES 
+		#=================================================> MODIFICACIONES
 
 		if self.nuevo_registro:
 
@@ -474,7 +475,7 @@ class DialogCama( QDialog, D_Cama_class ):
 		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
 
-	#============================================> METODOS 
+	#============================================> METODOS
 	def insertarActualizarCama( self ):
 
 		codigo_area = self.lineEditCodigoArea.text()
@@ -487,7 +488,7 @@ class DialogCama( QDialog, D_Cama_class ):
 			pass
 
 		else:
-			#EN CASO DE SER UNA ACTUALIZACION 
+			#EN CASO DE SER UNA ACTUALIZACION
 			pass
 
 		self.limpiarCampos()
@@ -496,7 +497,7 @@ class DialogCama( QDialog, D_Cama_class ):
 
 		if self.nuevo_registro:
 			
-			self.lineEditNumeroDeCama.setText( "" ) 
+			self.lineEditNumeroDeCama.setText( "" )
 			self.lineEditDescripcion.setText( "" )
 
 		else:
@@ -507,9 +508,9 @@ class DialogCama( QDialog, D_Cama_class ):
 
 	def consultar( self ):
 
-		#AQUI VA LA CONSULTA DE LA CAMA 
+		#AQUI VA LA CONSULTA DE LA CAMA
 		pass
-			 
+
 #==================================================> LISTAR CAMAS <=====================================================
 
 W_Camas_class , W_Camas_Base_class = uic.loadUiType('gui/administrador_uis/WidgetListarCamas.ui')
@@ -519,7 +520,7 @@ class WidgetListarCamas( QWidget, W_Camas_class ):
 
 	def __init__( self, parent=None ):
 
-		#Constructor padre 
+		#Constructor padre
 		QWidget.__init__( self, parent )
 		#Configuracion de la interfaz
 		self.setupUi( self )
@@ -531,7 +532,7 @@ class WidgetListarCamas( QWidget, W_Camas_class ):
 	#============================================> METODOS
 	def actualizar( self ):
 		#area_seleccionada = self.comboBoxAreaCamas.currentText()
-		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS 
+		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS
 		#self.tableWidgetCamas.clearContents()
 		#self.tableWidgetCamas.insertRow( 0 )
 		#self.tableWidgetCamas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
@@ -586,12 +587,12 @@ class DialogMedicamento( QDialog, D_Medicamento_class ):
 		costo = self.lineEditCosto.text()
 		descripcion = self.lineEditDescripcion.text()
 
-		#AQUI SE INGRESA LA INFOMACION EN LA BASE DE DATOS 
+		#AQUI SE INGRESA LA INFOMACION EN LA BASE DE DATOS
 		if self.nuevo_registro:
 			#EN CASO DE UN NUEVO REGISTRO
 			pass
 		else:
-			#EN CASO DE UNA ACTUALIZACION 
+			#EN CASO DE UNA ACTUALIZACION
 			pass
 
 		self.limpiarCampos()
@@ -639,7 +640,7 @@ class WidgetListarMedicamentos( QWidget, W_Medicamentos_class ):
 	#============================================> METODOS
 	def actualizar( self ):
 		
-		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS 
+		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS
 		#self.tableWidgetMedicamentos.clearContents()
 		#self.tableWidgetMedicamentos.insertRow( 0 )
 		#self.tableWidgetMedicamentos.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
@@ -664,7 +665,7 @@ class DialogHabilidad( QDialog, D_Habilidad_class ):
 		self.controladorHabilidad = controlador
 		self.nuevo_registro = nuevo_registro
 
-		#=========================================> MODIFICACIONES 
+		#=========================================> MODIFICACIONES
 
 		if self.nuevo_registro:
 
@@ -721,7 +722,7 @@ class DialogHabilidad( QDialog, D_Habilidad_class ):
 
 
 
-#============================================> LISTAR HABILIDADES <===================================================== 
+#============================================> LISTAR HABILIDADES <=====================================================
 
 W_Habilidades_class , W_Habilidades_Base_class = uic.loadUiType('gui/administrador_uis/WidgetListarHabilidades.ui')
 
@@ -742,7 +743,7 @@ class WidgetListarHabilidades( QWidget, W_Habilidades_class ):
 	#============================================> METODOS
 	def actualizar( self ):
 		
-		#AQUI SE LISTAN LAS HABILIDADES EN LA TABLA DE HABILIDADES_ENFERMERA DE LA BASE DE DATOS 
+		#AQUI SE LISTAN LAS HABILIDADES EN LA TABLA DE HABILIDADES_ENFERMERA DE LA BASE DE DATOS
 		#self.tableWidgetHabilidades.clearContents()
 		#self.tableWidgetHabilidades.insertRow( 0 )
 		#self.tableWidgetHabilidades.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
@@ -785,9 +786,9 @@ class DialogCausa( QDialog, D_Causa_class ):
 			self.lineEditCodigo.setReadOnly( False )
 			self.pushButtonConsultar.show()
 
-		#============================================> SENIALES Y SLOTS 
+		#============================================> SENIALES Y SLOTS
 		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarCausa )
-		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos ) 
+		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
 
 	#=================================================> METODOS
@@ -863,7 +864,7 @@ class WidgetListarCausas( QWidget, W_Causas_class ):
 
 #=============================================> INFORMES <==============================================================
 
-#=======================================> AGENDA MEDICO MES 
+#=======================================> AGENDA MEDICO MES
 
 W_AgendaMedicoMes_class , W_AgendaMedicoMes_Base_class = uic.loadUiType("gui/administrador_uis/WidgetAgendaMedico.ui");
 
@@ -890,7 +891,7 @@ class WidgetHistoriaClinicaPaciente( QWidget, W_HistoriaPaciente_class ):
 		#Configuracion interfaz
 		self.setupUi( self )
 
-#=====================================> CITAS ATENDIDAS MEDICO MES 
+#=====================================> CITAS ATENDIDAS MEDICO MES
 
 W_CitasMedico_class , W_CitasMedico_Base_class = uic.loadUiType("gui/administrador_uis/WidgetNumeroCitasMedico.ui");
 
@@ -898,12 +899,12 @@ class WidgetNumeroCitasMedico( QWidget, W_CitasMedico_class ):
 
 	def __init__( self, parent=None ):
 
-		#Constructor padre 
+		#Constructor padre
 		QWidget.__init__( self, parent )
 		#Confifuracion interfaz
 		self.setupUi( self )
 
-#=====================================> COSTO PACIENTE MES ANIO  
+#=====================================> COSTO PACIENTE MES ANIO
 
 W_Costo_Paciente_class , W_Costo_Paciente_Base_class = uic.loadUiType("gui/administrador_uis/WidgetCostoPromedioPaciente.ui");
 

@@ -125,8 +125,14 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhDigitsOnly</set>
+      </property>
       <property name="inputMask">
-       <string>99; </string>
+       <string/>
+      </property>
+      <property name="maxLength">
+       <number>2</number>
       </property>
      </widget>
     </item>
@@ -338,6 +344,13 @@
    </column>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditAniosExperiencia</tabstop>
+  <tabstop>tableWidgetHabilidades</tabstop>
+  <tabstop>pushButtonAgregar</tabstop>
+  <tabstop>pushButtonEliminar</tabstop>
+  <tabstop>tableWidgetHabilidadesEnfermera</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

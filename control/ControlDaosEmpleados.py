@@ -1,14 +1,17 @@
 # NO IMPORTAR TODO | SELECCIONAR SOLO LOS NECESARIOS
 from accesoDatos import DaoEnfermera
 from logica import Enfermera
+import psycopg2
 #from logica import Medico
 #from accesoDatos import DaoMedico
 
 
 #============= METODO PARA MOSTRAR LAS EXCEPCIONES DE psycopg2 ==================
 def mostrarReturn(resultado):
+    if isinstance(resultado, psycopg2.Error):
+        "ERROR DE BASE DE DATOS!"
     if resultado is not None:
-        print("\nExcepcion capturada! Falta Implementar!!")
+        print("\nOTRO TIPO DE ERROR!")
         print((resultado.pgerror))
 #================================================================================
 
@@ -20,9 +23,9 @@ class ControlDaosEmpleados():
 		self.daoEnf = DaoEnfermera(conexion)
 
 	#============================== INSERTAR ENFERMERA ==========================
-	def insertarEnfermera (self, identificacion, nombre, direccion, telefono, codigo_area, email, 
+	def insertarEnfermera (self, identificacion, nombre, direccion, telefono, codigo_area, email,
 		salario, id_jefe, anhos_experiencia, habilidades):
-		enfermerita = Enfermera(identificacion, nombre, direccion, telefono, codigo_area, email, 
+		enfermerita = Enfermera(identificacion, nombre, direccion, telefono, codigo_area, email,
 			salario, id_jefe, anhos_experiencia, habilidades)
 		insertarEnf = self.daoEnf.guardarEnfermera(enfermerita)
 		if insertarEnf is 0:
