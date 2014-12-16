@@ -21,7 +21,7 @@ from componentes_administrador import WidgetCostoPromedioPaciente
 from login import InterfazIniciarSesion
 from componentes_enfermera import DialogPaciente
 from componentes_enfermera import WidgetListarPacientes
-from componentes_enfermera import DialogAsignarCama
+#from componentes_enfermera import DialogAsignarCama
 #from componentes_enfermera import DialogCita
 from enfermera import InterfazEnfermera
 from enfermera import *
