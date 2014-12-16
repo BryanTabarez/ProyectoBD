@@ -21,11 +21,11 @@ from componentes_administrador import WidgetCostoPromedioPaciente
 from login import InterfazIniciarSesion
 from componentes_enfermera import DialogPaciente
 from componentes_enfermera import WidgetListarPacientes
-<<<<<<< HEAD
+
 #from componentes_enfermera import DialogAsignarCama
-=======
+
 # componentes_enfermera import DialogAsignarCama
->>>>>>> 7b8720df75d205f466166e2c19fdf00805f5a498
+
 #from componentes_enfermera import DialogCita
 from enfermera import InterfazEnfermera
 from enfermera import *
