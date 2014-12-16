@@ -97,3 +97,23 @@ class DaoPaciente():
             self.conn.reset()
             return e
     #==========================================================================
+    #============================== LIST ======================================
+    def listarPacientes(self):
+        try:
+            cur = self.conn.cursor()
+            sqlConsulta = """SELECT * FROM Persona NATURAL JOIN Paciente """
+            cur.execute(sqlConsulta)
+            consulta = cur.fetchall()
+            if consulta is None:
+                cur.close()
+                return 1
+            else:
+                cur.close()
+                return consulta
+            cur.close()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
