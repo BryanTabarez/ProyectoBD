@@ -17,6 +17,10 @@ from componentes_enfermera import DialogCita
 from componentes_administrador import DialogInformacion
 from componentes_enfermera import DialogAgendaMedico
 
+from accesoDatos import *
+from control import *
+
+
 
 #=======================================================================================================================
 # INTEGRANTES:
@@ -35,6 +39,13 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 	def __init__( self, parent=None ):
 
 
+		#************************************************************************
+		# ABRIR CONEXION EN LA BASE DE DATOS
+		self.fachada = FachadaDB()
+		conexion = self.fachada.obtenerConexion()
+		#************************************************************************
+		
+
 		#Constructor padre
 		QMainWindow.__init__( self, parent )
 		#Consfiguracion interfaz
@@ -51,13 +62,13 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 
 
 		#================================================> VARIABLES 
-		self.controladorPaciente = "controladorPacientes" #AQUI VAN LOS CONTROLADORES
+		self.controladorPaciente = ControlDaoPaciente( conexion )
 		self.controladorCama = "controladorCama"
 		self.controladorCita = "controladorCita"
 		self.controladorAgenda = "controladorAgenda"
 		#================================================> WIDGETS  
 		self.dialogInformacion = DialogInformacion( self )
-		self.widgetListarPacientes = WidgetListarPacientes( self.widgetCuerpo )
+		self.widgetListarPacientes = WidgetListarPacientes( controlador=self.controladorPaciente, parent=self.widgetCuerpo )
 		self.widgetListarPacientes.hide()
 
 		self.widgetListarCamas = WidgetListarCamas( self.widgetCuerpo )
@@ -89,11 +100,13 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 
 		dialogNuevoPaciente = DialogPaciente( controlador=self.controladorPaciente , parent=self )
 		dialogNuevoPaciente.exec_()
+		self.widgetListarPacientes.actualizar()
 
 	def modificarPaciente( self ):
 
 		dialogModificarPaciente = DialogPaciente( nuevo_registro=False, controlador=self.controladorPaciente, parent=self)
 		dialogModificarPaciente.exec_()	
+		self.widgetListarPacientes.actualizar()
 
 	def eliminarPaciente( self ):
 
@@ -107,13 +120,17 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		else:
 
 			#AQUI SE ELIMINA EL PACIENTE
-			id_paciente_eliminar = self.widgetListarPacientes.tableWidgetPacientes.item(fila_seleccionada, 0).text()
-			print( "PACEINTE ELIMINADO: " + id_paciente_eliminar )
+			id_paciente_eliminar = str(self.widgetListarPacientes.tableWidgetPacientes.item(fila_seleccionada, 0).text())
+			resultado = self.controladorPaciente.borrarPaciente( id_paciente_eliminar )
+
+			self.dialogInformacion.showMensaje( "Eliminar Paciente", resultado )
+			self.widgetListarPacientes.actualizar()
 
 			
 	def listarPacientes( self ):
 
 		self.widgetListarPacientes.show()
+		self.widgetListarPacientes.actualizar()
 		self.widgetListarCamas.hide()
 
 	#===================================================> CAMAS 
@@ -159,3 +176,9 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		dialogAgenda.exec_()
 
 
+	def closeEvent(self, event):
+		#************************************************************************
+		# CERRAR LA CONEXION EN LA BASE DE DATOS
+		self.fachada.cerrarConexion()
+		#************************************************************************
+		event.accept()
