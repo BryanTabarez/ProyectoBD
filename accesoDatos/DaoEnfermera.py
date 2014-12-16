@@ -52,7 +52,7 @@ class DaoEnfermera():
                 cur.close()
                 return 1
             else:
-                cur.execute("""SELECT habilidad FROM Habilidades_Enfermera WHERE
+                cur.execute("""SELECT habilidad FROM Enfermera_habilidad WHERE
                 id_enfermera = %s""", (id,))
                 habilidades = cur.fetchall()
                 enfermera = Enfermera(consulta[0], consulta[1], consulta[2],
@@ -61,7 +61,6 @@ class DaoEnfermera():
                 cur.close()
                 return enfermera
             cur.close()
-            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()

@@ -50,7 +50,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		
 		#=====================================================> VARIABLES 
 		# PERSONAL --> EMPLEADO
-		self.controladorPersonal = " " #AQUI VA EL CONTROLADOR NO CAMBIAR NOMBRE DE VARIABLE  
+		self.controladorPersonal = ControlDaosEmpleados(conexion)
 		self.controladorArea = ControlDaoArea(conexion)
 		self.controladorCama = " "
 		self.controladorMedicamento = " "
@@ -105,7 +105,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		self.connect( self.commandLinkButtonNuevaArea, SIGNAL( "clicked()" ),  self.nuevaArea )
 		self.connect( self.commandLinkButtonModificarArea, SIGNAL( "clicked()" ), self.modificarArea )
 		self.connect( self.commandLinkButtonEliminarArea, SIGNAL( "clicked()" ), self.eliminarArea )
-		self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
+		# self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
 		#===========================================> CAMAS 
 		self.connect( self.commandLinkButtonNuevaCama, SIGNAL("clicked()"), self.nuevaCama )
 		self.connect( self.commandLinkButtonModificarCama, SIGNAL("clicked()"), self.modificarCama )
@@ -138,18 +138,18 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 
 	#==========================================> PERSONAL
-	#Metodo: nuevoEmpleado
+	#Metodo: INSERTAR NUEVO EMPLEADO
 	#Funcion: Desplieqga el dialogo con la interfaz para ingresar un nuevo empleado
 	def nuevoEmpleado( self ):
 		
-		dialogEmpleado = DialogEmpleado( controlador=self.controladorPersonal,  parent=self )
+		dialogEmpleado = DialogEmpleado( tipo_operacion=1, controlador=self.controladorPersonal,  parent=self )
 		dialogEmpleado.exec_()
 
 	#Metodo: modificarEmpleado
 	#Funcion: Despliega el dialogo con la interfaz que permite modificar y eliminar un empleado
 	def modificarEmpleado( self ):
 
-		dialogEmpleado = DialogEmpleado( nuevo_registro=False,  controlador=self.controladorPersonal, parent=self )
+		dialogEmpleado = DialogEmpleado( tipo_operacion=2,  controlador=self.controladorPersonal, parent=self )
 		dialogEmpleado.exec_()
 
 	#Metodo: eliminarEmpleado

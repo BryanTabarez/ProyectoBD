@@ -93,7 +93,7 @@
       <x>0</x>
       <y>0</y>
       <width>800</width>
-      <height>65</height>
+      <height>71</height>
      </rect>
     </property>
     <property name="palette">
@@ -266,8 +266,8 @@ font: 12pt &quot;Ubuntu Condensed&quot;;</string>
       <rect>
        <x>20</x>
        <y>0</y>
-       <width>162</width>
-       <height>75</height>
+       <width>161</width>
+       <height>71</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -313,15 +313,15 @@ color: rgb(255, 255, 255);</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>98</width>
-       <height>28</height>
+       <width>200</width>
+       <height>249</height>
       </rect>
      </property>
      <attribute name="label">
@@ -413,8 +413,8 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>200</width>
-       <height>249</height>
+       <width>98</width>
+       <height>28</height>
       </rect>
      </property>
      <attribute name="label">
@@ -458,26 +458,6 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Modificar Area</string>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonListarAreas">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>120</y>
-        <width>181</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>BORRARESTO(?) Listar Areas</string>
       </property>
      </widget>
      <widget class="QCommandLinkButton" name="commandLinkButtonEliminarArea">
