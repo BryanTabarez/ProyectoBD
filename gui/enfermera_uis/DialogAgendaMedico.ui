@@ -424,6 +424,9 @@ color: rgb(255, 255, 255);</string>
         <bold>false</bold>
        </font>
       </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="0" column="0">
@@ -440,6 +443,9 @@ color: rgb(255, 255, 255);</string>
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -475,6 +481,9 @@ color: rgb(255, 255, 255);</string>
         <bold>false</bold>
        </font>
       </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
      </widget>
     </item>
     <item row="0" column="4">
@@ -491,6 +500,9 @@ color: rgb(255, 255, 255);</string>
         <weight>50</weight>
         <bold>false</bold>
        </font>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
       </property>
      </widget>
     </item>

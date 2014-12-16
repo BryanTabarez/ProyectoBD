@@ -219,7 +219,11 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QDateEdit" name="dateEditFechaNacimiento"/>
+      <widget class="QDateEdit" name="dateEditFechaNacimiento">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

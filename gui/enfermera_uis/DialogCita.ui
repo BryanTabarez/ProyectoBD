@@ -363,7 +363,7 @@ color: rgb(255, 255, 255);</string>
     <string>Seleccione Horario</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -412,7 +412,7 @@ color: rgb(255, 255, 255);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>500</x>
@@ -451,7 +451,7 @@ color: rgb(255, 255, 255);</string>
     <string>Consultar</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -503,21 +503,17 @@ color: rgb(255, 255, 255);</string>
     </item>
    </layout>
   </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>pushButtonConsultar</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>widget_2</zorder>
   <zorder>lineArea_2</zorder>
   <zorder>tableWidgetHorariosDisponibles</zorder>
   <zorder>lineCitas</zorder>
-  <zorder>labelCitasDisponibles</zorder>
-  <zorder>comboBoxHorariosDisponibles</zorder>
   <zorder>labelArea_2</zorder>
   <zorder>lineArea_3</zorder>
   <zorder>labelCita</zorder>
   <zorder>layoutWidget</zorder>
-  <zorder>label</zorder>
-  <zorder>comboBoxTipoSolicitud</zorder>
-  <zorder>pushButtonCancelar</zorder>
-  <zorder>pushButtonAsignar</zorder>
-  <zorder>comboBoxTipoSolicitud</zorder>
   <zorder>labelHorario</zorder>
  </widget>
  <resources/>
