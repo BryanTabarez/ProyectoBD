@@ -1,1 +1,2 @@
 from ControlDaoArea import ControlDaoArea
+from ControlDaoPaciente import ControlDaoPaciente
