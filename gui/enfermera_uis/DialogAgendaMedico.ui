@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DialogCita</class>
- <widget class="QDialog" name="DialogCita">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>703</width>
-    <height>480</height>
+    <width>730</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="palette">
@@ -80,8 +80,11 @@
     <bold>true</bold>
    </font>
   </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
   <property name="windowTitle">
-   <string>Cita</string>
+   <string>Modificar cita</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
@@ -220,12 +223,38 @@ color: rgb(255, 255, 255);</string>
     </layout>
    </widget>
   </widget>
-  <widget class="Line" name="lineArea_2">
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Generar Horarios del mes </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>131</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Medico</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
      <x>20</x>
      <y>90</y>
-     <width>291</width>
+     <width>691</width>
      <height>16</height>
     </rect>
    </property>
@@ -233,77 +262,25 @@ color: rgb(255, 255, 255);</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidgetHorariosDisponibles">
+  <widget class="QPushButton" name="pushButtonEliminarRegistro">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>250</y>
-     <width>661</width>
-     <height>171</height>
+     <x>420</x>
+     <y>560</y>
+     <width>141</width>
+     <height>27</height>
     </rect>
    </property>
-   <row>
-    <property name="text">
-     <string>1</string>
-    </property>
-   </row>
-   <row>
-    <property name="text">
-     <string>2</string>
-    </property>
-   </row>
-   <column>
-    <property name="text">
-     <string>Identificacion Horario</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Identificacion Medico</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>Fecha y Hora</string>
-    </property>
-   </column>
-   <item row="0" column="0">
-    <property name="text">
-     <string>01</string>
-    </property>
-   </item>
-   <item row="0" column="1">
-    <property name="text">
-     <string>1110348</string>
-    </property>
-   </item>
-   <item row="0" column="2">
-    <property name="text">
-     <string>18/08/1992 03:45</string>
-    </property>
-   </item>
-   <item row="1" column="0">
-    <property name="text">
-     <string>02</string>
-    </property>
-   </item>
-   <item row="1" column="1">
-    <property name="text">
-     <string>1238643</string>
-    </property>
-   </item>
-   <item row="1" column="2">
-    <property name="text">
-     <string>17/09/2012 05:40</string>
-    </property>
-   </item>
+   <property name="text">
+    <string>Eliminar Registro Agenda</string>
+   </property>
   </widget>
-  <widget class="Line" name="lineCitas">
+  <widget class="Line" name="line_3">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
-     <width>661</width>
+     <y>170</y>
+     <width>691</width>
      <height>16</height>
     </rect>
    </property>
@@ -311,25 +288,25 @@ color: rgb(255, 255, 255);</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="labelArea_2">
+  <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>70</y>
-     <width>151</width>
-     <height>25</height>
+     <y>260</y>
+     <width>131</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Paciente</string>
+    <string>Horarios Por Mes</string>
    </property>
   </widget>
-  <widget class="Line" name="lineArea_3">
+  <widget class="Line" name="line_4">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>90</y>
-     <width>351</width>
+     <x>20</x>
+     <y>270</y>
+     <width>691</width>
      <height>16</height>
     </rect>
    </property>
@@ -337,163 +314,75 @@ color: rgb(255, 255, 255);</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="labelCita">
-   <property name="geometry">
-    <rect>
-     <x>330</x>
-     <y>70</y>
-     <width>151</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cita</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="labelHorario">
+  <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>210</y>
-     <width>327</width>
+     <y>290</y>
+     <width>691</width>
      <height>25</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Seleccione Horario</string>
-   </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>570</x>
+     <y>560</y>
+     <width>141</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Aceptar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButtonConsultarMedico">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
      <y>110</y>
-     <width>351</width>
-     <height>58</height>
+     <width>141</width>
+     <height>27</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
+   <property name="text">
+    <string>Consultar Medico</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>541</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Tipo Solicitud</string>
+       <string>Identificacion</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QComboBox" name="comboBoxTipoSolicitud">
+     <widget class="QLineEdit" name="lineEditIndentificacion">
       <property name="font">
        <font>
         <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
-      <item>
-       <property name="text">
-        <string>Telefono</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Presencial</string>
-       </property>
-      </item>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="labelCitasDisponibles">
-      <property name="text">
-       <string>Seleccione Especialidad </string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QComboBox" name="comboBoxHorariosDisponibles"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>440</y>
-     <width>178</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="pushButtonCancelar">
-      <property name="text">
-       <string>Cancelar</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="pushButtonAsignar">
-      <property name="text">
-       <string>Asignar</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QPushButton" name="pushButtonConsultar">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>180</y>
-     <width>85</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Consultar</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>110</y>
-     <width>291</width>
-     <height>58</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_11">
-      <property name="text">
-       <string>Identificacion </string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="lineEditIndetificacion">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_7">
-      <property name="text">
-       <string>Nombre</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
+    <item row="0" column="3">
      <widget class="QLineEdit" name="lineEditNombre">
       <property name="font">
        <font>
-        <weight>75</weight>
-        <bold>true</bold>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="readOnly">
@@ -501,24 +390,158 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Nombre</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <zorder>widget_2</zorder>
-  <zorder>lineArea_2</zorder>
-  <zorder>tableWidgetHorariosDisponibles</zorder>
-  <zorder>lineCitas</zorder>
-  <zorder>labelCitasDisponibles</zorder>
-  <zorder>comboBoxHorariosDisponibles</zorder>
-  <zorder>labelArea_2</zorder>
-  <zorder>lineArea_3</zorder>
-  <zorder>labelCita</zorder>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>21</x>
+     <y>191</y>
+     <width>691</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>Fin Jornada Mañana</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QDateTimeEdit" name="dateTimeEditInicioT">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_7">
+      <property name="text">
+       <string>Inicio Jornada Mañana</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QDateTimeEdit" name="dateTimeEditFinM">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>Inicio Jornada Tarde</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5">
+     <widget class="QLineEdit" name="lineEditTiempoCita">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>Fin Jornada Tarde</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QDateTimeEdit" name="dateTimeEditFinT">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="4">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Tiempo de Cita                  </string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QDateTimeEdit" name="dateTimeEditInicioM">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="5">
+     <widget class="QPushButton" name="pushButtonGenerarHorario">
+      <property name="text">
+       <string>Generar Horarios Mes</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QTableWidget" name="tableWidgetHorario">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>320</y>
+     <width>691</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string>Identificacion Horario</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Fecha</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Vacante</string>
+    </property>
+   </column>
+  </widget>
   <zorder>layoutWidget</zorder>
+  <zorder>widget_2</zorder>
   <zorder>label</zorder>
-  <zorder>comboBoxTipoSolicitud</zorder>
-  <zorder>pushButtonCancelar</zorder>
-  <zorder>pushButtonAsignar</zorder>
-  <zorder>comboBoxTipoSolicitud</zorder>
-  <zorder>labelHorario</zorder>
+  <zorder>label_3</zorder>
+  <zorder>line_2</zorder>
+  <zorder>pushButtonEliminarRegistro</zorder>
+  <zorder>line_3</zorder>
+  <zorder>label_6</zorder>
+  <zorder>line_4</zorder>
+  <zorder>comboBox</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>pushButtonConsultarMedico</zorder>
+  <zorder>tableWidgetHorario</zorder>
  </widget>
  <resources/>
  <connections/>
