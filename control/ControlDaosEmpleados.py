@@ -34,12 +34,38 @@ class ControlDaosEmpleados():
 	#============================== CONSULTAR ENFERMERA =========================
 	def consultarDatosEnfermera (self, identificacion):
 		enfe = self.daoEnf.consultarEnfermera(identificacion)
-		print "tipo de lo qeu esta retoranndo"
-		print type( enfe )
 		if enfe is 1:
 			print "NO RESULTADOS!"
 		if isinstance(enfe, Enfermera):
-			print "CONSULTA EXITOSA!"
+			
+			# Datos personales
+			e = [ str(enfe.get_identificacion()) ]
+			e.append( enfe.get_nombre() )
+			e.append( enfe.get_direccion() )
+			e.append( enfe.get_telefono())
+			# Datos de empleado
+			e.append( str(enfe.get_codigo_area()) )
+			e.append( enfe.get_email() )
+			e.append( enfe.get_salario() )
+			e.append( str(enfe.get_id_jefe()) )
+			# Datos Enfermera
+			e.append( str(enfe.get_anhos_experiencia()) )
+
+			return e
 		if isinstance(enfe, Exception):
 			mostrarReturn(enfe)
 	#============================================================================
+
+	#============================ INSERTAR MEDICO ===============================
+	# def insertarMedico(self, identificacion, nombre, direccion, telefono,
+ #    codigo_area, email, salario, id_jefe, especialidad, universidad,
+ #    num_licencia):
+ #        medico = Medico(identificacion, nombre, direccion, telefono,
+ #        codigo_area, email, salario, id_jefe, especialidad, universidad,
+ #        num_licencia)
+ #        insertarMedico = self.daoMedico.guardarMedico(medico)
+ #        if insertarMedico is 0:
+ #            print "INSERCION EXITOSA!"
+ #        if isinstance(insertarMedico, Exception):
+ #            mostrarReturn(insertarMedico)
+ #    #============================================================================

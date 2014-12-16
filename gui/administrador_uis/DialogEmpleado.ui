@@ -482,11 +482,6 @@ color: rgb(255, 255, 255);</string>
        </property>
        <item>
         <property name="text">
-         <string/>
-        </property>
-       </item>
-       <item>
-        <property name="text">
          <string>Enfermera                                         </string>
         </property>
        </item>
@@ -545,13 +540,6 @@ color: rgb(255, 255, 255);</string>
      </item>
     </layout>
    </widget>
-   <zorder>lineDatosPersonales</zorder>
-   <zorder>labelDatosPersonales</zorder>
-   <zorder>widgetTipoEmpleado</zorder>
-   <zorder>layoutWidget</zorder>
-   <zorder>labelDatosPersonales_2</zorder>
-   <zorder>pushButtonCancelar</zorder>
-   <zorder>layoutWidget</zorder>
   </widget>
  </widget>
  <tabstops>

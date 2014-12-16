@@ -49,7 +49,6 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		#Configuracion de la interfaz
 		self.setupUi( self )
 
-
 		#=========================================> VARIABLES
 		self.controladorDaosEmpleados = controlador
 		self.tipo_operacion = tipo_operacion
@@ -67,6 +66,8 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos )
 
 		#==========================================>MODIFICACIONES
+		self.mostrarTipoEmpleado(0)
+
 		# NUEVO EMPLEADO
 		if self.tipo_operacion is 1:			
 
@@ -81,16 +82,16 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			self.pushButtonInsertar.setText("Actualizar")
 			self.pushButtonConsultar.show()
 
+		# ELIMINAR EMPLEADO
 
 	#=============================================> METODOS
 	def mostrarTipoEmpleado( self, indice ):
-
-		if( indice == 1 ):
+		if( indice == 0 ):
 
 			self.widgetTipoEmpleadoEnfermera.show()
 			self.widgetTipoEmpleadoMedico.hide()
 		
-		elif( indice == 2 ):
+		elif( indice == 1 ):
 			
 			self.widgetTipoEmpleadoMedico.show()
 			self.widgetTipoEmpleadoEnfermera.hide()
@@ -99,37 +100,42 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 	# CAMBIAR FUNCION DEL BOTON DEPENDIENDO LA VENTANA
 	# OPERACION EN DB: INSERT, DELETE, UPDATE
 	def realizarOperacionEmpleado( self ):
-
-		self.mostrarComboBoxTipoEmpleado()
+		self.nombre = str ( self.lineEditNombre.text() )
+		self.direccion = str( self.lineEditDireccion.text() )
+		self.telefono = str ( self.lineEditTelefono.text() )
+		self.email = str ( self.lineEditEmail.text() )
+		self.salario = str ( self.lineEditSalario.text() )
+		self.codigo_area = str( self.lineEditCodigoArea.text() )
+		self.id_jefe = str( self.lineEditJefe.text() )
+		self.accionPorTipoEmpleado()
 
 	# CONSULTAR EL EMPLEADO
 	def consultarEmpleado( self ):
-		#self.mostrarComboBoxTipoEmpleado()
 		identificacion = str( self.lineEditIdentificacion.text() )
 		resultado = self.controladorDaosEmpleados.consultarDatosEnfermera( identificacion )
 
-	#CAPTURA DESPUES DEL COMBO
-	def mostrarComboBoxTipoEmpleado( self ):
-		# INDICE (0, NADA) (1, ENFERMERA) (2, MEDICO)
+		if type(resultado) is list:
+			self.lineEditIdentificacion.setText( resultado[0] )
+			self.lineEditNombre.setText( resultado[1] )
+			self.lineEditDireccion.setText( resultado[2] )
+			self.lineEditTelefono.setText( resultado[3] )
+			self.lineEditCodigoArea.setText( resultado[4] )
+			self.lineEditEmail.setText( resultado[5] )
+			self.lineEditSalario.setText( resultado[6] )
+			self.lineEditJefe.setText( resultado[7] )
+		if type(resultado) is None:
+			"Sin resultados!"
+
+	def accionPorTipoEmpleado( self ):
+		# INDICE 0: ENFERMERA  INDICE 0: MEDICO
 		indice =  self.comboBoxTipoEmpleado.currentIndex() 
 		
 		# INDICE = 1 -> ENFERMERA
-		if indice is 1:
-			nombre = str ( self.lineEditNombre.text() )
-			direccion = str( self.lineEditDireccion.text() )
-			telefono = str ( self.lineEditTelefono.text() )
-			email = str ( self.lineEditEmail.text() )
-			salario = str ( self.lineEditSalario.text() )
-
+		if indice is 0:
 			anios_experiencia = str( self.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.text() )
+			# ATRUBUTOS PARA HABILIDADES:
 			numero_filas = self.widgetTipoEmpleadoEnfermera.tableWidgetHabilidades.rowCount()
-			# REVISAR ESTO -------------------------
 			arreglo_habilidades = self.widgetTipoEmpleadoEnfermera.habilidadesEnfermera()
-			# --------------------------------------
-	
-			# cargo = str(self.lineEditCargo.text())
-			codigo_area = str( self.lineEditCodigoArea.text() )
-			id_jefe = str( self.lineEditJefe.text() )
 			
 			# INSERTAR ENFERMERA
 			if self.tipo_operacion is 1:
@@ -142,22 +148,16 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			if self.tipo_operacion is 2:
 				pass
 
-			# BORRAR ESTA BOBADA --------------------------------------------------
-			# BUSCAR ENFERMERA
-			if self.tipo_operacion is 3:
-				pass
 
+		# INDICE = 2 -> MEDICO
+		if indice is 1:
 
-		# # INDICE = 2 -> MEDICO
-		if indice is 2:
-
-			especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
-			universidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.text()
-			numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
+			self.especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
+			self.universidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.text()
+			self.numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
 			
 			#INSERTE DATOS A LA BASE DE DATOS DE MEDICOS
 			if self.tipo_operacion is 2:
-				#Cuando la opeacion de de insercion 
 				pass
 
 			else:
