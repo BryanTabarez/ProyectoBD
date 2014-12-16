@@ -1,7 +1,8 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
-from componentes_administrador import DialogInformacion
+from componentes_administrador import *
+
 
 #=======================================================================================================================
 # INTEGRANTES:
@@ -22,19 +23,21 @@ class DialogPaciente( QDialog, D_Paciente_class ):
 	
 	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
 
+		
 		#Constructor padre
 		QDialog.__init__( self, parent )
 		#Consfiguracion interfaz
 		self.setupUi( self )
 		
 		#=============================================> VARIABLES 
-		self.controladorPaciente = controlador
+		self.dialogInformacion = DialogInformacion( self )
+		self.controladorPaciente = controlador 
 		self.nuevo_registro = nuevo_registro		
 
 		#============================================> SENIALES Y SLOTS 
 		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarPaciente )
 		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos )
-		self.connect( self.pushButtonConsultar, SIGNAL( "clicked" ), self.consultar ) 
+		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar ) 
 		
 		#============================================> MODIFICACIONES 
 
@@ -70,12 +73,18 @@ class DialogPaciente( QDialog, D_Paciente_class ):
 		#AQUI SE INSERTA EL PACIENTE A LA BASE DE DATOS
 		if self.nuevo_registro:
 			#EN CASO DE QUE SEA UN NUEVO REGISTRO 
-			pass
+			resultado = self.controladorPaciente.ingresarPaciente( identificacion, nombre, direcccion, telefono, 
+				fecha_nacimiento, actividad_economica, nss )
+
+			self.dialogInformacion.showMensaje( "Ingresar Paciente", resultado )
 			
 		else:
 			#EN CASO DE QUE SEA UNA ACTUALIZACION
-			pass
-		
+			resultado = self.controladorPaciente.modificarPacinete(identificacion, nombre, direcccion, telefono, 
+				fecha_nacimiento, actividad_economica, nss )
+			
+			self.dialogInformacion.showMensaje( "Ingresar Paciente", resultado )
+
 		self.limpiarCampos()
 
 	def limpiarCampos( self ):
@@ -88,10 +97,28 @@ class DialogPaciente( QDialog, D_Paciente_class ):
 		self.lineEditNumeroDeSeguridadSocial.setText( "" )
 
 	def consultar( self ):
+		id_paciente = str( self.lineEditIdentificacion.text() )
+		datos_paciente = self.controladorPaciente.consultar( id_paciente )
+		
+		if datos_paciente == 0:
 
-		#AQUI VA LA CONSULTA ACERCA DE DEL PACIENTE
-		pass
+			self.dialogInformacion.showMensaje( "Consultar Paciente", 
+				"El paciente no se encoentra en la base de datos" )
 
+		else:	
+		
+			self.lineEditIdentificacion.setText( str( datos_paciente[0] ) )
+			self.lineEditNombre.setText( datos_paciente[1] )
+			self.lineEditDireccion.setText( datos_paciente[2] )
+			self.lineEditTelefono.setText( datos_paciente[3] )
+			date = datos_paciente[4]
+			anio = int(date.strftime("%Y"))
+			mes = int(date.strftime("%m"))
+			dia = int(date.strftime("%d"))
+			fecha = QDate(2014,5,12)
+			self.dateEditFechaNacimiento.setDate(fecha)
+			self.lineEditActividadEconomica.setText( datos_paciente[5] )
+			self.lineEditNumeroDeSeguridadSocial.setText( str(datos_paciente[6]) )
 
 
 
@@ -102,7 +129,7 @@ W_ListarPacientes_class , W_LsitarPacientesBase_class = uic.loadUiType( 'gui/enf
 
 class WidgetListarPacientes( QWidget, W_ListarPacientes_class ):
 
-	def __init__( self, parent=None ):
+	def __init__( self, controlador=None, parent=None ):
 
 		#Constructor padre
 		QWidget.__init__( self, parent )
@@ -112,18 +139,36 @@ class WidgetListarPacientes( QWidget, W_ListarPacientes_class ):
 
 
 		#======================================= VARIABLES
-		self.controladorPaciente = " " #AQUI VA EL CONTROLADOR DE PACIENTE
+		self.controladorPaciente = controlador
 
 	#==================================================> METODOS 
 
 	def actualizar( self ):
 
-		#AQUI SE LISTAN LOS PACIENTES DE LA BASE DE DATOS
-		#self.tableWidget.clearContents()
-		#self.tableWidget.insertRow( 0 )
-		#self.tableWidget.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
-		#self.tableWidget.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
-		pass
+
+		matriz_pacientes = self.controladorPaciente.listarPacientes()
+
+		if matriz_pacientes == 0:
+			self.dialogInformacion( "Listar Pacientes",
+				"No hay regisros de pacientes en la base de datos" )
+		else:	
+
+			for i in range(0, self.tableWidgetPacientes.rowCount()):
+				self.tableWidgetPacientes.removeRow(0)
+			
+			for row in matriz_pacientes:
+				
+				self.tableWidgetPacientes.insertRow( 0 )
+				self.tableWidgetPacientes.setItem( 0, 0, QTableWidgetItem( str( row[0] ) ) )
+				self.tableWidgetPacientes.setItem( 0, 1, QTableWidgetItem( row[1] ) )
+				self.tableWidgetPacientes.setItem( 0, 2, QTableWidgetItem( row[2] ) )
+				self.tableWidgetPacientes.setItem( 0, 3, QTableWidgetItem( row[3] ) )
+				self.tableWidgetPacientes.setItem( 0, 4, QTableWidgetItem( row[4].strftime(("%d/%m/%y")) ) )
+				self.tableWidgetPacientes.setItem( 0, 5, QTableWidgetItem( row[5] ) )
+				self.tableWidgetPacientes.setItem( 0, 6, QTableWidgetItem( str( row[6] ) ) )
+				
+
+
 
 #====================================================> CAMAS <==========================================================
 
@@ -389,3 +434,4 @@ class DialogAgendaMedico( QDialog,  D_Agenda_Medico_class):
 				"Por favor selecciones el horario que desea eliminar de la tabla" )
 
 
+	
