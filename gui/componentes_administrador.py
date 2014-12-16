@@ -41,7 +41,7 @@ D_Empleado_class , D_Emeplado_Base_class = uic.loadUiType( 'gui/administrador_ui
 class DialogEmpleado( QDialog, D_Empleado_class ):
 
 
-	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
+	def __init__( self, tipo_operacion=1, controlador=None, parent=None ):
 
 
 		#Constructor padre
@@ -49,10 +49,9 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		#Configuracion de la interfaz
 		self.setupUi( self )
 
-
 		#=========================================> VARIABLES
-		self.controaldorEmpleado = controlador
-		self.nuevo_regsitro = nuevo_registro
+		self.controladorDaosEmpleados = controlador
+		self.tipo_operacion = tipo_operacion
 		
 		#=========================================> WIDGETS 
 		self.widgetTipoEmpleadoEnfermera = WidgetTipoEmpleadoEnfermera( self.widgetTipoEmpleado )
@@ -61,30 +60,32 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		self.widgetTipoEmpleadoMedico.hide()
 
 		#=========================================> SENIALES Y SLOTS 
-		self.connect( self.comboBoxTipoEmpleado, SIGNAL( "currentIndexChanged(int)" ), self.mostarTipoEmpleado )
-		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarEmpleado )
-		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
+		self.connect( self.comboBoxTipoEmpleado, SIGNAL( "currentIndexChanged(int)" ), self.mostrarTipoEmpleado )
+		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.realizarOperacionEmpleado )
+		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultarEmpleado )
 		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos )
 
 		#==========================================>MODIFICACIONES
-		
-		if self.nuevo_regsitro:			
+		self.mostrarTipoEmpleado(0)
+
+		# NUEVO EMPLEADO
+		if self.tipo_operacion is 1:			
 
 			self.setWindowTitle("Nuevo Empleado")
 			self.pushButtonInsertar.setText("Insertar")
 			self.pushButtonConsultar.hide()
 
-		else:			
+		# MODIFICAR EMPLEADO
+		if self.tipo_operacion is 2:
 
 			self.setWindowTitle("Actualizar Empleado")
 			self.pushButtonInsertar.setText("Actualizar")
 			self.pushButtonConsultar.show()
 
+		# ELIMINAR EMPLEADO
 
-	
 	#=============================================> METODOS
-	def mostarTipoEmpleado( self, indice ):
-
+	def mostrarTipoEmpleado( self, indice ):
 		if( indice == 0 ):
 
 			self.widgetTipoEmpleadoEnfermera.show()
@@ -96,52 +97,72 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			self.widgetTipoEmpleadoEnfermera.hide()
 
 
-	def insertarActualizarEmpleado( self ):
+	# CAMBIAR FUNCION DEL BOTON DEPENDIENDO LA VENTANA
+	# OPERACION EN DB: INSERT, DELETE, UPDATE
+	def realizarOperacionEmpleado( self ):
+		self.nombre = str ( self.lineEditNombre.text() )
+		self.direccion = str( self.lineEditDireccion.text() )
+		self.telefono = str ( self.lineEditTelefono.text() )
+		self.email = str ( self.lineEditEmail.text() )
+		self.salario = str ( self.lineEditSalario.text() )
+		self.codigo_area = str( self.lineEditCodigoArea.text() )
+		self.id_jefe = str( self.lineEditJefe.text() )
+		self.accionPorTipoEmpleado()
 
+	# CONSULTAR EL EMPLEADO
+	def consultarEmpleado( self ):
 		identificacion = str( self.lineEditIdentificacion.text() )
-		nombre = str ( self.lineEditNombre.text() )
-		direccion = str( self.lineEditDireccion.text() )
-		telefono = str ( self.lineEditTelefono.text() )
-		email = self.lineEditEmail.text()
-		salario = self.lineEditEmail.text()
-		cargo = self.lineEditCargo.text()
-		codigo_area = self.comboBoxCodigoArea.currentText()
-		codigo_jefe = self.comboBoxCodigoJefe.currentText()
+		resultado = self.controladorDaosEmpleados.consultarDatosEnfermera( identificacion )
 
+		if type(resultado) is list:
+			self.lineEditIdentificacion.setText( resultado[0] )
+			self.lineEditNombre.setText( resultado[1] )
+			self.lineEditDireccion.setText( resultado[2] )
+			self.lineEditTelefono.setText( resultado[3] )
+			self.lineEditCodigoArea.setText( resultado[4] )
+			self.lineEditEmail.setText( resultado[5] )
+			self.lineEditSalario.setText( resultado[6] )
+			self.lineEditJefe.setText( resultado[7] )
+		if type(resultado) is None:
+			"Sin resultados!"
+
+	def accionPorTipoEmpleado( self ):
+		# INDICE 0: ENFERMERA  INDICE 0: MEDICO
 		indice =  self.comboBoxTipoEmpleado.currentIndex() 
-		if indice == 0:
-
-			anios_experiencia = self.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.text()
+		
+		# INDICE = 1 -> ENFERMERA
+		if indice is 0:
+			anios_experiencia = str( self.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.text() )
+			# ATRUBUTOS PARA HABILIDADES:
 			numero_filas = self.widgetTipoEmpleadoEnfermera.tableWidgetHabilidades.rowCount()
 			arreglo_habilidades = self.widgetTipoEmpleadoEnfermera.habilidadesEnfermera()
 			
-			#INSERTE DATOS A LA BASE DE DATOS DE ENFERMERAS 
-			if self.nuevo_regsitro:
-				#Cuando la opeacion de de insercion 
+			# INSERTAR ENFERMERA
+			if self.tipo_operacion is 1:
+				self.controladorDaosEmpleados.insertarEnfermera( self.identificacion, nombre, direccion, telefono,
+					codigo_area, email, salario, id_jefe, anios_experiencia, [1, 2] )
+				# identificacion, nombre, direccion, telefono, codigo_area,
+				#     		email, salario, id_jefe, anhos_experiencia, habilidades
+			
+			# ACTUALIZAR/MODIFICAR ENFERMERA
+			if self.tipo_operacion is 2:
 				pass
 
-			else:
-				#Cuando la operacion es de actualizacion 
-				
-				pass
 
-		else:
+		# INDICE = 2 -> MEDICO
+		if indice is 1:
 
-			especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
-			universidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.text()
-			numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
+			self.especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
+			self.universidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.text()
+			self.numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
 			
 			#INSERTE DATOS A LA BASE DE DATOS DE MEDICOS
-			if self.nuevo_regsitro:
-				#Cuando la opeacion de de insercion 
+			if self.tipo_operacion is 2:
 				pass
 
 			else:
 				#Cuando la operacion es de actualizacion
 				pass
-
-		self.limpiarCampos()
-
 
 	def limpiarCampos( self ):
 
@@ -163,12 +184,6 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		self.widgetTipoEmpleadoMedico.lineEditEspecialidad.setText("")
 		self.widgetTipoEmpleadoMedico.lineEditUniversidad.setText("")
 		self.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.setText("")
-
-
-	def consultar( self ):
-
-		#AQUI VA LA CONSULTA DEL CODIGO DEL EMPLEADO
-		pass
 
 
 #============================================> TIPO EMPLEADO ENFERMERA <================================================
@@ -307,7 +322,7 @@ D_Area_class , D_Area_Base_class = uic.loadUiType( 'gui/administrador_uis/Dialog
 
 class DialogArea( QDialog, D_Area_class ):
 
-	def __init__( self, nuevo_registro=True, controlador=None, parent=None ):
+	def __init__( self, tipo_operacion=1, controlador=None, parent=None ):
 
 		#Constructor padre
 		QDialog.__init__( self, parent )
@@ -316,12 +331,13 @@ class DialogArea( QDialog, D_Area_class ):
 
 		#================================================> VARIABLES
 		self.controladorArea = controlador 
-		self.nuevo_registro = nuevo_registro
+		self.tipo_operacion = tipo_operacion
 
 		
 		#=================================================> MODIFICACIONES 
 
-		if self.nuevo_registro:
+		# OPERACION --> NUEVA AREA
+		if tipo_operacion is 1:
 
 			self.setWindowTitle( "Nueva Area" )
 			self.pushButtonInsertar.setText( "Insertar" )
@@ -329,36 +345,48 @@ class DialogArea( QDialog, D_Area_class ):
 			self.lineEditCodigo.setText( "Automatico" )
 			self.lineEditCodigo.setReadOnly(True)
 
-		else:
+		# OPERACION --> MODIFICAR AREA
+		if tipo_operacion is 2:
 
 			self.setWindowTitle( "Modificar Area" )
-			self.pushButtonInsertar.setText( "Actualizar" )
+			self.pushButtonInsertar.setText( "Modificar" )
 			self.pushButtonConsultar.show()
-			self.lineEditCodigo.setText( "" )
-			self.lineEditCodigo.setReadOnly(False)
+			# self.lineEditCodigo.setText( "" )
+			self.lineEditCodigo.setReadOnly(True)
+
+		# OPERACION --> ELIMINAR AREA
+		if tipo_operacion is 3:
+
+			self.setWindowTitle( "Eliminar Area" )
+			self.pushButtonInsertar.setText( "Eliminar" )
+			self.pushButtonConsultar.show()
+			# self.lineEditCodigo.setText( "" )
+			self.lineEditCodigo.setReadOnly(True)		
 
 
 		#=================================================> SENIALES Y SLOTS 
-		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.insertarActualizarArea )
-		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos  )
+		self.connect( self.pushButtonInsertar, SIGNAL( "clicked()" ), self.realizarOperacionArea )
+		#self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos  )
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
 
 	#====================================================> METODOS
+	# INSERTAR, MODIFICAR, ELIMINAR
+	def realizarOperacionArea( self ):
 
-	def insertarActualizarArea( self ):
-
-		codigo = str(self.lineEditCodigo.text())
 		nombre = str(self.lineEditNombre.text())
 		descripcion = str(self.lineEditDescripcion.text())
+		codigo = str(self.lineEditCodigo.text())
 
-		#AQUI SE INSERTA LA INFORMACION A LA BASE DE DATOS
-		if self.nuevo_registro:
-			self.controladorArea.insertarArea(nombre, descripcion)
-			#dialogArea.exec_()
+		# AQUI SE INSERTA LA INFORMACION A LA BASE DE DATOS
+		if self.tipo_operacion is 1:
+			self.controladorArea.insertarArea(codigo, nombre, descripcion)
 			self.close()
-		else:
-			#EN CASO DE QUE SEA UNA ACTUALIZACION
-			pass
+		if self.tipo_operacion is 2:
+			self.controladorArea.actualizarArea(codigo, nombre, descripcion)
+			self.close()
+		if self.tipo_operacion is 3:
+			self.controladorArea.eliminarArea(codigo)
+			self.close()
 
 	def limpiarCampos( self ):
 
@@ -374,10 +402,10 @@ class DialogArea( QDialog, D_Area_class ):
 			self.lineEditDescripcion.setText( "" )
 
 	def consultar( self ):
-
-		#AQUI SE CONSULTA EL CODIGO DEL AREA 
-		pass
-
+			nombre = str(self.lineEditNombre.text())
+			codigo, descripcion = self.controladorArea.buscarArea(nombre)
+			self.lineEditDescripcion.setText(descripcion)
+			self.lineEditCodigo.setText(codigo)
 		
 #===========================================> LISTAR AREAS <============================================================
 

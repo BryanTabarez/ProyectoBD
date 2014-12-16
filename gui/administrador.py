@@ -50,7 +50,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		
 		#=====================================================> VARIABLES 
 		# PERSONAL --> EMPLEADO
-		self.controladorPersonal = " " #AQUI VA EL CONTROLADOR NO CAMBIAR NOMBRE DE VARIABLE  
+		self.controladorPersonal = ControlDaosEmpleados(conexion)
 		self.controladorArea = ControlDaoArea(conexion)
 		self.controladorCama = " "
 		self.controladorMedicamento = " "
@@ -105,7 +105,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		self.connect( self.commandLinkButtonNuevaArea, SIGNAL( "clicked()" ),  self.nuevaArea )
 		self.connect( self.commandLinkButtonModificarArea, SIGNAL( "clicked()" ), self.modificarArea )
 		self.connect( self.commandLinkButtonEliminarArea, SIGNAL( "clicked()" ), self.eliminarArea )
-		self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
+		# self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
 		#===========================================> CAMAS 
 		self.connect( self.commandLinkButtonNuevaCama, SIGNAL("clicked()"), self.nuevaCama )
 		self.connect( self.commandLinkButtonModificarCama, SIGNAL("clicked()"), self.modificarCama )
@@ -138,18 +138,18 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 
 	#==========================================> PERSONAL
-	#Metodo: nuevoEmpleado
+	#Metodo: INSERTAR NUEVO EMPLEADO
 	#Funcion: Desplieqga el dialogo con la interfaz para ingresar un nuevo empleado
 	def nuevoEmpleado( self ):
 		
-		dialogEmpleado = DialogEmpleado( controlador=self.controladorPersonal,  parent=self )
+		dialogEmpleado = DialogEmpleado( tipo_operacion=1, controlador=self.controladorPersonal,  parent=self )
 		dialogEmpleado.exec_()
 
 	#Metodo: modificarEmpleado
 	#Funcion: Despliega el dialogo con la interfaz que permite modificar y eliminar un empleado
 	def modificarEmpleado( self ):
 
-		dialogEmpleado = DialogEmpleado( nuevo_registro=False,  controlador=self.controladorPersonal, parent=self )
+		dialogEmpleado = DialogEmpleado( tipo_operacion=2,  controlador=self.controladorPersonal, parent=self )
 		dialogEmpleado.exec_()
 
 	#Metodo: eliminarEmpleado
@@ -193,31 +193,36 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#Funcion: Despliega la interfaz para la creacion de areas en el hospital
 	def nuevaArea( self ):
 
-		dialogArea = DialogArea( controlador=self.controladorArea ,parent=self )
+		dialogArea = DialogArea( tipo_operacion=1, controlador=self.controladorArea ,parent=self )
 		dialogArea.exec_()
-
 
 	#Metodo: modificarArea
 	#Funcion: Despliega la interfaz que permite la modificacion de un area
 	def modificarArea( self ):
 
-		dialogArea = DialogArea( nuevo_registro=False, controlador=self.controladorArea ,parent=self )
+		dialogArea = DialogArea( tipo_operacion=2, controlador=self.controladorArea ,parent=self )
 		dialogArea.exec_()
 
-	#Metodo: eliminarArea
-	#Funcion: permite eliminar areas de la clinica de la base de datos
+
 	def eliminarArea( self ):
 
-		fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
-		if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
+		dialogArea = DialogArea( tipo_operacion=3, controlador=self.controladorArea ,parent=self )
+		dialogArea.exec_()	
+
+	# #Metodo: eliminarArea
+	# #Funcion: permite eliminar areas de la clinica de la base de datos
+	# def eliminarArea( self ):
+
+	# 	fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
+	# 	if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
 			
-			self.dialogInformacion.showMensaje( "Eliminar Area", 
-				"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
+	# 		self.dialogInformacion.showMensaje( "Eliminar Area", 
+	# 			"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
 			
-		else:
-			cod_area_eliminar = self.widgetListarAreas.tableWidgetAreas.item(fila_seleccinada_tabla, 0).text()
-			print( "eliminar area: " + cod_area_eliminar )
-			#AQUI SE ELIMINA EL AREA CON EL CODIGO RECIBIDO
+	# 	else:
+	# 		cod_area_eliminar = self.widgetListarAreas.tableWidgetAreas.item(fila_seleccinada_tabla, 0).text()
+	# 		print( "eliminar area: " + cod_area_eliminar )
+	# 		#AQUI SE ELIMINA EL AREA CON EL CODIGO RECIBIDO
 
 
 
