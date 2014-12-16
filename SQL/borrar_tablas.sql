@@ -1,3 +1,5 @@
+DROP TRIGGER asociar_historia ON  Paciente CASCADE;
+
 DROP TABLE IF EXISTS Area CASCADE;
 DROP TABLE IF EXISTS Cama CASCADE;
 DROP TABLE IF EXISTS Persona CASCADE;
@@ -24,6 +26,11 @@ DROP SEQUENCE IF EXISTS seq_cod_area;
 DROP SEQUENCE IF EXISTS seq_num_cama;
 DROP SEQUENCE IF EXISTS seq_cod_habilidad;
 DROP SEQUENCE IF EXISTS seq_num_historia;
-DROP SEQUENCE IF EXISTSseq_id_horario;
+DROP SEQUENCE IF EXISTS seq_id_horario;
 DROP SEQUENCE IF EXISTS seq_num_registro;
 DROP SEQUENCE IF EXISTS seq_cod_causa;
+DROP SEQUENCE IF EXISTS seq_cod_medicamento;
+
+DROP FUNCTION IF EXISTS Asociar_Historia();
+
+--DROP TRIGGER  ON Paciente CASCADE;

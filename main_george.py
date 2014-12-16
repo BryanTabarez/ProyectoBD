@@ -44,17 +44,19 @@ def pruebaDaoCama(conexion):
         #mostrarReturn(borradoCama)
     pass
 
+def pruebaDaoFormulaMedica(conexion):
+    ##daoFormulaMedica = DaoFormulaMedica(conexion)
 
-    def pruebaDaoFormulaMedica(conexion):
-        daoFormulaMedica = DaoFormulaMedica(conexion)
+    ##Prueba de guardar Formula medica
+    ##fm = FormulaMedica()
 
-        ##Prueba de guardar Formula medica
-        fm = FormulaMedica()
+    ##Prueba consultar formula medica
+    pass
 
 
 def main():
     fachada = FachadaDB()
-    conexion = fachada.obtenerConexion()
+    #conexion = fachada.obtenerConexion()
 
     #pruebaDaoCama(conexion)
 

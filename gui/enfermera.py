@@ -2,13 +2,20 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
 
+#from componentes_enfermera import *
+
+from componentes_administrador import WidgetListarCamas
+
 from componentes_enfermera import DialogPaciente
 from componentes_enfermera import WidgetListarPacientes
 
-from componentes_enfermera import DialogAsignarCama
+from componentes_enfermera import DialogCama
 from componentes_administrador import WidgetListarCamas
 
+from componentes_enfermera import DialogCita
+
 from componentes_administrador import DialogInformacion
+from componentes_enfermera import DialogAgendaMedico
 
 
 #=======================================================================================================================
@@ -46,6 +53,8 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		#================================================> VARIABLES 
 		self.controladorPaciente = "controladorPacientes" #AQUI VAN LOS CONTROLADORES
 		self.controladorCama = "controladorCama"
+		self.controladorCita = "controladorCita"
+		self.controladorAgenda = "controladorAgenda"
 		#================================================> WIDGETS  
 		self.dialogInformacion = DialogInformacion( self )
 		self.widgetListarPacientes = WidgetListarPacientes( self.widgetCuerpo )
@@ -65,7 +74,12 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		#===================================================> CAMAS 
 		self.connect( self.commandLinkButtonAsignarCama, SIGNAL( "clicked()" ), self.asignarCama )
 		self.connect( self.commandLinkButtonLiberarCama, SIGNAL( "clicked()" ), self.liberarCama )
-		#===================================================> CAMAS 
+		#====================================================> CITAS
+		self.connect( self.commandLinkButtonAsignarCita, SIGNAL( "clicked()" ), self.asignarCita )
+		self.connect( self.commandLinkButtonCancelarCita, SIGNAL( "clicked()" ), self.cancelarCita )
+		#===================================================> AGENDA MEDICO
+		self.connect( self.commandLinkButtonAgendarCita, SIGNAL( "clicked()" ), self.agendaMedico )
+
 
 
 	#===================================================> METODOS <=====================================================
@@ -105,14 +119,14 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 	#===================================================> CAMAS 
 	def asignarCama( self ):
 
-		dialogAsignarCama = DialogAsignarCama( 
+		dialogAsignarCama = DialogCama( 
 			controladorPaciente= self.controladorPaciente,
 			controladorCama=self.controladorCama, parent=self )
 		dialogAsignarCama.exec_()
 
 	def liberarCama( self ):
 
-		dialogLiberarCama = DialogAsignarCama( asignar=False, 
+		dialogLiberarCama = DialogCama( asignar=False, 
 			controladorPaciente= self.controladorPaciente,
 			controladorCama=self.controladorCama, parent=self )
 		dialogLiberarCama.exec_()
@@ -123,11 +137,25 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		self.widgetListarCamas.show()
 
 
-	#===================================================> CITAS <=======================================================
-		
+	#===================================================> CITAS
+
+	def asignarCita( self ):
+
+		dialogAsignarCita = DialogCita( controlador=self.controladorCita, parent=self )
+		dialogAsignarCita.exec_()
 
 
+	def cancelarCita( self ):
+
+		dialogCancelarCita = DialogCita( nuevo_registro=False, controlador=self.controladorCita, parent=self )
+		dialogCancelarCita.exec_() 
 
 
+	#======================================================> AGENDA MEDICO
+	
+	def agendaMedico( self ):
+
+		dialogAgenda = DialogAgendaMedico( controlador=self.controladorAgenda, parent=self )
+		dialogAgenda.exec_()
 
 

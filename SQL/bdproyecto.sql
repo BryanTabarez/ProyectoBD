@@ -173,7 +173,7 @@ CREATE TABLE Horario_Consulta
 	id_horario INTEGER NOT NULL,
 	id_medico INTEGER NOT NULL,
 	fecha_hora TIMESTAMP NOT NULL,
-	vacante BOOLEAN DEFAULT TRUE,
+	disponible BOOLEAN DEFAULT TRUE,
 
 	CONSTRAINT horario_pk PRIMARY KEY (id_horario),
 
@@ -188,7 +188,7 @@ CREATE TABLE Cita
 	id_horario INTEGER NOT NULL,
 	numero_historia INTEGER NOT NULL,
 	asistencia BOOLEAN DEFAULT FALSE,
-	tipo_solicitud VARCHAR(20) NOT NULL,
+	tipo_solicitud VARCHAR(50) NOT NULL,
 
 	CONSTRAINT cita_pk PRIMARY KEY (id_horario, numero_historia),
 
@@ -312,7 +312,7 @@ ALTER TABLE Area
 ADD CONSTRAINT uniq_area_nombre
 UNIQUE (codigo, nombre);
 
-ALTER TABLE Horario_Consulta
+ALTER TABLE Habilidad
 ADD CONSTRAINT uniq_habilidad_descripcion
 UNIQUE (codigo, descripcion);
 
