@@ -52,8 +52,8 @@ class DaoEnfermera():
                 cur.close()
                 return 1
             else:
-                cur.execute("""SELECT habilidad FROM Enfermera_habilidad WHERE
-                id_enfermera = %s""", (id,))
+                cur.execute("""SELECT codigo, descripcion FROM Enfermera_habilidad JOIN
+                    Habilidad ON codigo = habilidad WHERE id_enfermera = %s""", (id,))
                 habilidades = cur.fetchall()
                 enfermera = Enfermera(consulta[0], consulta[1], consulta[2],
                     consulta[3], consulta[4], consulta[5], consulta[6],
@@ -68,25 +68,35 @@ class DaoEnfermera():
     #==========================================================================
 
     #============================== UPDATE ====================================
-    # FALTA  PROBAR/CORREGIR ESTO
-    def modificarEnfermera(self, id, p):
-        cur = self.conn.cursor()
+    def modificarEnfermera(self, p):
+        try:
+            cur = self.conn.cursor()
 
-        sqlUpdate1 = """UPDATE Persona SET nombre = %s, direccion = %s,
-        telefono = %s WHERE identificacion = %s"""
+            sqlUpdate1 = """UPDATE Persona SET nombre = %s, direccion = %s,
+            telefono = %s WHERE identificacion = %s"""
 
-        sqlUpdate2 = """UPDATE Paciente SET fecha_nacimiento = %s,
-        actividad_economica = %s, num_seguridad_social = %s WHERE
-        identificacion = %s"""
+            sqlUpdate2 = """UPDATE Empleado SET codigo_area = %s,
+            email = %s, salario = %s, id_jefe = %s WHERE
+            identificacion = %s"""
 
-        cur.execute(sqlUpdate1, (p.get_nombre(), p.get_direccion(),
-        p.get_telefono(), id, ))
+            sqlUpdate3 = "UPDATE Enfermera SET anos_experiencia = %s WHERE identificacion = %s"
 
-        cur.execute(sqlUpdate2, (p.get_fecha_nacimiento(),
-        p.get_actividad_economica(), p.get_num_seg_social(), id, ))
 
-        self.conn.commit()
-        cur.close()
+            cur.execute(sqlUpdate1, (p.get_nombre(), p.get_direccion(),
+            p.get_telefono(), p.get_identificacion()))
+
+            cur.execute(sqlUpdate2, (p.get_codigo_area(),
+            p.get_email(), p.get_salario(), p.get_id_jefe(), p.get_identificacion() ))
+
+            cur.execute(sqlUpdate3, (p.get_anhos_experiencia(), p.get_identificacion() ))
+
+            self.conn.commit()
+            cur.close()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
     #==========================================================================
 
     #============================== DELETE ====================================

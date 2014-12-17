@@ -1,8 +1,16 @@
 from ControlDaoArea import ControlDaoArea
-
 from ControlDaoPaciente import ControlDaoPaciente
+from ControlDaoHabilidades import ControlDaoHabilidades
 
 from ControlDaosEmpleados import ControlDaosEmpleados
+
+#from ControlDaoMedico import ControlDaoMedico
+
+
+#from ControlDaosEmpleados import ControlDaoEnfermera
+#from ControlDaosEmpleados import ControlDaoMedico
+
+from ControlDaoMedicamento import ControlDaoMedicamento
 
 from ControlDaoCama import ControlDaoCama
 

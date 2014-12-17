@@ -13,6 +13,7 @@ class ControlDaoMedico():
     def __init__(self, conexion):
         self.daoMedico = DaoMedico(conexion)
 
+
     def insertarMedico(self, identificacion, nombre, direccion, telefono,
     codigo_area, email, salario, id_jefe, especialidad, universidad,
     num_licencia):
@@ -25,11 +26,15 @@ class ControlDaoMedico():
         if isinstance(insertarMedico, Exception):
             mostrarReturn(insertarMedico)
 
+
+
     def consultarMedico(self, id):
         consultarmedico = self.daoMedico.consultarMedico(id)
         if isinstance(consultarmedico, Exception):
             mostrarReturn(consultarmedico)
         return consultarmedico
+
+
 
     def modificarMedico(self, id, nombre, direccion, telefono,
         codigo_area, email, salario, id_jefe, especialidad, universidad,
@@ -43,6 +48,8 @@ class ControlDaoMedico():
         if isinstance(modificarmedico, Exception):
             mostrarReturn(modificarmedico)
 
+
+
     def borrarMedico(self, id):
         borrarmedico = self.daoMedico.borrarMedico(id)
         if borrarmedico is 0:
@@ -50,12 +57,3 @@ class ControlDaoMedico():
         if isinstance(borrarmedico, Exception):
             mostrarReturn(borrarmedico)
 
-    #====================== AURELIO =====================================
-
-    #================= OBTENER ESPECIALIDADES MEDICO ==========================
-    def listarEspecialidades( self ):
-
-        especialidades = self.daoMedico.listarEspecialidades()
-        return especialidades
-        
-    

@@ -1,4 +1,10 @@
 from administrador import InterfazAdministrador
+from login import InterfazIniciarSesion
+from enfermera import InterfazEnfermera
+from enfermera import *
+from componentes_enfermera import DialogPaciente
+from componentes_enfermera import *
+
 from componentes_administrador import DialogInformacion
 from componentes_administrador import DialogEmpleado
 from componentes_administrador import WidgetTipoEmpleadoEnfermera
@@ -6,30 +12,38 @@ from componentes_administrador import WidgetTipoEmpleadoMedico
 from componentes_administrador import WidgetEmpleadosPorArea
 from componentes_administrador import DialogArea
 from componentes_administrador import WidgetListarAreas
-from componentes_administrador import DialogCama
-from componentes_administrador import WidgetListarCamas
-from componentes_administrador import DialogMedicamento
-from componentes_administrador import WidgetListarMedicamentos
-from componentes_administrador import DialogHabilidad
-from componentes_administrador import WidgetListarHabilidades
-from componentes_administrador import DialogCausa
-from componentes_administrador import WidgetListarCausas
 from componentes_administrador import WidgetAgendaMedicoMes
 from componentes_administrador import WidgetHistoriaClinicaPaciente
 from componentes_administrador import WidgetNumeroCitasMedico
 from componentes_administrador import WidgetCostoPromedioPaciente
+<<<<<<< HEAD
 from componentes_administrador import DialogInformacion
 from login import InterfazIniciarSesion
 from componentes_enfermera import DialogPaciente
+=======
+>>>>>>> 48296d11b46488713f0ac8e2d1fea227111e9a97
+
+# CLASES DIVIDIDAS A OTRO MODULO
+#from componentes_administrador import DialogHabilidad
+#from componentes_administrador import WidgetListarHabilidades
+#from componentes_administrador import WidgetListarCamas
+#from componentes_administrador import DialogMedicamento
+#from componentes_administrador import DialogCausa
+#from componentes_administrador import DialogCama
+#from componentes_administrador import WidgetListarCausas
+#from DialogCausa import DialogCausa
+#from componentes_administrador import WidgetListarMedicamentos
+from adminHabilidadCamaCausa import DialogHabilidad
+from adminHabilidadCamaCausa import WidgetListarHabilidades
+from adminHabilidadCamaCausa import DialogCausa
+from adminHabilidadCamaCausa import WidgetListarCausas
+from adminHabilidadCamaCausa import DialogCama
+from adminHabilidadCamaCausa import WidgetListarCamas
+from DialogMedicamento import DialogMedicamento
+from DialogMedicamento import WidgetListarMedicamentos
 
 
 #from componentes_enfermera import DialogAsignarCama
-
 # componentes_enfermera import DialogAsignarCama
-
 #from componentes_enfermera import DialogCita
-from enfermera import InterfazEnfermera
-from enfermera import *
-from componentes_enfermera import *
 #from iconos import *
-

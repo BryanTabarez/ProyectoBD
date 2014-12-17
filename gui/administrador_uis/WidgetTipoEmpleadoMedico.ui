@@ -145,7 +145,7 @@
        </font>
       </property>
       <property name="inputMask">
-       <string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -165,7 +165,7 @@
        </font>
       </property>
       <property name="inputMask">
-       <string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -184,8 +184,11 @@
         <bold>false</bold>
        </font>
       </property>
+      <property name="inputMethodHints">
+       <set>Qt::ImhDigitsOnly</set>
+      </property>
       <property name="inputMask">
-       <string>NNNNNNNN; </string>
+       <string/>
       </property>
      </widget>
     </item>

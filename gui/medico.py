@@ -1,6 +1,7 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
+<<<<<<< HEAD
 from accesoDatos import *
 from control import *
 from componentes_enfermera import DialogAgendaMedico
@@ -142,3 +143,23 @@ class DialogDesVincularPaciente( QDialog, D_DesVincular_class ):
 
 		QDialog.__init__( self, parent )
 		self.setupUi( self )
+=======
+
+#from componentes_enfermera import *
+
+from componentes_administrador import WidgetListarCamas
+
+from componentes_enfermera import DialogPaciente
+
+
+from componentes_enfermera import DialogCama
+from componentes_administrador import WidgetListarCamas
+
+from componentes_enfermera import DialogCita
+
+from componentes_administrador import DialogInformacion
+from componentes_enfermera import DialogAgendaMedico
+
+from accesoDatos import *
+from control import *
+>>>>>>> 48296d11b46488713f0ac8e2d1fea227111e9a97
