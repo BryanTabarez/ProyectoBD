@@ -547,8 +547,14 @@ color: rgb(255, 255, 255);</string>
   <tabstop>lineEditNombre</tabstop>
   <tabstop>lineEditDireccion</tabstop>
   <tabstop>lineEditTelefono</tabstop>
-  <tabstop>pushButtonCancelar</tabstop>
+  <tabstop>lineEditSalario</tabstop>
+  <tabstop>lineEditEmail</tabstop>
+  <tabstop>lineEditCodigoArea</tabstop>
+  <tabstop>lineEditJefe</tabstop>
+  <tabstop>comboBoxTipoEmpleado</tabstop>
+  <tabstop>pushButtonConsultar</tabstop>
   <tabstop>pushButtonInsertar</tabstop>
+  <tabstop>pushButtonCancelar</tabstop>
  </tabstops>
  <resources/>
  <connections/>
