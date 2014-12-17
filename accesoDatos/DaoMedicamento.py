@@ -12,9 +12,9 @@ class DaoMedicamento():
         try:
             cur = self.conn.cursor()
 
-            cur.execute("""INSERT INTO Medicamento (codigo, nombre, costo,
-            descripcion) VALUES (%s, %s, %s, %s)""",
-                (drug.get_codigo(), drug.get_nombre(), drug.get_costo(),
+            cur.execute("""INSERT INTO Medicamento ( costo, nombre,
+            descripcion) VALUES (%s, %s, %s)""",
+                (drug.get_costo(), drug.get_nombre(), 
                     drug.get_descripcion()))
 
             cur.close()
@@ -28,11 +28,11 @@ class DaoMedicamento():
 
     #============================== READ ======================================
     # CONSULTA UN MEDICAMENTO PARTICULAR
-    def consultarMedicamento(self, codigo):
+    def consultarMedicamento(self, nombre):
         try:
             cur = self.conn.cursor()
-            cur.execute("SELECT * FROM Medicamento WHERE codigo = %s",
-                (codigo,))
+            cur.execute("SELECT * FROM Medicamento WHERE nombre = %s",
+                (nombre,))
 
             consulta = cur.fetchone()
             if consulta is None:
@@ -56,7 +56,7 @@ class DaoMedicamento():
     def modificarMedicamento(self, drug):
         try:
             cur = self.conn.cursor()
-            sqlUpdate = """UPDATE Medicamento SET costo = %s, SET nombre = %s,
+            sqlUpdate = """UPDATE Medicamento SET costo = %s, nombre = %s,
             descripcion = %s WHERE codigo = %s"""
             cur.execute(sqlUpdate, (drug.get_costo(), drug.get_nombre(),
             drug.get_descripcion(), drug.get_codigo()))

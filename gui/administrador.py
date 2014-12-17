@@ -17,7 +17,7 @@ from control import *
 #InterfazAdministrador
 #PERSONAL --> EMPLEADOS
 #AREAS
-#CAMAS 
+#CAMAS
 #MEDICAMENTOS
 #HABILIDADES
 #CAUSAS
@@ -50,7 +50,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		pos_vertical = ( pantalla.height() - interfaz.height() ) / 2
 		self.move( pos_horizontal, pos_vertical )
 		
-		#=====================================================> VARIABLES 
+		#=====================================================> VARIABLES
 		# PERSONAL --> EMPLEADO
 		self.controladorPersonal = ControlDaosEmpleados(conexion)
 		self.controladorArea = ControlDaoArea(conexion)
@@ -98,36 +98,36 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 		#===========================================> SENIALES Y SLOTS <================================================
 
-		#==========================================> PERSONAL 
+		#==========================================> PERSONAL
 		self.connect( self.commandLinkButtonNuevoEmpleado, SIGNAL( "clicked()" ), self.nuevoEmpleado )
 		self.connect( self.commandLinkButtonModificarEmpleado, SIGNAL( "clicked()" ), self.modificarEmpleado )
 		self.connect( self.commandLinkButtonListarEmpleados, SIGNAL("clicked()"), self.listarEmpleados )
-		#===========================================> AREAS 
+		#===========================================> AREAS
 		self.connect( self.commandLinkButtonNuevaArea, SIGNAL( "clicked()" ),  self.nuevaArea )
 		self.connect( self.commandLinkButtonModificarArea, SIGNAL( "clicked()" ), self.modificarArea )
 		self.connect( self.commandLinkButtonEliminarArea, SIGNAL( "clicked()" ), self.eliminarArea )
 		# self.connect( self.commandLinkButtonListarAreas, SIGNAL("clicked()"), self.listarAreas )
-		#===========================================> CAMAS 
+		#===========================================> CAMAS
 		self.connect( self.commandLinkButtonNuevaCama, SIGNAL("clicked()"), self.nuevaCama )
 		self.connect( self.commandLinkButtonModificarCama, SIGNAL("clicked()"), self.modificarCama )
 		self.connect( self.commandLinkButtonEliminarCama, SIGNAL( "clicked()" ), self.eliminarCama )
 		self.connect( self.commandLinkButtonListarCamas, SIGNAL("clicked()"), self.listarCamas )
-		#=========================================> MEDICAMENTOS 
+		#=========================================> MEDICAMENTOS
 		self.connect( self.commandLinkButtonNuevoMedicamento, SIGNAL("clicked()"), self.nuevoMedicamento )
 		self.connect( self.commandLinkButtonModificarMedicamento, SIGNAL("clicked()"), self.modificarMedicamento )
 		self.connect( self.commandLinkButtonEliminarMedicamento, SIGNAL( "clicked()" ), self.eliminarMedicamento )
 		self.connect( self.commandLinkButtonListarMedicamentos, SIGNAL("clicked()"), self.listarMedicamentos )
-		#=========================================> HABILIDADES 
+		#=========================================> HABILIDADES
 		self.connect( self.commandLinkButtonNuevaHabilidad, SIGNAL("clicked()"),  self.nuevaHabilidad )
 		self.connect( self.commandLinkButtonModificarHabilidad, SIGNAL("clicked()"), self.modificarHabilidad )
 		self.connect( self.commandLinkButtonEliminarHabilidad, SIGNAL( "clicked()" ), self.eliminarHabilidad )
 		self.connect( self.commandLinkButtonListarHabilidades, SIGNAL("clicked()"), self.listarHabilidades )
-		#===========================================> CAUSAS 
+		#===========================================> CAUSAS
 		self.connect( self.commandLinkButtonNuevaCausa, SIGNAL( "clicked()" ), self.nuevaCausa )
 		self.connect( self.commandLinkButtonModificarCausa, SIGNAL( "clicked()" ), self.modificarCausa )
 		self.connect( self.commandLinkButtonEliminarCausa, SIGNAL( "clicked()" ), self.eliminarCausa )
 		self.connect( self.commandLinkButtonListarCausas, SIGNAL( "clicked()" ), self.listarCausas )
-		#==========================================> INFROMES 
+		#==========================================> INFROMES
 		self.connect( self.commandLinkButtonAgendaMedicoMes, SIGNAL("clicked()"), self.agendaMedico )
 		self.connect( self.commandLinkButtonHistoriaClinicaPaciente, SIGNAL("clicked()"), self.historiaClinicaPaciente )
 		self.connect( self.commandLinkButtonCitasAtendidasMedicoMes, SIGNAL("clicked()"), self.citasAtendidasMedicoMes )
@@ -161,7 +161,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		fila_seleccinada_tabla = self.widgetEmpleadosPorArea.tableWidgetEmpleados.currentRow()	
 		if self.widgetEmpleadosPorArea.isHidden() or fila_seleccinada_tabla == -1:
 			
-			self.dialogInformacion.showMensaje( "Eliminar Empleado", 
+			self.dialogInformacion.showMensaje( "Eliminar Empleado",
 				"Por favor liste los empleados, seleccione de la tabla el que desea eliminar, luego presione 'Eliminar Empleado'" )
 			
 		else:
@@ -217,7 +217,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	# 	fila_seleccinada_tabla = self.widgetListarAreas.tableWidgetAreas.currentRow()	
 	# 	if self.widgetListarAreas.isHidden() or fila_seleccinada_tabla == -1:
 			
-	# 		self.dialogInformacion.showMensaje( "Eliminar Area", 
+	# 		self.dialogInformacion.showMensaje( "Eliminar Area",
 	# 			"Por favor liste las areas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Area' " )
 			
 	# 	else:
@@ -245,14 +245,14 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 
 	#===========================================> CAMAS <===================================================
 	#Metodo: nuevaCama
-	#Funcion: Despliega la interfaz que permite crear un nueva cama 
+	#Funcion: Despliega la interfaz que permite crear un nueva cama
 	def nuevaCama( self ):
 
 		dialogCama = DialogCama( controlador=self.controladorCama, parent=self )
 		dialogCama.exec_()
 
 	#Metodo: modificarCama
-	#Funcion: Despliega la interfaz que permite modificar una cama 
+	#Funcion: Despliega la interfaz que permite modificar una cama
 	def modificarCama( self ):
 
 		dialogCama = DialogCama( nuevo_registro=False, controlador=self.controladorCama, parent=self )
@@ -266,7 +266,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		fila_seleccinada_tabla = self.widgetListarCamas.tableWidgetCamas.currentRow()
 		if self.widgetListarCamas.isHidden() or fila_seleccinada_tabla == -1:
 
-			self.dialogInformacion.showMensaje( "Eliminar Cama", 
+			self.dialogInformacion.showMensaje( "Eliminar Cama",
 				"Por favor liste las camas, seleccione de la tabla la que desea eliminar, luego presione 'eliminar Cama' " )
 
 		else:
@@ -305,25 +305,28 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 	#Funcion: Despliega la interfaz que permite modificar medicamentos medicamento
 	def modificarMedicamento( self ):
 
-		dialogMedicamento = DialogMedicamento( nuevo_registro=False, controlador=self.controladorMedicamento, parent=self )
+		dialogMedicamento = DialogMedicamento( nuevo_registro=2, controlador=self.controladorMedicamento, parent=self )
 		dialogMedicamento.exec_()
 
 
 
 	#Metodo: eliminarMedicamento
-	#Funcion: permite eliminar el medicamento seleccinado de la base de datos 
+	#Funcion: permite eliminar el medicamento seleccinado de la base de datos
 	def eliminarMedicamento( self ):
 
-		fila_seleccinada_tabla = self.widgetListarMedicamentos.tableWidgetMedicamentos.currentRow()
-		if self.widgetListarMedicamentos.isHidden or fila_seleccinada_tabla == -1:
+		dialogMedicamento = DialogMedicamento( nuevo_registro=3, controlador=self.controladorMedicamento, parent=self )
+		dialogMedicamento.exec_()
+
+		# fila_seleccinada_tabla = self.widgetListarMedicamentos.tableWidgetMedicamentos.currentRow()
+		# if self.widgetListarMedicamentos.isHidden or fila_seleccinada_tabla == -1:
 			
-			self.dialogInformacion.showMensaje( "Eliminar Medicamento", 
-				"Por favor liste los medicamento, seleccione de la tabla la que desea eliminar,"
-				"luego presione 'Eliminar Medicamento' " )
+		# 	self.dialogInformacion.showMensaje( "Eliminar Medicamento",
+		# 		"Por favor liste los medicamento, seleccione de la tabla la que desea eliminar,"
+		# 		"luego presione 'Eliminar Medicamento' " )
 			
-		else:
-			cod_med_eliminar = self.widgetListarMedicamentos.tableWidgetMedicamentos.item(fila_seleccinada_tabla, 0).text()
-			print( "eliminar medicameto: " + cod_med_eliminar )
+		# else:
+		# 	cod_med_eliminar = self.widgetListarMedicamentos.tableWidgetMedicamentos.item(fila_seleccinada_tabla, 0).text()
+		# 	print( "eliminar medicameto: " + cod_med_eliminar )
 			#AQUI SE ELIMINA EL MEDICAMENTO CON EL CODIGO RECIBIDO
 
 
@@ -369,7 +372,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		fila_seleccinada_tabla = self.widgetListarHabilidades.tableWidgetHabilidades.currentRow()
 		if self.widgetListarHabilidades.isHidden() or fila_seleccinada_tabla == -1:
 			
-			self.dialogInformacion.showMensaje( "Eliminar Habilidad", 
+			self.dialogInformacion.showMensaje( "Eliminar Habilidad",
 				"Por favor liste las habilidades, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar habilidad' " )
 
 		else:
@@ -404,7 +407,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		dialogCausa.exec_()
 
 	#Metodo: modificarCausa
-	#Funcion: Permite modificar la causa seleccionada 
+	#Funcion: Permite modificar la causa seleccionada
 	def modificarCausa( self ):
 
 		dialogCausa = DialogCausa( nuevo_registro=False, controlador=self.controladorCausa ,parent=self )
@@ -418,7 +421,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		fila_seleccinada_tabla = self.widgetListarCausas.tableWidgetListarCausas.currentRow()
 		if self.widgetListarCausas.isHidden() or fila_seleccinada_tabla == -1:
 
-			self.dialogInformacion.showMensaje( "Eliminar Causa", 
+			self.dialogInformacion.showMensaje( "Eliminar Causa",
 				"Por favor liste las causas, seleccione de la tabla la que desea eliminar, luego presione 'Eliminar Causa' " )
 
 		else:
