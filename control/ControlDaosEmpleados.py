@@ -10,6 +10,7 @@ class ControlDaosEmpleados():
 		# LLAMAR LOS CONTRUCTORES PARA DAOS DE EMPLEADOS-> ENFERMERA Y MEDICO
 		self.conexion = conexion # ES NECESARIO PARA QUE LA OBTENGAN LOS WIDG DE EMPLEADO...
 		self.daoEnf = DaoEnfermera(conexion)
+		#self.daoMed = DaoMedico(conexion)
 
 	#============================== INSERTAR ENFERMERA ==========================
 	def insertarEnfermera (self, identificacion, nombre, direccion, telefono, codigo_area, email,
@@ -22,6 +23,19 @@ class ControlDaosEmpleados():
 		if isinstance(insertarEnf, Exception):
 			return insertarEnf.pgerror
 	#============================================================================
+
+	#============================== MODIFICAR ENFERMERA ==========================
+	def actualizarDatosEnfermera (self, identificacion, nombre, direccion, telefono, codigo_area, email,
+		salario, id_jefe, anhos_experiencia, habilidades):
+		enfermerita = Enfermera(identificacion, nombre, direccion, telefono, codigo_area, email,
+			salario, id_jefe, anhos_experiencia, habilidades)
+		saveEnf = self.daoEnf.modificarEnfermera(enfermerita)
+		if saveEnf is 0:
+			return "Se Actualizo el registro de enfermera"
+		if isinstance(saveEnf, Exception):
+			return saveEnf.pgerror
+	#============================================================================
+
 
 	#============================== CONSULTAR ENFERMERA =========================
 	# Devuelve un String o una lista con los datos de la consulta

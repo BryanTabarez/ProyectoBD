@@ -12,7 +12,6 @@ class DaoHabilidades():
 
             cur.execute(sqlConsulta)
             consulta = cur.fetchall()
-            print consulta[0]
 
             if consulta is None:
                 cur.close()
