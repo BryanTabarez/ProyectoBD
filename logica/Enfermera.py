@@ -19,6 +19,6 @@ class Enfermera(Empleado):
     def set_anhos_experiencia(self, anhos):
         self.__anhos_experiencia = anhos
 
-    #modificar(?)
-    def agregar_habilidad(self, habilidad):
-        self.__habilidades.append(habilidad)
+
+    def set_habilidad(self, habilidad):
+        self.__habilidades = habilidad

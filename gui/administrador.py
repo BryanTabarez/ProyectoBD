@@ -3,6 +3,8 @@ from PyQt4.QtCore import *
 from PyQt4 import uic
 
 from componentes_administrador import *
+from DialogMedicamento import *
+#from gui import DialogCausa
 from accesoDatos import *
 from control import *
 
@@ -53,7 +55,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		self.controladorPersonal = ControlDaosEmpleados(conexion)
 		self.controladorArea = ControlDaoArea(conexion)
 		self.controladorCama = " "
-		self.controladorMedicamento = " "
+		self.controladorMedicamento = ControlDaoMedicamento(conexion)
 		self.controladorHabilidad = " "
 		self.controladorCausa = " "
 		self.controladorInformes = " "
@@ -99,7 +101,6 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		#==========================================> PERSONAL 
 		self.connect( self.commandLinkButtonNuevoEmpleado, SIGNAL( "clicked()" ), self.nuevoEmpleado )
 		self.connect( self.commandLinkButtonModificarEmpleado, SIGNAL( "clicked()" ), self.modificarEmpleado )
-		self.connect( self.commandLinkButtonEliminarEmpleado, SIGNAL( "clicked()" ), self.eliminarEmpleado )
 		self.connect( self.commandLinkButtonListarEmpleados, SIGNAL("clicked()"), self.listarEmpleados )
 		#===========================================> AREAS 
 		self.connect( self.commandLinkButtonNuevaArea, SIGNAL( "clicked()" ),  self.nuevaArea )

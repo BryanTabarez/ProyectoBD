@@ -7,12 +7,21 @@ from componentes_administrador import WidgetEmpleadosPorArea
 from componentes_administrador import DialogArea
 from componentes_administrador import WidgetListarAreas
 from componentes_administrador import DialogCama
+
+
+from DialogMedicamento import DialogMedicamento
+from DialogMedicamento import WidgetListarMedicamentos
+#from DialogCausa import DialogCausa
+
+#from componentes_administrador import DialogMedicamento
+#from componentes_administrador import DialogCausa
+
+
 from componentes_administrador import WidgetListarCamas
-from componentes_administrador import DialogMedicamento
-from componentes_administrador import WidgetListarMedicamentos
+
+#from componentes_administrador import WidgetListarMedicamentos
 from componentes_administrador import DialogHabilidad
 from componentes_administrador import WidgetListarHabilidades
-from componentes_administrador import DialogCausa
 from componentes_administrador import WidgetListarCausas
 from componentes_administrador import WidgetAgendaMedicoMes
 from componentes_administrador import WidgetHistoriaClinicaPaciente
