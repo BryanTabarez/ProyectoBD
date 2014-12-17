@@ -8,20 +8,20 @@ class DaoMedico():
 
     #============================== CREATE ====================================
     def guardarMedico(self, m):
-        ##Se guarda el medico con los siguientes atributos:
+        #Se guarda el medico con los siguientes atributos:
         """(identificacion, nombre, direccion, telefono, codigo_area, email,
         salario, id_jefe, especialidad, universidad, num_licencia)"""
         try:
             cur = self.conn.cursor()
             #guardar persona
-            cur.execute("INSERT INTO Persona VALUES (%s, %s, %s, %s)",
-                (m.get_identificacion(), m.get_nombre(), m.get_direccion(),
-                    m.get_telefono()))
+            cur.execute("""INSERT INTO Persona (identificacion, nombre, direccion,
+                telefono) VALUES (%s, %s, %s, %s)""", (m.get_identificacion(),
+                m.get_nombre(), m.get_direccion(), m.get_telefono()))
 
             #guardar empleado
-            cur.execute("INSERT INTO Empleado VALUES (%s, %s, %s, %s, %s)",
-                (m.get_identificacion(), m.get_codigo_area(), m.get_email(),
-                    m.get_salario(), m.get_id_jefe()))
+            cur.execute("""INSERT INTO Empleado (identificacion, codigo_area, email,
+                salario, id_jefe) VALUES (%s, %s, %s, %s, %s)""", (m.get_identificacion(),
+                m.get_codigo_area(), m.get_email(), m.get_salario(), m.get_id_jefe()))
 
             #guardar medico
             cur.execute("INSERT INTO Medico VALUES (%s, %s, %s, %s)",
@@ -46,17 +46,17 @@ class DaoMedico():
 
             cur.execute(sqlConsulta, (id,))
             consulta = cur.fetchone()
+
             if consulta is None:
                 cur.close()
                 return 1
             else:
-                medico = Medico(consulta[0], consulta[1], consulta[2],
-                    consulta[3], consulta[4], consulta[5], consulta[6],
-                    consulta[7], consulta[8], consulta[9], consulta[10])
-                cur.close()
-                return medico
+                # medico = Medico(consulta[0], consulta[1], consulta[2],
+                #     consulta[3], consulta[4], consulta[5], consulta[6],
+                #     consulta[7], consulta[8], consulta[9], consulta[10])
+                # cur.close()
+                return consulta
             cur.close()
-            return 0
         except Exception as e:
             cur.close()
             self.conn.reset()
@@ -99,21 +99,21 @@ class DaoMedico():
 
     #============================== DELETE ====================================
     def borrarMedico(self, id):
-        """Para borrar una enfermera -> Eliminar registros Enfermera y Empleado
+        """Para borrar una enfermera -> Eliminar registros Medico y Empleado
         Dejar Persona si es necesario"""
         try:
             cur = self.conn.cursor()
             cur.execute("DELETE FROM Medico WHERE identificacion=%s", (id,))
             cur.execute("DELETE FROM Empleado WHERE identificacion = %s", (id,))
 
-            sqlConsulta = """SELECT * FROM Paciente  WHERE
-            identificacion = %s"""
+            sqlConsulta = "SELECT * FROM Paciente WHERE identificacion = %s"
             cur.execute(sqlConsulta, (id,))
+
             consulta = cur.fetchone()
             if consulta is None:
-                cur.execute("DELETE FROM Persona WHERE identificacion = %s",
-                (id,))
+                cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
             self.conn.commit()
+            
             return 0
         except Exception as e:
             cur.close()

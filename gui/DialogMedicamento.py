@@ -1,7 +1,26 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
-from componentes_administrador import DialogInformacion
+#from componentes_administrador 
+#import DialogInformacion
+
+#=============================================> DIALOGO DE INFORMACION <================================================
+
+D_Informacion_class , D_Informacion_Base_class = uic.loadUiType( 'gui/administrador_uis/DialogInformacion.ui' )
+
+class DialogInformacion( QDialog, D_Informacion_class ):
+
+	def __init__( self, parent=None ):
+
+		QDialog.__init__( self, parent )
+		self.setupUi( self )
+
+	def showMensaje( self, encabezado, mensaje ):
+
+		self.labelEncabezado.setText( encabezado )
+		self.plainTextEditCuerpo.setPlainText( mensaje )
+		self.show()
+
 # ===========================================> MEDICAMENTO <============================================================
 
 D_Medicamento_class , D_Medicamento_Base_class = uic.loadUiType( 'gui/administrador_uis/DialogMedicamento.ui' )
@@ -63,12 +82,11 @@ class DialogMedicamento( QDialog, D_Medicamento_class ):
 		#AQUI SE INGRESA LA INFOMACION EN LA BASE DE DATOS
 		if self.nuevo_registro is 1:
 			result = self.controladorMedicamento.insertarMedicamento(costo, nombre, descripcion)
-			self.dialogInformativo.showMensaje("Ingresar", result)
-			
-			
+			self.dialogInformativo.showMensaje("Ingresar Medicamento", result)
+
 		else:
 			result = self.controladorMedicamento.actualizarMedicamento(codigo, costo, nombre, descripcion)
-			self.dialogInformativo.showMensaje("Modificar", result)
+			self.dialogInformativo.showMensaje("Modificar Medicamento", result)
 		
 
 	def limpiarCampos( self ):
@@ -97,7 +115,7 @@ class DialogMedicamento( QDialog, D_Medicamento_class ):
 	def EliminarMedicamento( self ):
 		codigo = str(self.lineEditCodigo.text())
 		result = self.controladorMedicamento.eliminarMedicamento(codigo)
-		self.dialogInformativo.showMensaje("Eliminar", result)
+		self.dialogInformativo.showMensaje("Eliminar Medicamento", result)
 
 
 

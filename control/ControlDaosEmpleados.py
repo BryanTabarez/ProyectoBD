@@ -1,6 +1,6 @@
 from accesoDatos import DaoEnfermera
 from logica import Enfermera
-#from logica import Medico
+from logica import Medico
 from accesoDatos import DaoMedico
 
 
@@ -77,7 +77,7 @@ class ControlDaosEmpleados():
 		if isinstance(resultado, Exception):
 			return resultado.pgerror
 	#============================================================================
-	
+
 
 	#============================ INSERTAR MEDICO ===============================
 	def insertarMedico(self, identificacion, nombre, direccion, telefono,
@@ -91,4 +91,40 @@ class ControlDaosEmpleados():
 			return "INSERCION EXITOSA!"
 		if isinstance(insertarMedico, Exception):
 			return insertarMedico.pgerror
+	#============================================================================
+
+	#============================== CONSULTAR MEDICO ============================
+	# Devuelve un String o una lista con los datos de la consulta
+	def consultarDatosMedico (self, identificacion):
+		consultar = self.daoMed.consultarMedico(identificacion)
+		if consultar is 1:
+			return "NO RESULTADOS!"
+		if isinstance(consultar, tuple):
+			return consultar
+		if isinstance(consultar, Exception):
+			return consultar.pgerror
+	#============================================================================
+
+
+	#============================== MODIFICAR MEDICO ============================
+	def actualizarDatosMedico (self, identificacion, nombre, direccion, telefono,
+    codigo_area, email, salario, id_jefe, especialidad, universidad, num_licencia):
+		medico = Medico(identificacion, nombre, direccion, telefono, codigo_area,
+			email, salario, id_jefe, especialidad, universidad, num_licencia)
+		update = self.daoMed.modificarMedico(medico)
+		if update is 0:
+			return "Se Actualizo el registro de Medico"
+		if isinstance(update, Exception):
+			return update.pgerror
+	#============================================================================
+
+
+	#============================= ELIMINAR MEDICO ==============================
+	# Siempre retorna un string
+	def eliminarMedico(self, identificacion):
+		resultado = self.daoMed.borrarMedico(identificacion)
+		if resultado == 0:
+			return "SE REALIZO LA OPERACION!"
+		if isinstance(resultado, Exception):
+			return resultado.pgerror
 	#============================================================================
