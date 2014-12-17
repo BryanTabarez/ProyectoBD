@@ -120,3 +120,31 @@ class DaoMedico():
             self.conn.reset()
             return e
     #==========================================================================
+
+    #============================= AURELIO ====================================
+
+    #================= OBTENER ESPECIALIDADES MEDICO ==========================
+
+    def listarEspecialidades(self):
+        try:
+            cur = self.conn.cursor()
+            sqlConsulta = """SELECT DISTINCT(especialidad) FROM Medico """
+
+            cur.execute(sqlConsulta, (id,))
+            consulta = cur.fetchall()
+            if consulta is None:
+                cur.close()
+                return 1
+            else:
+                cur.close()
+                return consulta
+            cur.close()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+
+    
+
+
