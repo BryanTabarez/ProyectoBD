@@ -173,16 +173,19 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		# MEDICO:
 		if indice is 1:
 
-			self.especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
-			self.universidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.text()
-			self.numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
+			especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
+			universidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditUniversidad.text()
+			numero_licencia = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditNumeroLicencia.text()
 			
 			# GUARDAR
 			if self.tipo_operacion is 1:
-				pass
+				identificacion = str( self.lineEditIdentificacion.text() )
+				result = self.controladorDaosEmpleados.insertarMedico(identificacion, nombre, direccion, telefono,
+					codigo_area, email, salario, id_jefe, especialidad, universidad, numero_licencia)
+				self.dialogoInfo.showMensaje( "Insertar Enfermera", result )
 
+			# MODIFICAR
 			if self.tipo_operacion is 1:
-				#C MODIFICAR
 				pass
 
 	# ELIMINAR EMPLEADO

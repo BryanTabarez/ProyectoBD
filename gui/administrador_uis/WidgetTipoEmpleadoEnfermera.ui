@@ -126,13 +126,13 @@
        </font>
       </property>
       <property name="inputMethodHints">
-       <set>Qt::ImhDigitsOnly</set>
+       <set>Qt::ImhNone</set>
       </property>
       <property name="inputMask">
        <string/>
       </property>
       <property name="maxLength">
-       <number>3</number>
+       <number>2</number>
       </property>
      </widget>
     </item>

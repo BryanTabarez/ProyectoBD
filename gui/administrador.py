@@ -424,7 +424,7 @@ class InterfazAdministrador( QMainWindow, I_Administrador_class ):
 		else:
 
 			cod_cau_eliminar = self.widgetListarCausas.tableWidgetListarCausas.item(fila_seleccinada_tabla, 0).text()
-			print( "eliminar medicameto: " + cod_cau_eliminar )
+			print( "eliminar medicamento: " + cod_cau_eliminar )
 			#AQUI SE ELIMINA LA CAUSA CON EL CODIGO RECIBIDO
 
 	def listarCausas( self ):
