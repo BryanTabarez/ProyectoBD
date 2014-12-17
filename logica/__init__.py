@@ -7,3 +7,4 @@ from Medico import Medico
 from Paciente import Paciente
 from Persona import Persona
 from Medicamento import Medicamento
+from Cita import Cita 
