@@ -1,7 +1,7 @@
 from accesoDatos import DaoEnfermera
 from logica import Enfermera
 #from logica import Medico
-#from accesoDatos import DaoMedico
+from accesoDatos import DaoMedico
 
 
 class ControlDaosEmpleados():
@@ -10,7 +10,8 @@ class ControlDaosEmpleados():
 		# LLAMAR LOS CONTRUCTORES PARA DAOS DE EMPLEADOS-> ENFERMERA Y MEDICO
 		self.conexion = conexion # ES NECESARIO PARA QUE LA OBTENGAN LOS WIDG DE EMPLEADO...
 		self.daoEnf = DaoEnfermera(conexion)
-		#self.daoMed = DaoMedico(conexion)
+		self.daoMed = DaoMedico(conexion)
+
 
 	#============================== INSERTAR ENFERMERA ==========================
 	def insertarEnfermera (self, identificacion, nombre, direccion, telefono, codigo_area, email,
@@ -23,6 +24,7 @@ class ControlDaosEmpleados():
 		if isinstance(insertarEnf, Exception):
 			return insertarEnf.pgerror
 	#============================================================================
+
 
 	#============================== MODIFICAR ENFERMERA ==========================
 	def actualizarDatosEnfermera (self, identificacion, nombre, direccion, telefono, codigo_area, email,
@@ -63,8 +65,8 @@ class ControlDaosEmpleados():
 
 		if isinstance(enfe, Exception):
 			return enfe.pgerror
-
 	#============================================================================
+
 
 	#============================= ELIMINAR ENFERMERA ===========================
 	# Siempre retorna un string
@@ -78,15 +80,15 @@ class ControlDaosEmpleados():
 	
 
 	#============================ INSERTAR MEDICO ===============================
-	# def insertarMedico(self, identificacion, nombre, direccion, telefono,
- #    codigo_area, email, salario, id_jefe, especialidad, universidad,
- #    num_licencia):
- #        medico = Medico(identificacion, nombre, direccion, telefono,
- #        codigo_area, email, salario, id_jefe, especialidad, universidad,
- #        num_licencia)
- #        insertarMedico = self.daoMedico.guardarMedico(medico)
- #        if insertarMedico is 0:
- #            print "INSERCION EXITOSA!"
- #        if isinstance(insertarMedico, Exception):
- #            mostrarReturn(insertarMedico)
- #    #============================================================================
+	def insertarMedico(self, identificacion, nombre, direccion, telefono,
+    codigo_area, email, salario, id_jefe, especialidad, universidad,
+    num_licencia):
+		medico = Medico(identificacion, nombre, direccion, telefono,
+		codigo_area, email, salario, id_jefe, especialidad, universidad,
+		num_licencia)
+		insertarMedico = self.daoMed.guardarMedico(medico)
+		if insertarMedico is 0:
+			return "INSERCION EXITOSA!"
+		if isinstance(insertarMedico, Exception):
+			return insertarMedico.pgerror
+	#============================================================================

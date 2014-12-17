@@ -8,7 +8,7 @@ class DaoMedico():
 
     #============================== CREATE ====================================
     def guardarMedico(self, m):
-        ##Se guarda el medico con lso siguientes atributos:
+        ##Se guarda el medico con los siguientes atributos:
         """(identificacion, nombre, direccion, telefono, codigo_area, email,
         salario, id_jefe, especialidad, universidad, num_licencia)"""
         try:
