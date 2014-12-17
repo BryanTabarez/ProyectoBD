@@ -288,42 +288,6 @@ color: rgb(255, 255, 255);</string>
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>260</y>
-     <width>131</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Horarios Por Mes</string>
-   </property>
-  </widget>
-  <widget class="Line" name="line_4">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>270</y>
-     <width>691</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>290</y>
-     <width>691</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
@@ -456,16 +420,6 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="5">
-     <widget class="QLineEdit" name="lineEditTiempoCita">
-      <property name="font">
-       <font>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="2">
      <widget class="QLabel" name="label_12">
       <property name="text">
@@ -489,7 +443,7 @@ color: rgb(255, 255, 255);</string>
     <item row="0" column="4">
      <widget class="QLabel" name="label_5">
       <property name="text">
-       <string>Tiempo de Cita                  </string>
+       <string>Tiempo de Cita  (min)          </string>
       </property>
      </widget>
     </item>
@@ -513,15 +467,30 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
+    <item row="0" column="5">
+     <widget class="QSpinBox" name="spinBox">
+      <property name="font">
+       <font>
+        <kerning>false</kerning>
+       </font>
+      </property>
+      <property name="minimum">
+       <number>15</number>
+      </property>
+      <property name="maximum">
+       <number>60</number>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QTableWidget" name="tableWidgetHorario">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>320</y>
+     <y>271</y>
      <width>691</width>
-     <height>192</height>
+     <height>271</height>
     </rect>
    </property>
    <column>
@@ -547,9 +516,6 @@ color: rgb(255, 255, 255);</string>
   <zorder>line_2</zorder>
   <zorder>pushButtonEliminarRegistro</zorder>
   <zorder>line_3</zorder>
-  <zorder>label_6</zorder>
-  <zorder>line_4</zorder>
-  <zorder>comboBox</zorder>
   <zorder>pushButton_4</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>pushButtonConsultarMedico</zorder>

@@ -9,3 +9,5 @@ from DaoCamaPaciente import DaoCamaPaciente
 from FachadaDB import FachadaDB
 from DaoMedicamento import DaoMedicamento
 from DaoCita import DaoCita
+from DaoHistoriaClinica import DaoHistoriaClinica
+from DaoLogin import DaoLogin

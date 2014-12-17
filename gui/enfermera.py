@@ -71,6 +71,8 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 		
 		
 		self.controladorCita = ControlDaoCita( conexion )
+		self.controladorHistoriaClinica = ControlDaoHistoriaClinica( conexion )
+
 		self.controladorAgenda = "controladorAgenda"
 		#================================================> WIDGETS  
 		self.dialogInformacion = DialogInformacion( self )
@@ -143,13 +145,21 @@ class InterfazEnfermera( QMainWindow, Interfaz_E_class ):
 			controladorCita=self.controladorCita,
 			controladorMedico=self.controladorMedico,
 			controladorHorarioMedico=self.controladorHorarioMedico,
+			controladorPaciente=self.controladorPaciente,
+			controladorHistoriaClinica=self.controladorHistoriaClinica,
 			parent=self )
 		dialogAsignarCita.exec_()
 
 
 	def cancelarCita( self ):
 
-		dialogCancelarCita = DialogCita( nuevo_registro=False, controlador=self.controladorCita, parent=self )
+		dialogCancelarCita = DialogCita( 
+			nuevo_registro=False, 
+			controladorCita=self.controladorCita,
+			controladorHorarioMedico=self.controladorHorarioMedico,
+			controladorPaciente=self.controladorPaciente,
+			controladorHistoriaClinica=self.controladorHistoriaClinica,
+		 	parent=self )
 		dialogCancelarCita.exec_() 
 
 

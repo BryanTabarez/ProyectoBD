@@ -13,3 +13,7 @@ from ControlDaoHorarioMedico import ControlDaoHorarioMedico
 from ControlDaoMedico import ControlDaoMedico
 
 from ControlDaoCita import ControlDaoCita
+
+from ControlDaoHistoriaClinica import ControlDaoHistoriaClinica
+
+from ControlDaoLogin import ControlDaoLogin 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
-    <height>600</height>
+    <width>663</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="palette">
@@ -419,7 +419,7 @@ color: rgb(255, 255, 255);</string>
          <bool>false</bool>
         </property>
         <property name="text">
-         <string>1</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -439,7 +439,7 @@ color: rgb(255, 255, 255);</string>
          </font>
         </property>
         <property name="text">
-         <string>1</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -451,12 +451,15 @@ color: rgb(255, 255, 255);</string>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QComboBox" name="comboBoxTipo">
+       <widget class="QComboBox" name="comboBoxTipoUsuario">
         <property name="font">
          <font>
           <weight>50</weight>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <item>
          <property name="text">
@@ -465,12 +468,12 @@ color: rgb(255, 255, 255);</string>
         </item>
         <item>
          <property name="text">
-          <string>Medico</string>
+          <string>Enfermera</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Enfermera</string>
+          <string>Medico</string>
          </property>
         </item>
        </widget>
@@ -542,7 +545,7 @@ color: rgb(255, 255, 255);</string>
  <tabstops>
   <tabstop>lineEditUsuario</tabstop>
   <tabstop>lineEditContrasenia</tabstop>
-  <tabstop>comboBoxTipo</tabstop>
+  <tabstop>comboBoxTipoUsuario</tabstop>
   <tabstop>pushButtonIngresar</tabstop>
   <tabstop>pushButtonOlvideLaContrasenia</tabstop>
  </tabstops>

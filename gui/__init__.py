@@ -18,6 +18,7 @@ from componentes_administrador import WidgetAgendaMedicoMes
 from componentes_administrador import WidgetHistoriaClinicaPaciente
 from componentes_administrador import WidgetNumeroCitasMedico
 from componentes_administrador import WidgetCostoPromedioPaciente
+from componentes_administrador import DialogInformacion
 from login import InterfazIniciarSesion
 from componentes_enfermera import DialogPaciente
 

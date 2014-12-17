@@ -350,6 +350,8 @@ class DialogCita( QDialog, D_CitaInterfaz_class ):
 		controladorCita=None,
 		controladorMedico=None,
 		controladorHorarioMedico=None, 
+		controladorPaciente=None,
+		controladorHistoriaClinica=None,
 		parent=None ):
 
 		#Constructor padre
@@ -363,32 +365,56 @@ class DialogCita( QDialog, D_CitaInterfaz_class ):
 		self.controladorCita = controladorCita
 		self.controladorMedico = controladorMedico
 		self.controladorHorarioMedico = controladorHorarioMedico
+		self.controladorPaciente = controladorPaciente
+		self.controladorHistoriaClinica = controladorHistoriaClinica
 
 		#=================================================> SENIALES Y SLOTS
 		self.connect( self.pushButtonConsultar, SIGNAL( "clicked()" ), self.consultar )
 		self.connect( self.pushButtonAsignar, SIGNAL( "clicked()" ), self.asignarCancelarCitas )
 		self.connect( self.pushButtonCancelar, SIGNAL( "clicked()" ), self.limpiarCampos )
-		
-
+		self.connect( self.comboBoxEspecialidad, SIGNAL( "currentIndexChanged(int)" ), self.cargarHorariosMedicos )
+  
 		#=================================================> MODIFICACIONES 
+
+
 
 		
 		if self.nuevo_registro:
 		
 			self.setWindowTitle( "Nueva Cita" )
 			self.pushButtonAsignar.setText( "Asignar" )
+			self.pushButtonAsignar.setEnabled( False )
+			encabezado = QStringList()
+			encabezado << "Identificacion Horario" << "Medico" << "Fecha y Hora"
+			self.tableWidgetHorariosDisponibles.insertColumn( 0 )
+			self.tableWidgetHorariosDisponibles.insertColumn( 0 )
+			self.tableWidgetHorariosDisponibles.insertColumn( 0 ) 
+			self.tableWidgetHorariosDisponibles.setHorizontalHeaderLabels( encabezado )
+			
 
-			self.cargarHorariosMedicos()
-
+		
 		else: 
 
 			self.setWindowTitle( "Cancelar Cita" )
 			self.pushButtonAsignar.setText( "Cancelar Cita" )
-			self.cargarCitasPaciente()
+			
+			encabezado = QStringList()
+			encabezado << "Identificacion  Horario" << " Medico" <<"Fecha y Hora" 
+			self.tableWidgetHorariosDisponibles.insertColumn( 0 )
+			self.tableWidgetHorariosDisponibles.insertColumn( 0 )
+			self.tableWidgetHorariosDisponibles.insertColumn( 0 ) 
+			self.comboBoxEspecialidad.setEnabled(False)
+			self.comboBoxTipoSolicitud.setEnabled(False)
+			self.pushButtonAsignar.setEnabled(False)
+			self.tableWidgetHorariosDisponibles.setHorizontalHeaderLabels( encabezado )
 
-		self.cargarEspecialidadesMedico()
+		
 
+		
 	#====================================================> METODOS
+
+	def cargarHorariosMedicos( self, indice ):
+		self.cargarHorariosMedicos()
 
 	def cargarEspecialidadesMedico( self ):
 
@@ -396,77 +422,153 @@ class DialogCita( QDialog, D_CitaInterfaz_class ):
 
 		if isinstance (especialidades, Exception):
 
-			self.dialogInformacion.showMensaje( "Cita", 
-				"No fue posible cargar las especialidades de los medicos de la base de datos" )
+			self.dialogInformacion.showMensaje( "Cargar Especialidades Medico", especialidades.pgerror)
 
 		else:
 
 			for row in especialidades:
-		 		self.comboBoxHorariosDisponibles.addItem( row[0] )
+		 		self.comboBoxEspecialidad.addItem( row[0] )
 
 
 
 	def cargarHorariosMedicos( self ):
 
-		encabezado = QStringList()
-		encabezado << "Identificacion Horario" << "Medico" << "Fecha y Hora"
-		self.tableWidgetHorariosDisponibles.insertColumn( 0 )
-		self.tableWidgetHorariosDisponibles.insertColumn( 0 )
-		self.tableWidgetHorariosDisponibles.insertColumn( 0 ) 
-		self.tableWidgetHorariosDisponibles.setHorizontalHeaderLabels( encabezado )
-		#especialidad = self.
-		#horarios = self.controladorHorarioMedico.
-
-		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS 
-		#self.tableWidgetMedicamentos.clearContents()
-		#self.tableWidgetMedicamentos.insertRow( 0 )
-		#self.tableWidgetMedicamentos.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
-		#self.tableWidgetMedicamentos.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
 		
+		especialidad = str(self.comboBoxEspecialidad.currentText())
+		horarios = self.controladorHorarioMedico.consultarHorariosMedicosPorEspecialidad( especialidad )
+		
+		if isinstance( horarios, Exception ):
 
+			self.dialogInformacion.showMensaje( "Cargar Horarios Medicos", horarios.pgerror )
+
+		else:
+			
+			for i in range( 0, self.tableWidgetHorariosDisponibles.rowCount()):
+				self.tableWidgetHorariosDisponibles.removeRow( 0 )
+
+			for row in horarios:
+				self.tableWidgetHorariosDisponibles.insertRow( 0 )
+				self.tableWidgetHorariosDisponibles.setItem( 0, 0, QTableWidgetItem( str(row[0]) ) )
+				self.tableWidgetHorariosDisponibles.setItem( 0, 1, QTableWidgetItem( row[1] ) )
+				self.tableWidgetHorariosDisponibles.setItem( 0, 2, QTableWidgetItem( row[2].strftime("%Y-%m-%d %H:%M:%S") ) )
+
+				
 	def cargarCitasPaciente( self ):
 
-		encabezado = QStringList()
-		encabezado << "Identificacion  medico" << "Fecha y Hora" << "Tipo solicitud"
-		self.tableWidgetHorariosDisponibles.setHorizontalHeaderLabels( encabezado )
-		#AQUI SE LISTAN LAS CAMAS EN LA TABLA DE CAMAS 
-		#self.tableWidgetMedicamentos.clearContents()
-		#self.tableWidgetMedicamentos.insertRow( 0 )
-		#self.tableWidgetMedicamentos.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
-		#self.tableWidgetMedicamentos.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
+		id_paciente = str( self.lineEditIdentificacion.text() )
+		citas_paciente = self.controladorCita.listarCitasPaciente(id_paciente)
+
+		if isinstance (citas_paciente,Exception):
+			self.dialogInformacion.showMensaje( "Citas Paciente", citas_paciente.pgerror )
+		else:
+
+			for i in range( 0, self.tableWidgetHorariosDisponibles.rowCount()):
+				self.tableWidgetHorariosDisponibles.removeRow( 0 )
+
+			for row in citas_paciente:
+				self.tableWidgetHorariosDisponibles.insertRow( 0 )
+				self.tableWidgetHorariosDisponibles.setItem( 0, 0, QTableWidgetItem( str(row[0]) ) )
+				self.tableWidgetHorariosDisponibles.setItem( 0, 1, QTableWidgetItem( row[1] ) )
+				self.tableWidgetHorariosDisponibles.setItem( 0, 2, QTableWidgetItem( row[2].strftime("%Y-%m-%d %H:%M:%S") ) )
+
+		
+	def consultar( self ):
+		id_paciente = str( self.lineEditIdentificacion.text() )
+		datos_paciente = self.controladorPaciente.consultar( id_paciente )
+
+		if isinstance ( datos_paciente, Exception ):
+			self.dialogInformacion.showMensaje( "Consultar Paciente", datos_paciente.pgerror )
 		
 
+		if datos_paciente == 1:
+			self.dialogInformacion.showMensaje( "Consultar Paciente", 
+				"El paciente no se encuentra en la base de datos" )
+			self.limpiarCampos()
 
-	def consultar( self ):
-		#AQUI SE VA A CONSULTAR LA INDENTIFICACION DEL PACIENTE 
-		pass
+
+
+		else:
+
+			self.pushButtonAsignar.setEnabled( True )
+
+			numero_historia = self.controladorHistoriaClinica.consultarNumeroHistoria( id_paciente )
+
+			if isinstance ( numero_historia, Exception ):
+				self.dialogInformacion.showMensaje( "Consultar Numero Historia", numero_historia.pgerror )	
+			else:
+				
+				self.lineEditIdentificacion.setText( str( datos_paciente[0] ) )
+				self.lineEditNombre.setText( str( datos_paciente[1]) )
+				self.lineEditNoHistoria.setText( str( numero_historia[0] ) )
+			
+
+
+		if self.nuevo_registro:
+
+			self.cargarEspecialidadesMedico()
+			self.cargarHorariosMedicos()
+
+		else: 
+
+			self.cargarCitasPaciente()
 
 
 
 	def asignarCancelarCitas( self ):
 
-		id_pacaciente = str( self.lineEditIndetificacion.text() )
-		#numero_historia = str( self.lineEditNumeroHistoria.text() )
-		#id_horario = str( self.lineEditIdHorario.text() )
-		#tipo_solicitud = str( self.comboBoxTipoSolicitud.currentText() )
-
 		fila_seleccionada = self.tableWidgetHorariosDisponibles.currentRow()
 		if fila_seleccionada > -1:
+
+			id_pacaciente = str( self.lineEditIdentificacion.text() )
+			id_horario = str( self.tableWidgetHorariosDisponibles.item( fila_seleccionada, 0).text() )
+			numero_historia = str( self.lineEditNoHistoria.text() )
+			tipo_solicitud =  str( self.comboBoxTipoSolicitud.currentText() )
+
+
 			#AQUI SE VA A ASIGNAR LAS CITAS PARA EL PACIENTE 
 			if self.nuevo_registro:
-				#EN CASO DE QUE SE DESEE HACE UNA CITA 
-				id_pacaciente = str( self.lineEditIndetificacion.text() )
-				id_horario = str( self.tableWidgetHorariosDisponibles.item( fila_seleccionada, 0).text() )
-				pass
+				#EN CASO DE QUE SE DESEE HACER UNA CITA 
+				
+				respuesta = self.controladorCita.guardarCita( id_horario, numero_historia, 
+					False, tipo_solicitud )
+			
 
+				if isinstance ( respuesta, Exception ):
+					self.dialogInformacion.showMensaje( "Asignar Cita", respuesta.pgerror )
+				else:
+					
+					respuesta1 = self.controladorHorarioMedico.cambiarEstadoHorario(id_horario,False)
+
+					if isinstance ( respuesta1, Exception ):
+						self.dialogInformacion.showMensaje( "Asignar Cita", respuesta1.pgerror )
+					else:
+						self.dialogInformacion.showMensaje( "Asignar Cita", "La cita fue asignada con exito" )
+
+				self.cargarHorariosMedicos()
 
 			else:
-				#EN CASO DE QUE SE VALLA A CANCELAR UNA CITA 
-				id_pacaciente = str( self.lineEditIndetificacion.text() )
-				id_horario = str( self.tableWidgetHorariosDisponibles.item( fila_seleccionada, 0).text() )
+				
 
-				pass
-		else:
+				respuesta = self.controladorCita.cancelarCita( id_horario )
+
+				
+
+				if isinstance ( respuesta, Exception ):
+					self.dialogInformacion.showMensaje( "Cancelar Cita", respuesta.pgerror )
+				else:
+
+					respuesta1 = self.controladorHorarioMedico.cambiarEstadoHorario(id_horario,True)
+					
+					if isinstance ( respuesta1, Exception ):
+						self.dialogInformacion.showMensaje( "Cancelar Cita", respuesta1.pgerror )
+					else:
+						self.dialogInformacion.showMensaje( "Cancelar Cita","La cita fue cancelada con exito" )
+
+
+				self.cargarCitasPaciente()
+
+
+		else:		
 
 			if self.nuevo_registro:
 				self.dialogInformacion.showMensaje( "Nueva Cita" ,
@@ -479,7 +581,7 @@ class DialogCita( QDialog, D_CitaInterfaz_class ):
 			
 	def limpiarCampos( self ):
 
-		self.lineEditIndetificacion.setText( "" )
+		self.lineEditIdentificacion.setText( "" )
 		self.lineEditNombre.setText( "" )
 		
 

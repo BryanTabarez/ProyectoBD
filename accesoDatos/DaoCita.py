@@ -12,8 +12,53 @@ class DaoCita():
         try:
             cur = self.conn.cursor()
 
-            cur.execute("INSERT INTO Cita VALUES (%s, %s, %s)",
+            cur.execute("INSERT INTO Cita (id_horario,numero_historia,tipo_solicitud) VALUES (%s, %s, %s)",
                 (cita.get_id_horario(), cita.get_numero_historia(), cita.get_tipo_solicitud()))
+
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
+    #============================== DELETE ====================================
+    def cancelarCita(self, id_horario):
+        try:
+            cur = self.conn.cursor()
+
+            cur.execute("DELETE FROM Cita WHERE id_horario = %s", (id_horario,))
+
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+
+    #============================== READ ======================================
+    
+    def listarCitasPaciente(self, id_paciente):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("""SELECT Cita.id_horario, Persona.nombre ,Horario_Consulta.fecha_hora
+            FROM Cita 
+            NATURAL JOIN Historia_Clinica  
+            NATURAL JOIN Horario_Consulta
+            JOIN Medico ON Horario_Consulta.id_medico = Medico.identificacion
+            JOIN Persona ON Persona.identificacion = Medico.identificacion
+            WHERE Historia_Clinica.id_paciente = %s """,
+            (id_paciente,))
+
+            consulta = cur.fetchall()
+            if consulta is None:
+                cur.close()
+                return 1
+            else:
+                cur.close()
+                return consulta
 
             cur.close()
             self.conn.commit()

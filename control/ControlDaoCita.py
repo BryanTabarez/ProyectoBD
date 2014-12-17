@@ -15,5 +15,10 @@ class ControlDaoCita():
 		resultado = self.daoCita.guardarCita( cita )
 		return resultado
 
-	def eliminarCita( self, id_horario ):
-		pass
+	def cancelarCita(self, id_horario):
+		cancelar  = self.daoCita.cancelarCita( id_horario )
+		return cancelar
+
+	def listarCitasPaciente(self, id_paciente):
+		listar = self.daoCita.listarCitasPaciente( id_paciente )
+		return listar
