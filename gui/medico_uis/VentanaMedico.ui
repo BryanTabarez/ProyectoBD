@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>mainWindowEnfermera</class>
- <widget class="QMainWindow" name="mainWindowEnfermera">
+ <class>VentanaMedico</class>
+ <widget class="QMainWindow" name="VentanaMedico">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -74,23 +74,14 @@
     </disabled>
    </palette>
   </property>
-  <property name="font">
-   <font>
-    <weight>50</weight>
-    <bold>false</bold>
-   </font>
-  </property>
-  <property name="cursor">
-   <cursorShape>PointingHandCursor</cursorShape>
-  </property>
   <property name="windowTitle">
-   <string>Administracion de citas y pacientes</string>
+   <string>Admistracion agenda medica, campañas y citas</string>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="widgetCabecera" native="true">
+   <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -209,7 +200,7 @@
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/iconos/Doctor_Female.png);</string>
+      <string notr="true">image: url(:/Iconos/user_big.png);</string>
      </property>
     </widget>
     <widget class="QWidget" name="layoutWidget">
@@ -269,8 +260,8 @@ font: 12pt &quot;Ubuntu Condensed&quot;;</string>
       <rect>
        <x>20</x>
        <y>0</y>
-       <width>162</width>
-       <height>62</height>
+       <width>161</width>
+       <height>63</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
@@ -295,16 +286,6 @@ color: rgb(255, 255, 255);</string>
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="widgetCuerpo" native="true">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>571</width>
-      <height>481</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QToolBox" name="toolBox">
     <property name="geometry">
      <rect>
@@ -316,254 +297,197 @@ color: rgb(255, 255, 255);</string>
     </property>
     <property name="font">
      <font>
-      <family>Ubuntu Condensed</family>
-      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
-    <widget class="QWidget" name="page_2">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>200</width>
-       <height>360</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Pacientes</string>
-     </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonNuevoPaciente">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>-2</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string>Nuevo Paciente</string>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonModificarPaciente">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>40</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Modificar Paciente</string>
-      </property>
-     </widget>
-    </widget>
     <widget class="QWidget" name="page">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
        <width>200</width>
-       <height>360</height>
-      </rect>
-     </property>
-     <attribute name="label">
-      <string>Camas</string>
-     </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonAsignarCama">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>10</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Asignar Cama</string>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonLiberarCama">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>50</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Liberar Cama</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="page_4">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>200</width>
-       <height>360</height>
+       <height>422</height>
       </rect>
      </property>
      <attribute name="label">
       <string>Citas</string>
      </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonAsignarCita">
+     <widget class="QCommandLinkButton" name="commandLinkButton">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>10</y>
-        <width>181</width>
+        <y>0</y>
+        <width>141</width>
         <height>36</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
       <property name="text">
-       <string>Asignar Cita</string>
+       <string>Atender Cita</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonCancelarCita">
+     <widget class="QCommandLinkButton" name="commandLinkButton_2">
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>50</y>
-        <width>181</width>
+        <y>40</y>
+        <width>151</width>
         <height>36</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
+      <property name="text">
+       <string>Ver Citas con pacientes</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
+        <width>141</width>
+        <height>36</height>
+       </rect>
       </property>
       <property name="text">
-       <string>Cancelar Cita</string>
+       <string>Ver Agenda</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_3">
+    <widget class="QWidget" name="page_2">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
        <width>200</width>
-       <height>360</height>
+       <height>422</height>
       </rect>
      </property>
      <attribute name="label">
-      <string>Agenda Medicos</string>
+      <string>Campañas</string>
      </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonAgendarCita">
+     <widget class="QCommandLinkButton" name="commandLinkButton_6">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>20</x>
         <y>10</y>
-        <width>181</width>
+        <width>141</width>
         <height>36</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
+      <property name="text">
+       <string>Nueva Campaña</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>141</width>
+        <height>36</height>
+       </rect>
       </property>
       <property name="text">
-       <string>Agenda Medico</string>
+       <string>Modificar Campaña</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_8">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>141</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lista Campañas</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_9">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>130</y>
+        <width>141</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Vincular Pacientes</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_10">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>210</y>
+        <width>171</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Lista Pacientes Campañas</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_11">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>170</y>
+        <width>161</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Desvincular Pacientes</string>
       </property>
      </widget>
     </widget>
    </widget>
+   <widget class="QWidget" name="widget_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>70</y>
+      <width>581</width>
+      <height>481</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionNueva_cita">
+  <action name="actionEditar">
    <property name="text">
-    <string>Nueva cita</string>
+    <string>Editar</string>
    </property>
   </action>
-  <action name="actionCancelar_cita">
+  <action name="actionNueva">
    <property name="text">
-    <string>Cancelar cita</string>
+    <string>Nueva campaña</string>
    </property>
   </action>
-  <action name="actionNuevo_paciente">
+  <action name="actionEditar_2">
    <property name="text">
-    <string>Nuevo paciente</string>
+    <string>Editar campaña</string>
    </property>
   </action>
-  <action name="actionEliminar_paciente">
+  <action name="actionVincular_pacientes">
    <property name="text">
-    <string>Modificar paciente</string>
+    <string>Vincular pacientes</string>
    </property>
   </action>
-  <action name="actionEliminar_cita">
+  <action name="actionAtender_Cita">
    <property name="text">
-    <string>Eliminar cita</string>
-   </property>
-  </action>
-  <action name="actionVer">
-   <property name="text">
-    <string>Agendar cita</string>
-   </property>
-  </action>
-  <action name="actionModificar_cita">
-   <property name="text">
-    <string>Modificar cita</string>
+    <string>Atender Cita</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="../administrador_uis/iconos/iconos.qrc"/>
+  <include location="../Recursos/Recursos.qrc"/>
  </resources>
  <connections/>
 </ui>

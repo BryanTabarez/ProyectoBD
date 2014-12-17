@@ -87,8 +87,8 @@ class DaoPaciente():
     def borrarPaciente(self, id):
         try:
             cur = self.conn.cursor()
-            cur.execute("DELETE FROM Paciente WHERE identificacion = %s", (id,))
-            cur.execute("DELETE FROM Persona WHERE identificacion = %s", (id,))
+            cur.execute("DELETE FROM Paciente WHERE identificacion = %s CASCADE", (id,))
+            cur.execute("DELETE FROM Persona WHERE identificacion = %s ", (id,))
             cur.close()
             self.conn.commit()
             return 0

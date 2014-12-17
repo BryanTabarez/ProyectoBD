@@ -66,6 +66,24 @@ class DaoCama():
             return e
     #==========================================================================
 
+    #============================== CHANGE STATUS =============================
+    def modificarEstadoCama(self, num_cama , status):
+        try:
+            cur = self.conn.cursor()
+
+            sqlUpdate = """UPDATE Cama SET estado = %s WHERE num_cama = %s"""
+
+            cur.execute(sqlUpdate, (status, num_cama))
+
+            cur.close()
+            self.conn.commit()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
+
     #============================== DELETE ====================================
     def borrarCama(self, id):
         try:
@@ -79,3 +97,25 @@ class DaoCama():
             self.conn.reset()
             return e
     #==========================================================================
+     #============================== LIST ======================================
+    # LISTA LAS CAMAS POR ESTADO
+    def listarCamas(self, estado):
+        try:
+            cur = self.conn.cursor()
+            sqlConsulta = """SELECT num_cama, cama.descripcion, codigo, nombre 
+            FROM Cama JOIN Area ON Area.codigo = Cama.codigo_area
+            WHERE estado = %s"""
+            cur.execute(sqlConsulta, (estado,))
+            consulta = cur.fetchall()
+            if consulta is None:
+                cur.close()
+                return 1
+            else:
+                cur.close()
+                return consulta
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
+    #==========================================================================
+

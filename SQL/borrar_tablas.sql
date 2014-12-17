@@ -1,4 +1,4 @@
-DROP TRIGGER asociar_historia ON  Paciente CASCADE;
+--DROP TRIGGER asociar_historia ON  Paciente CASCADE;
 
 DROP TABLE IF EXISTS Area CASCADE;
 DROP TABLE IF EXISTS Cama CASCADE;

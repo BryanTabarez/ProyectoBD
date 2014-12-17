@@ -84,3 +84,22 @@ class DaoMedicamento():
             self.conn.reset()
             return e
     #==========================================================================
+
+    def mostarMedicamento(self):
+        try:
+            cur = self.conn.cursor()
+            cur.execute("SELECT * FROM Medicamento")
+
+            consulta = cur.fetchall()
+            if consulta is None:
+                cur.close()
+                return 1
+            else:
+                return consulta
+
+            cur.close()
+            return 0
+        except Exception as e:
+            cur.close()
+            self.conn.reset()
+            return e
