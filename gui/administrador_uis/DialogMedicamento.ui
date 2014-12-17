@@ -199,7 +199,7 @@
       <x>20</x>
       <y>0</y>
       <width>162</width>
-      <height>62</height>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_5">
@@ -249,7 +249,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="inputMask">
-       <string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -283,7 +283,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="inputMask">
-       <string>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA; </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -303,7 +303,7 @@ color: rgb(255, 255, 255);</string>
        </font>
       </property>
       <property name="inputMask">
-       <string>99999999999999999999; </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -328,27 +328,13 @@ color: rgb(255, 255, 255);</string>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>520</x>
+     <x>470</x>
      <y>230</y>
      <width>269</width>
-     <height>29</height>
+     <height>31</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
-     <widget class="QPushButton" name="pushButtonConsultar">
-      <property name="text">
-       <string>Consultar</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QPushButton" name="pushButtonCancelar">
-      <property name="text">
-       <string>Cancelar</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="2">
      <widget class="QPushButton" name="pushButtonInsertar">
       <property name="text">
@@ -356,9 +342,49 @@ color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="pushButtonEliminar">
+      <property name="text">
+       <string>Eliminar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="pushButtonConsultar">
+      <property name="text">
+       <string>Consultar</string>
+      </property>
+     </widget>
+    </item>
    </layout>
+   <zorder>pushButtonEliminar</zorder>
+   <zorder>pushButtonInsertar</zorder>
+   <zorder>pushButtonConsultar</zorder>
+  </widget>
+  <widget class="QPushButton" name="pushButtonLimpiar">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>230</y>
+     <width>121</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Limpiar Campos</string>
+   </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>lineEditNombre</tabstop>
+  <tabstop>lineEditCosto</tabstop>
+  <tabstop>lineEditDescripcion</tabstop>
+  <tabstop>pushButtonConsultar</tabstop>
+  <tabstop>pushButtonInsertar</tabstop>
+  <tabstop>pushButtonEliminar</tabstop>
+  <tabstop>pushButtonLimpiar</tabstop>
+  <tabstop>lineEditCodigo</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

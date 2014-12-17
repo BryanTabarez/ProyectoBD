@@ -322,7 +322,7 @@ UNIQUE (codigo, nombre);
 
 ALTER TABLE Medicamento
 ADD CONSTRAINT uniq_medicamento_nombre
-UNIQUE (codigo, nombre);
+UNIQUE (nombre);
 --=======================================================================================
 
 

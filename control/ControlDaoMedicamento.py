@@ -23,10 +23,12 @@ class ControlDaoMedicamento():
         if isinstance(insertar, Exception):
             return "No se pudo ingrsar el medicamento :("
 
-    def buscarMedicamento(self, codigo):
-        buscar = self.daoMedicamento.consultarMedicamento(codigo)
+    def buscarMedicamento(self, nombre):
+        buscar = self.daoMedicamento.consultarMedicamento(nombre)
         if buscar is 1:
             return "La consulta no arrojo resultados"
+        else:
+            return buscar
         if isinstance(buscar, Exception):
             return "No se pudo consultar el medicamento :("
 
@@ -37,6 +39,13 @@ class ControlDaoMedicamento():
             return "Se ha modificado satisfactoriamente"
         if isinstance(actualizar, Exception):
             return "No se pudo modificar el medicamento :("
+
+    def eliminarMedicamento(self, codigo):
+        eliminar =self.daoMedicamento.borrarMedicamento(codigo)
+        if actualizar is 0:
+            return "Se ha eliminado satisfactoriamente"
+        if isinstance(actualizar, Exception):
+            return "No se pudo eliminar el medicamento :("
 
     def listarMedicamento(self):
         listar = self.daoMedicamento.mostrarMedicamento()
