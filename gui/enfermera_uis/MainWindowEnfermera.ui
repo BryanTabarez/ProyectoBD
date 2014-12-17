@@ -326,7 +326,7 @@ color: rgb(255, 255, 255);</string>
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_2">
      <property name="geometry">
@@ -381,46 +381,6 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Modificar Paciente</string>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonEliminarPaciente">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>80</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Eliminar Paciente</string>
-      </property>
-     </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonListarPacientes">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>120</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Listar Pacientes</string>
       </property>
      </widget>
     </widget>
