@@ -50,12 +50,3 @@ class ControlDaoMedico():
         if isinstance(borrarmedico, Exception):
             mostrarReturn(borrarmedico)
 
-    #====================== AURELIO =====================================
-
-    #================= OBTENER ESPECIALIDADES MEDICO ==========================
-    def listarEspecialidades( self ):
-
-        especialidades = self.daoMedico.listarEspecialidades()
-        return especialidades
-        
-    
