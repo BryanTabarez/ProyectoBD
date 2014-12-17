@@ -316,7 +316,7 @@ color: rgb(255, 255, 255);</string>
      <attribute name="label">
       <string>Citas</string>
      </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonAtenderCita">
+     <widget class="QCommandLinkButton" name="commandLinkButton">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -329,11 +329,24 @@ color: rgb(255, 255, 255);</string>
        <string>Atender Cita</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonVerAgenda">
+     <widget class="QCommandLinkButton" name="commandLinkButton_2">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>40</y>
+        <width>151</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ver Citas con pacientes</string>
+      </property>
+     </widget>
+     <widget class="QCommandLinkButton" name="commandLinkButton_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>80</y>
         <width>141</width>
         <height>36</height>
        </rect>
@@ -355,7 +368,7 @@ color: rgb(255, 255, 255);</string>
      <attribute name="label">
       <string>Campañas</string>
      </attribute>
-     <widget class="QCommandLinkButton" name="commandLinkButtonNuevaCampana">
+     <widget class="QCommandLinkButton" name="commandLinkButton_6">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -368,7 +381,7 @@ color: rgb(255, 255, 255);</string>
        <string>Nueva Campaña</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonModificarCampana">
+     <widget class="QCommandLinkButton" name="commandLinkButton_7">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -394,7 +407,7 @@ color: rgb(255, 255, 255);</string>
        <string>Lista Campañas</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonVincularPaciente">
+     <widget class="QCommandLinkButton" name="commandLinkButton_9">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -407,7 +420,7 @@ color: rgb(255, 255, 255);</string>
        <string>Vincular Pacientes</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonPacientesCampanas">
+     <widget class="QCommandLinkButton" name="commandLinkButton_10">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -420,7 +433,7 @@ color: rgb(255, 255, 255);</string>
        <string>Lista Pacientes Campañas</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonDesvincularPaciente">
+     <widget class="QCommandLinkButton" name="commandLinkButton_11">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -473,6 +486,8 @@ color: rgb(255, 255, 255);</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Recursos/Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

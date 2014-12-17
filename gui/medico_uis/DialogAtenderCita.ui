@@ -74,6 +74,9 @@
     </disabled>
    </palette>
   </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -230,7 +233,7 @@ color: rgb(255, 255, 255);</string>
      <bold>true</bold>
     </font>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -314,7 +317,7 @@ color: rgb(255, 255, 255);</string>
      <string>Causa</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -352,7 +355,7 @@ color: rgb(255, 255, 255);</string>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="lineEditIndentificacion"/>
      </item>
      <item row="1" column="2">
       <widget class="QLabel" name="label_5">
@@ -405,7 +408,7 @@ color: rgb(255, 255, 255);</string>
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -570,53 +573,41 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QPushButton" name="pushButton_3">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>660</x>
       <y>490</y>
-      <width>178</width>
-      <height>29</height>
+      <width>111</width>
+      <height>27</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_7">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton_6">
-       <property name="text">
-        <string>Cancelar</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="pushButton_5">
-       <property name="text">
-        <string>Aceptar</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="text">
+     <string>Consular Paciente</string>
+    </property>
    </widget>
-   <zorder></zorder>
+   <widget class="QPushButton" name="pushButtonTerminar">
+    <property name="geometry">
+     <rect>
+      <x>544</x>
+      <y>490</y>
+      <width>111</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Terminar</string>
+    </property>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>line_3</zorder>
    <zorder>listWidget_2</zorder>
    <zorder>label_14</zorder>
-   <zorder></zorder>
    <zorder>label_10</zorder>
    <zorder>line_5</zorder>
    <zorder>line_2</zorder>
-   <zorder></zorder>
-   <zorder>label_2</zorder>
-   <zorder>line_4</zorder>
-   <zorder>label_9</zorder>
-   <zorder></zorder>
-   <zorder>line_3</zorder>
-   <zorder>listWidget_2</zorder>
-   <zorder>label_14</zorder>
-   <zorder></zorder>
-   <zorder>label_10</zorder>
-   <zorder>line_5</zorder>
-   <zorder>line_2</zorder>
-   <zorder></zorder>
    <zorder>label_2</zorder>
    <zorder>line_4</zorder>
    <zorder>label_9</zorder>
@@ -626,8 +617,8 @@ color: rgb(255, 255, 255);</string>
    <zorder>pushButton</zorder>
    <zorder>pushButton_2</zorder>
    <zorder>listWidget_6</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>pushButton_6</zorder>
+   <zorder>pushButton_3</zorder>
+   <zorder>pushButtonTerminar</zorder>
   </widget>
  </widget>
  <resources/>
