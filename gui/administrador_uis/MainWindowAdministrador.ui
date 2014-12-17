@@ -266,11 +266,21 @@ font: 12pt &quot;Ubuntu Condensed&quot;;</string>
       <rect>
        <x>20</x>
        <y>0</y>
-       <width>161</width>
-       <height>71</height>
+       <width>162</width>
+       <height>81</height>
       </rect>
      </property>
      <layout class="QFormLayout" name="formLayout_2">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelClinicManager">
+        <property name="text">
+         <string>Clinic Manager</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="labelColMedica">
         <property name="styleSheet">
@@ -279,13 +289,6 @@ color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>ColMedica</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelClinicManager">
-        <property name="text">
-         <string>Clinic Manager</string>
         </property>
        </widget>
       </item>
@@ -371,7 +374,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>150</y>
+        <y>90</y>
         <width>181</width>
         <height>36</height>
        </rect>
@@ -387,34 +390,14 @@ color: rgb(255, 255, 255);</string>
        <string>Listar Empleados</string>
       </property>
      </widget>
-     <widget class="QCommandLinkButton" name="commandLinkButtonEliminarEmpleado">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>100</y>
-        <width>181</width>
-        <height>36</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Eliminar Empleado</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="page_2">
      <property name="geometry">
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>98</width>
-       <height>28</height>
+       <width>200</width>
+       <height>249</height>
       </rect>
      </property>
      <attribute name="label">

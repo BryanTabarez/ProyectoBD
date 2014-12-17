@@ -281,27 +281,11 @@ color: rgb(255, 255, 255);</string>
       <x>10</x>
       <y>40</y>
       <width>771</width>
-      <height>176</height>
+      <height>180</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="3">
-      <widget class="QLineEdit" name="lineEditSalario">
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
-       </property>
-       <property name="inputMask">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
+     <item row="2" column="1">
       <widget class="QLineEdit" name="lineEditNombre">
        <property name="font">
         <font>
@@ -317,7 +301,7 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="labelNombre">
        <property name="mouseTracking">
         <bool>false</bool>
@@ -327,14 +311,14 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="4" column="0">
       <widget class="QLabel" name="labelTelefono">
        <property name="text">
         <string>Telefono</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
+     <item row="4" column="1">
       <widget class="QLineEdit" name="lineEditTelefono">
        <property name="font">
         <font>
@@ -353,7 +337,7 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="3" column="0">
       <widget class="QLabel" name="labelDireccion">
        <property name="mouseTracking">
         <bool>false</bool>
@@ -363,7 +347,7 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
+     <item row="3" column="1">
       <widget class="QLineEdit" name="lineEditDireccion">
        <property name="font">
         <font>
@@ -389,9 +373,6 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="3">
-      <widget class="QLineEdit" name="lineEditJefe"/>
-     </item>
      <item row="0" column="1">
       <widget class="QLineEdit" name="lineEditIdentificacion">
        <property name="font">
@@ -411,7 +392,43 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="3">
+     <item row="3" column="2">
+      <widget class="QLabel" name="labelEmail">
+       <property name="text">
+        <string>Email</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLabel" name="labelCodigoArea">
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Codigo area</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="lineEditJefe"/>
+     </item>
+     <item row="2" column="3">
+      <widget class="QLineEdit" name="lineEditSalario">
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="inputMethodHints">
+        <set>Qt::ImhDigitsOnly</set>
+       </property>
+       <property name="inputMask">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
       <widget class="QLineEdit" name="lineEditEmail">
        <property name="font">
         <font>
@@ -424,55 +441,38 @@ color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QLabel" name="labelCodigoArea">
-       <property name="mouseTracking">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>Codigo area</string>
-       </property>
-      </widget>
+     <item row="4" column="3">
+      <widget class="QLineEdit" name="lineEditCodigoArea"/>
      </item>
-     <item row="0" column="2">
+     <item row="2" column="2">
       <widget class="QLabel" name="labelSalario">
        <property name="text">
         <string>Salario              </string>
        </property>
       </widget>
      </item>
-     <item row="3" column="2">
-      <widget class="QLabel" name="labelCodigoJefe">
-       <property name="text">
-        <string>C.C. jefe</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLabel" name="labelEmail">
-       <property name="text">
-        <string>Email</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QLineEdit" name="lineEditCodigoArea"/>
-     </item>
-     <item row="0" column="4">
-      <widget class="QPushButton" name="pushButtonConsultar">
-       <property name="text">
-        <string>Consultar</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
+     <item row="5" column="2">
       <widget class="QLabel" name="labelTipoEmpleado">
        <property name="text">
         <string>Tipo empleado</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelCodigoJefe">
+       <property name="text">
+        <string>C.C. jefe</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pushButtonConsultar">
+       <property name="text">
+        <string>Consultar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
       <widget class="QComboBox" name="comboBoxTipoEmpleado">
        <property name="font">
         <font>
@@ -492,7 +492,7 @@ color: rgb(255, 255, 255);</string>
        </item>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="1" column="0" colspan="3">
       <widget class="Line" name="lineDatosPersonales_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -504,7 +504,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="labelDatosPersonales_2">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>390</x>
       <y>10</y>
       <width>131</width>
       <height>16</height>
@@ -517,24 +517,31 @@ color: rgb(255, 255, 255);</string>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>200</x>
       <y>530</y>
-      <width>178</width>
+      <width>411</width>
       <height>33</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="pushButtonCancelar">
+      <widget class="QPushButton" name="pushButtonEliminar">
        <property name="text">
-        <string>Cancelar</string>
+        <string>Eliminar</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonInsertar">
+      <widget class="QPushButton" name="pushButtonLimpiar">
        <property name="text">
-        <string>Insertar</string>
+        <string>Limpiar campos</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonGuardar">
+       <property name="text">
+        <string>Guardar</string>
        </property>
       </widget>
      </item>
@@ -544,17 +551,16 @@ color: rgb(255, 255, 255);</string>
  </widget>
  <tabstops>
   <tabstop>lineEditIdentificacion</tabstop>
+  <tabstop>pushButtonConsultar</tabstop>
   <tabstop>lineEditNombre</tabstop>
   <tabstop>lineEditDireccion</tabstop>
   <tabstop>lineEditTelefono</tabstop>
+  <tabstop>lineEditJefe</tabstop>
   <tabstop>lineEditSalario</tabstop>
   <tabstop>lineEditEmail</tabstop>
   <tabstop>lineEditCodigoArea</tabstop>
-  <tabstop>lineEditJefe</tabstop>
   <tabstop>comboBoxTipoEmpleado</tabstop>
-  <tabstop>pushButtonConsultar</tabstop>
-  <tabstop>pushButtonInsertar</tabstop>
-  <tabstop>pushButtonCancelar</tabstop>
+  <tabstop>pushButtonEliminar</tabstop>
  </tabstops>
  <resources/>
  <connections/>

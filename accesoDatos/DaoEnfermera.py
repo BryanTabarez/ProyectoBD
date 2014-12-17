@@ -52,8 +52,8 @@ class DaoEnfermera():
                 cur.close()
                 return 1
             else:
-                cur.execute("""SELECT habilidad FROM Enfermera_habilidad WHERE
-                id_enfermera = %s""", (id,))
+                cur.execute("""SELECT codigo, descripcion FROM Enfermera_habilidad JOIN
+                    Habilidad ON codigo = habilidad WHERE id_enfermera = %s""", (id,))
                 habilidades = cur.fetchall()
                 enfermera = Enfermera(consulta[0], consulta[1], consulta[2],
                     consulta[3], consulta[4], consulta[5], consulta[6],
