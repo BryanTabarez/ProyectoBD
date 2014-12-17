@@ -3,13 +3,5 @@ from ControlDaoArea import ControlDaoArea
 from ControlDaoPaciente import ControlDaoPaciente
 
 from ControlDaosEmpleados import ControlDaosEmpleados
+#from ControlDaoMedico import ControlDaoMedico
 
-from ControlDaoCama import ControlDaoCama
-
-from ControlDaoCamaPaciente import ControlDaoCamaPaciente
-
-from ControlDaoHorarioMedico import ControlDaoHorarioMedico
-
-from ControlDaoMedico import ControlDaoMedico
-
-from ControlDaoCita import ControlDaoCita
