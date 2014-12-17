@@ -2,11 +2,6 @@ from accesoDatos import DaoPaciente
 from logica import Paciente
 
 
-def mostrarReturn(resultado):
-    if resultado is not None:
-        print("\nExcepcion capturada! Falta Implementar!!")
-        print((resultado.pgerror))
-
 class ControlDaoPaciente():
 
 	def __init__( self, conexion ):
@@ -19,10 +14,7 @@ class ControlDaoPaciente():
 			fecha_nacimiento, actividad_economica, num_seg_social)
 
 		insertarPaciente = self.daoPaciente.guardarPaciente( paciente )
-		if insertarPaciente is 0:
-			return "El paciente se ingreso con exito"
-		if isinstance (insertarPaciente, Exception):
-			return "No fue posible ingresar el paciente a la base de datos"
+		return insertarPaciente
 
 	def modificarPacinete( self, identificacion, nombre, direccion, 
 		telefono, fecha_nacimiento, actividad_economica, num_seg_social ):
@@ -31,13 +23,11 @@ class ControlDaoPaciente():
 			fecha_nacimiento, actividad_economica, num_seg_social)
 
 		actualizarPaciente = self.daoPaciente.modificarPaciente( paciente )
-		if actualizarPaciente is 0:
-			return "El paciente se ingreso con exito"
-		if isinstance (actualizarPaciente, Exception):
-			return "No fue posible ingresar el paciente a la base de datos"
+		return actualizarPaciente
+
 
 	def consultar( self, id ):
-
+		print "Consultar Paciente: " + id
 		paciente = self.daoPaciente.consultarPaciente( id )
 		if isinstance (paciente, Paciente):
 			return [ 
@@ -49,8 +39,16 @@ class ControlDaoPaciente():
 
 			]
 		else:
-			return 0
+			return paciente
 
+	def borrarPaciente( self, id ):
+		print "Borrar Paciente: " + id
+		resultado = self.daoPaciente.borrarPaciente( id )
+		return resultado
+
+
+
+	#Borararra
 	def listarPacientes( self ):
 
 		matriz_pacientes = self.daoPaciente.listarPacientes()
@@ -59,12 +57,6 @@ class ControlDaoPaciente():
 		else:
 			return matriz_pacientes
 
-	def borrarPaciente( self, id ):
-
-		resultado = self.daoPaciente.borrarPaciente( id )
-		if resultado is 0:
-			return "El paciente fue eliminado con exito"
-		if isinstance (resultado, Exception):
-			return "No fue posible eliminar el paciente a la base de datos"
+	
 
 		
