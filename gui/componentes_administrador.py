@@ -1,13 +1,11 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 from PyQt4 import uic
-<<<<<<< HEAD
 
-=======
 from control import ControlDaoHabilidades
 from adminHabilidadCamaCausa import *
 from DialogMedicamento import *
->>>>>>> a7e36e118ba25101016e4fc4bfc94a4a7a92abaf
+
 
 #=======================================================================================================================
 # INTEGRANTES:
@@ -118,7 +116,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 
 	# CONSULTAR EL EMPLEADO
 	def consultarEmpleado( self ):
-<<<<<<< HEAD
+
 		identificacion = str( self.lineEditIdentificacion.text() )
 		resultado = self.controladorDaosEmpleados.consultarDatosEnfermera( identificacion )
 
@@ -139,7 +137,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		indice =  self.comboBoxTipoEmpleado.currentIndex()
 		
 		# INDICE = 1 -> ENFERMERA
-=======
+
 		self.identificacion = str( self.lineEditIdentificacion.text() )
 		indice =  self.comboBoxTipoEmpleado.currentIndex()
 
@@ -182,7 +180,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 		indice =  self.comboBoxTipoEmpleado.currentIndex()
 
 		# ENFERMERA:
->>>>>>> a7e36e118ba25101016e4fc4bfc94a4a7a92abaf
+
 		if indice is 0:
 			anios_experiencia = str( self.widgetTipoEmpleadoEnfermera.lineEditAniosExperiencia.text() )
 			# ATRUBUTOS PARA HABILIDADES:
@@ -193,27 +191,27 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 			
 			# INSERTAR ENFERMERA
 			if self.tipo_operacion is 1:
-<<<<<<< HEAD
+
 				self.controladorDaosEmpleados.insertarEnfermera( self.identificacion, self.nombre, self.direccion, self.telefono,
 					self.codigo_area, self.email, self.salario, self.id_jefe, anios_experiencia, [1] )
 				# identificacion, nombre, direccion, telefono, codigo_area,
 				#     		email, salario, id_jefe, anhos_experiencia, habilidades
-=======
+
 				identificacion = str( self.lineEditIdentificacion.text() )
 				result = self.controladorDaosEmpleados.insertarEnfermera( identificacion, nombre, direccion, telefono,
 					codigo_area, email, salario, id_jefe, anios_experiencia, [1] )
 				self.dialogoInfo.showMensaje( "Insertar Enfermera", result )
 
->>>>>>> a7e36e118ba25101016e4fc4bfc94a4a7a92abaf
+
 			
 			# ACTUALIZAR/MODIFICAR ENFERMERA
 			if self.tipo_operacion is 2:
-<<<<<<< HEAD
+
 				pass
 
 
 		# INDICE = 2 -> MEDICO
-=======
+
 				result = self.controladorDaosEmpleados.actualizarDatosEnfermera( self.identificacion, nombre, direccion, telefono,
 					codigo_area, email, salario, id_jefe, anios_experiencia, [1] )
 				self.dialogoInfo.showMensaje( "Modificar Enfermera", result )
@@ -221,7 +219,7 @@ class DialogEmpleado( QDialog, D_Empleado_class ):
 				#print hab
 		
 		# MEDICO:
->>>>>>> a7e36e118ba25101016e4fc4bfc94a4a7a92abaf
+
 		if indice is 1:
 
 			self.especialidad = self.widgetCuerpo.widgetTipoEmpleadoMedico.lineEditEspecialidad.text()
@@ -504,7 +502,7 @@ class WidgetListarAreas( QWidget, W_Areas_class ):
 		#self.tableWidgetAreas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
 		#self.tableWidgetAreas.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
 		pass
-<<<<<<< HEAD
+
 	
 #===============================================> CAMA <================================================================
 
@@ -932,8 +930,7 @@ class WidgetListarCausas( QWidget, W_Causas_class ):
 		#self.tableWidgetListarCausas.setItem( 0, 0, QTableWidgetItem( "Codigo" ) )
 		#self.tableWidgetListarCausas.setItem( 0, 1, QTableWidgetItem( "descripcion" ) )
 		pass
-=======
->>>>>>> a7e36e118ba25101016e4fc4bfc94a4a7a92abaf
+
 
 
 #=============================================> INFORMES <==============================================================
