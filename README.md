@@ -4,7 +4,7 @@ Base de datos para una clínica
 Autores.
 -------
 
-- Bryan Stiven Tabarez Mestra.		Código: 1130054
+- Barny Bestia Tres		Código: 000000
 - Aurelio Antonio Vivaz Mesa.		Código: 1110348
 - George Romero Ramirez.	        Código: 1130924
 
